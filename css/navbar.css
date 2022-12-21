@@ -1,0 +1,49 @@
+
+.lg-bell{
+    position: absolute;
+    right: 110px;
+    cursor: pointer;
+}
+.lg-profile{
+    position: absolute;
+    right: 50px;
+    cursor: pointer;
+}
+.container-fluid{
+    padding: 5px;
+}
+
+.dropdown-menu .dr-profile{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: -25px;
+}
+.dropdown .dropdown-menu{
+    position: absolute;
+    margin-left: -150px;
+    border-radius: 7px;
+    width: auto;
+    }
+#edit-profile{
+    position: absolute;
+    color: #111111;
+    margin-top: 40px;
+    margin-left: 85px;
+}
+.dropdown-menu .bell-btn{
+    display: flex;
+    justify-content: center;
+    margin-left: 20px;
+}
+.dropdown-menu .bell-btn .btn{
+    margin: 5px;
+    font-size: 16px;
+    border-radius: 50px;
+}
+.dd1 .dropdown-menu{
+    margin-left: -180px;
+}
+.dd1 .dropdown-menu li{
+    font-size: 14px;
+}

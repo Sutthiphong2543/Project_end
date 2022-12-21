@@ -1,0 +1,122 @@
+/* Import */
+@import url('https://fonts.googleapis.com/css2?family=Prompt:ital@0;1&display=swap');
+
+/* Main */
+*{
+    font-family: 'Prompt';
+    font-style: normal;
+    margin: 0;
+    padding: 0;
+}
+input{
+    caret-color:aqua;
+}
+form{
+    width: 465px;
+    padding: 40px;
+}
+.form-control{
+    border-top-style: none;
+    border-right-style: none;
+    border-left-style: none;
+    border-bottom: 1.5px solid #0D5A6B;
+}
+.forgot-pass{
+    margin-left: 110px;
+    color: #86868B;
+    cursor: pointer;
+}
+.forgot-pass:hover{
+    color: #0D5A6B;
+}
+.btn{
+    align-items: center;
+    border-radius: 21px;
+    width: 133.58px;
+    height: 42px;
+    background: #0D5A6B;
+    margin-left: 120px;
+}
+.Title-head{
+    display: flex;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 50px;
+    color: #14768C;
+}
+.field i{
+    position: absolute;
+    margin-top: -30px;
+    margin-left: 355px;
+}
+img{
+    position: absolute;
+    right: 64px;
+    width: 977px;
+    top: 100px;
+    z-index: -1;
+}
+.wrapper{
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    z-index: 1;
+    width: 908px;
+    height: 908px;
+    background: white;
+    left: 151px;
+    top: 20px;
+
+}
+.bi-eye-fill{
+    cursor: pointer;
+}
+.logo-home{
+    position: absolute;
+    top: 206px;
+    left: 135px;
+    width: 110px;
+}
+@media screen and (max-width: 412px){
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    .bg-main{
+        display: none;
+    }
+    .wrapper{
+        max-width: 400px;
+        margin-left: -150px;
+    }
+    .field i{
+        position: absolute;
+        margin-top: -30px;
+        margin-left: 290px;
+    }
+    form{
+        font-size: 14px;
+    }
+    .forgot-pass{
+        margin-left: 75px;
+        color: #0D5A6B;
+    }
+    .btn{
+        margin-left: 110px;
+        width: 100px;
+    }
+    .Title-head{
+        display: flex;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 40px;
+    }
+    .logo-home{
+        position: absolute;
+        margin-top: -120px;
+        margin-left: -12px;
+        width: 150px;
+    }
+}

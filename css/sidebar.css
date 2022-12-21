@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=Prompt:ital@0;1&display=swap');
+*{
+    font-family: 'Prompt';
+    font-style: normal;
+}
+
+.sidebar{
+    position: relative;
+    display: block;
+    width: 318px;
+    height: 100vh;
+    background: #FFFFFF;
+    border-right: 1px solid #B1B7E3;
+    border-bottom: 1px solid #B1B7E3;
+    float: left;
+    transition: width 0.1s;
+    z-index: 1;
+}
+.header{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+}
+.header h2{
+    margin-top: 18px;
+    margin-left: 5px;
+    font-weight: 400;
+    font-size: 24px;
+    color: #535050;
+}
+
+.list-group img{
+    margin-left: 20px;
+}
+.list-group a{
+    padding-left: 30px;
+    font-weight: 400;
+    font-size: 16px;
+    color: #14768C;
+    text-decoration: none;
+}
+.list-group ,a ,img{
+    margin-left: 35px;
+}
+.side-group{
+    display: flex;
+    height: 50px;
+    align-items: center;
+}
+.side-group img{
+    position: absolute;
+}
+.side-group:hover{
+    background: #ece9e9;
+}
+@media (max-width: 991.98px) { 
+    .sidebar{
+        width: 80px;
+        height: 100vh auto;
+        transition: width 0.3s;
+    }
+    a ,h2 {
+        display: none;
+    }
+    #lg-home{
+        margin-left: 5px;
+    }
+    .side-group img {
+        width: 35px;
+        transition: width 0.3s;
+    }
+    .side-group {
+        margin: 5px 0;
+    }
+    .list-group{
+        margin: 0;
+    }
+ }
+
+ 

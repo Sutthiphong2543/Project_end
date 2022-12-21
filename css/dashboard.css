@@ -1,0 +1,148 @@
+/* Import */
+@import url('https://fonts.googleapis.com/css2?family=Prompt:ital@0;1&display=swap');
+
+/* Main */
+*{
+    font-family: 'Prompt';
+    font-style: normal;
+}
+
+.main-container{
+    display: flex;
+    position: absolute;
+    min-width: 991.98px;
+    width:1600px;
+    height: 912px;
+    margin-top: 57px ;
+    margin-left: 317px;
+    background: #F4FBFE;
+    justify-content: center;
+    align-items: center;
+    overflow: auto;
+    z-index: -2;
+
+}
+
+
+@media (max-width: 991.98px) { 
+    .main-container{
+        margin-left: 78px;
+        transition: 0.3s;
+    }
+}
+
+/*...........content...........*/
+
+.content1 {
+    position: absolute;
+    width: 772px;
+    margin-right: 50rem;
+    margin-bottom: 43rem;
+    padding: 5px;
+}
+.content2{
+    position: absolute;
+    width: 740px;
+    height: 478px;
+    margin-right: 50rem;
+    margin-bottom: 7rem;
+    border-radius: 5px;
+    border: 1px solid #C2DEDE;
+    padding: 5px;
+    background: #FFFFFF;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+.content3{
+    position: absolute;
+    width: 740px;
+    height: 182px;
+    margin-right: 50rem;
+    margin-bottom: -38rem;
+    border-radius: 5px;
+    border: 1px solid #C2DEDE;
+    padding: 5px;
+    background: #FFFFFF;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+.content4{
+    position: absolute;
+    width: 780px;
+    height: 813px;
+    margin-left: 49rem;
+    margin-bottom: 1.5rem;
+    border-radius: 5px;
+    border: 1px solid #C2DEDE;
+    padding: 5px;
+    background: #FFFFFF;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+
+}
+.income{
+    position: relative;
+    width: 230px;
+    height: 99px;
+    background: #FFFFFF;
+    border: 1px solid #C2DEDE;
+    border-radius: 5px;
+}
+.expenses{
+    position: relative;
+    width: 230px;
+    height: 99px;
+    background: #FFFFFF;
+    border: 1px solid #C2DEDE;
+    border-radius: 5px;
+}
+.remaining{
+    width: 230px;
+    height: 99px;
+    background: #FFFFFF;
+    border: 1px solid #C2DEDE;
+    border-radius: 5px;
+}
+.container{
+    display: flex;
+    justify-content: space-between;
+}
+.chart-container{
+    position: relative;
+    margin-left: 50px;
+}
+.title-footer{
+    position: relative;
+}
+.title {
+    margin:0 58px ;
+}
+.ct4-header  .btnH{
+    margin: 10px -2px;
+    background: #12768d;
+    border-radius: 7px;
+    color: #FFFFFF;
+}
+.ct4-table .table{
+    position: relative;
+    font-size: 14px;
+}
+.ct4-table{
+    margin: 15px;
+    padding: 7px;
+    border-radius: 10px;
+    border: 1px solid #C2DEDE;
+}
+.ct4-header{
+    margin: 10px;
+    padding-left: 20px ;
+}
+
+.head-ct2 .btn{
+    background: #ffffff;
+    width: auto;
+    border: 1px solid #C2DEDE;
+    margin: 10px;
+}
+
+.content2 .chart-container{
+    width: 35vw;
+    margin-left: 25px;
+}

@@ -1,0 +1,76 @@
+/* Import */
+@import url('https://fonts.googleapis.com/css2?family=Prompt:ital@0;1&display=swap');
+
+/* Main */
+*{
+    font-family: 'Prompt';
+    font-style: normal;
+}
+
+.main-container{
+    display: flex;
+    position: absolute;
+    min-width: 991.98px;
+    width:1600px;
+    height: 912px;
+    margin-top: 57px ;
+    margin-left: 317px;
+    background: #F4FBFE;
+    justify-content: center;
+    align-items: center;
+    overflow: auto;
+    z-index: -2;
+
+}
+
+
+@media (max-width: 991.98px) { 
+    .main-container{
+        margin-left: 78px;
+        transition: 0.3s;
+    }
+}
+
+/*...........content...........*/
+.main-income {
+    position: relative;
+    margin-top: 10px;
+    width: 1530px;
+    height: 860px;
+    border-radius: 5px;
+    border: 1px solid #C2DEDE;
+    padding: 10px;
+    background: #FFFFFF;
+}
+.main-income button{
+    margin: 10px 5px;
+    width: 7rem;
+    background: #0f6c81;
+    border-radius: 7px;
+    color: #FFFFFF;
+}
+.main-income .filter{
+    margin-left: 890px;
+}
+.filter .btn-filer{
+    background: #FFFFFF;
+    color: #1D1D1F;
+    border: 1px solid #C2DEDE;
+}
+.printer .btn-printer{
+    background: #FFFFFF;
+    color: #1D1D1F;
+    border: 1px solid #C2DEDE;
+}
+.table-income{
+    margin: 5px 10px;
+    padding: 10px;
+    border: 1px solid #C2DEDE;
+    border-radius: 7px;
+}
+.bi-check-circle-fill{
+    color: #2AADCA;
+}
+.bi-x-circle{
+    color: red;
+}

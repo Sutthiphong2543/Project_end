@@ -1,0 +1,78 @@
+/* Import */
+@import url('https://fonts.googleapis.com/css2?family=Prompt:ital@0;1&display=swap');
+
+/* Main */
+*{
+    font-family: 'Prompt';
+    font-style: normal;
+}
+
+.main-container{
+    display: flex;
+    position: absolute;
+    min-width: 991.98px;
+    width:1600px;
+    height: 912px;
+    margin-top: 57px ;
+    margin-left: 317px;
+    background: #F4FBFE;
+    justify-content: center;
+    align-items: center;
+    overflow: auto;
+    z-index: -2;
+
+}
+
+
+@media (max-width: 991.98px) { 
+    .main-container{
+        margin-left: 78px;
+        transition: 0.3s;
+    }
+}
+
+/*...........content...........*/
+.main-dash {
+    position: relative;
+    margin-top: 10px;
+    width: 1530px;
+    height: 860px;
+    border-radius: 5px;
+    border: 1px solid #C2DEDE;
+    padding: 10px;
+    background: #FFFFFF;
+}
+.main-dash .search{
+    width: 300px;
+    margin: 10px;
+}
+.main-dash button{
+    margin: 0 5px;
+    width: auto;
+    background: #0f6c81;
+    border-radius: 5px;
+    color: #FFFFFF;
+}
+ i {
+    margin-right:10px;
+}
+.header-dash{
+    position: absolute;
+    margin-left: 5px;
+}
+.header-dash .noti-pay{
+    position: relative;
+    width: auto;
+    margin-left: 760px;
+    overflow: hidden;
+}
+.table-dash{
+    border: 1px solid #C2DEDE;
+    margin: 10px;
+    padding: 15px;
+    margin-top: 5rem;
+    border-radius: 7px;
+}
+.table tbody{
+    font-size: 14px;
+}
