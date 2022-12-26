@@ -1,5 +1,6 @@
 <?php 
-
+require_once"../components/session.php";
+require_once"../components/check_admin.php";
 require_once "../config/connect.php";
 $result=$controller->getVillagers();
 

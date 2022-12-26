@@ -1,3 +1,6 @@
+<?php
+    require_once "session.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,8 +38,7 @@
             </div>
             <div class="lg-profile dd2">
                 <div class="dropdown">
-                    <img id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false" src="../assets/lg-profile.png" alt="" width="40">
-                
+                    <img id="dropdownMenu2" class="mx-3" data-bs-toggle="dropdown" aria-expanded="false" src="../assets/lg-profile.png" alt="" width="40">
                     <ul class="dropdown-menu mt-2" aria-labelledby="dropdownMenu2">
                         <div class="dr-profile mt-2">
                             <img src="../assets/lg-profile.png" alt="" width="55">
@@ -48,6 +50,7 @@
                     </ul>
                 </div>
             </div>
+            <p class="ml-3 "><?php echo $_SESSION["username"];  ?></p>
         </div>
         
     </nav>

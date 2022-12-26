@@ -1,5 +1,21 @@
-<?php  
+<?php 
+    require_once"components/session.php";
     require_once"config/connect.php";
+    if($_SERVER["REQUEST_METHOD"] == "POST"){
+        $username = $_POST["username"];
+        $password = $_POST["password"];
+        $new_password = md5($password.$username);
+        $result=$user->getUser($username, $new_password);
+
+        if(!$result){
+            echo '<div class= "alert alert-danger">ชื่อผู้ใช้และรหัสผ่านไม่ถูกต้อง</div>';
+        }else{
+        $_SESSION["username"] = $username;
+        $_SESSION["userid"] = $result["id"];
+        header("Location:views/ad_dashboard.php");
+        }
+        
+    }
 ?>
 
 <!DOCTYPE html>
@@ -19,7 +35,7 @@
     <div class="wrapper">
         <img class="logo-home" src="assets/LogoHome.png" >
 
-        <form action="signin_db.php" method="post">
+        <form method="POST" action="<?php echo htmlentities($_SERVER['PHP_SELF']) ?>" >
             
 
             <div class="mb-3">
@@ -27,7 +43,11 @@
             </div>
             <div class="mb-3 field" >
                 <label for="username" class="form-label">USERNAME</label>
-                <input type="text" class="form-control" name="username" aria-describedby="username">
+                <input type="text"
+                 name="username"
+                 value="<?php if($_SERVER["REQUEST_METHOD"] == "POST") echo $_POST["username"]; ?>"
+                 class="form-control" 
+                >
                 <i class="bi bi-person-fill"></i>
             </div>
             <div class="mb-3 field">
@@ -40,7 +60,7 @@
                 <label class="form-check-label" for="exampleCheck1">Remember me</label>
                 <a href=""><label class="forgot-pass">Forget password</label></a>
             </div>
-            <button type="submit" class="btn btn-primary " name="signin">LOGIN</button>
+            <button type="submit" value="Login Success" class="btn btn-primary " name="signin">LOGIN</button>
             <br>
             <p class="text-center mt-3"><a href="signup.php">Signup?</a></p>
             </form>

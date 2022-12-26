@@ -1,3 +1,6 @@
+<?php
+    require_once "session.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -50,7 +53,7 @@
                 </div>
                 <div class="side-group">
                     <img src="../assets/Logo_Sidebar/lg-logout.png" alt="lg-dashboard" width="30">
-                    <a href="#" >ออกจากระบบ</a>
+                    <a href="../components/logout.php" >ออกจากระบบ</a>
                 </div>
                </div>
         </div>
