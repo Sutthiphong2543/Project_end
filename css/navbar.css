@@ -1,4 +1,11 @@
-
+@import url('https://fonts.googleapis.com/css2?family=Prompt:ital@0;1&display=swap');
+*{
+    font-family: 'Prompt';
+    font-style: normal;
+}
+.title-nav{
+    padding-right:500px;
+}
 .lg-bell{
     position: absolute;
     right: 110px;

@@ -12,7 +12,7 @@
         }else{
         $_SESSION["username"] = $username;
         $_SESSION["userid"] = $result["id"];
-        header("Location:views/ad_dashboard.php");
+        header("Location:views/ad_dashboard.php?title=Dashboard");
         }
         
     }

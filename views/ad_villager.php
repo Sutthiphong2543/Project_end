@@ -1,9 +1,10 @@
 <?php 
 require_once"../components/session.php";
 require_once"../components/check_admin.php";
-require_once "../config/connect.php";
+require_once"../config/connect.php";
 $result=$controller->getVillagers();
-
+$vlgStay=$controller->stayVillagers();
+$vlgNotStay=$controller->notStayVillagers();
 ?>
 
 <!DOCTYPE html>
@@ -26,62 +27,196 @@ $result=$controller->getVillagers();
 <body>
 <div class="main-container ">
         <div class="main-villager">
-            <div class="search d-flex">
+            <!-- <div class="search d-flex">
                 <input class="form-control text-center" type="text" placeholder="ชื่อ ,บ้านเลขที่">
                 <button class="btn d-flex"><i class="bi bi-search"></i>ค้นหา</button>
-            </div>
+            </div> -->
 
-            <div class="header-villager d-flex mt-2">
-                <button class="btn">รายการทั้งหมด</button>
-                <button class="btn">ยังอยู่</button>
-                <button class="btn">ย้ายออก</button>
+            <div class="header-villager d-flex mt-4">
+                <button class="btn tablink" onclick="openVillager('all-content', this, 'orange')" id="defaultOpen">รายการทั้งหมด</button>
+                <button class="btn tablink" onclick="openVillager('stay-content', this, '#0dcaf0')" >ยังอยู่</button>
+                <button class="btn tablink" onclick="openVillager('notStay-content', this, 'red')">ย้ายออก</button>
                 <div class="add-villager">
-                    <a href="../signup.php" class="btn btn-primary"><i class="bi bi-person-plus"></i>เพิ่มสมาชิก</a>
+                    <a href="../signup.php" class="btn btn-primary" ><i class="bi bi-person-plus"></i>เพิ่มสมาชิก</a>
                 </div>
             </div>
-            <div class="table-villager">
-            <table id="villager_detail" class="table ">
-                <thead>
-                    <tr>
-                    <th scope="col" class="text-center">ชื่อ</th>
-                    <th scope="col" class="text-center">บ้านเลขที่</th>
-                    <th scope="col" class="text-center">เบอร์โทร</th>
-                    <th scope="col" class="text-center">สถานะ</th>
-                    <th scope="col" class="text-center"></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php while($row=$result->fetch(PDO::FETCH_ASSOC)){ ?>
+
+            <!-- Table -->
+
+            <!-- Show all -->
+            <div class="table-villager ">
+                <div id="all-content"  class="tabContent">
+                    <table id="villager_detail" class="table ">
+                    <thead>
                         <tr>
-                            <td class="text-nowrap"><?php echo $row["villager_fname"]."  ".$row["villager_lname"] ?></td>
-                            <td class="text-center"><?php echo $row["villager_housenum"] ?></td>
-                            <td ><?php echo $row["villager_tel"] ?></td>
-                            <?php if($row["role_id"]==1){?>
-                                <td class="text-center"><p class="bg-info text-white"><?php echo $row["role_status"] ?></p></td>
-                            <?php }else { ?>
-                                <td class="text-center"><p class="bg-danger text-white"><?php echo $row["role_status"] ?></p></td>
-                            <?php }?>
-                            <td class="text-center">
-                                <a 
-                                    href="../components/editVillager.php?id=<?php echo $row["villager_id"] ?>" class="btn btn-warning">แก้ไข<i class="bi bi-pencil-square mx-2"></i>
-                                </a>
-                                <a onclick="return confirm('ต้องการลบข้อมูลหรือไม่ ?')"
-                                    href="../components/delete.php?id=<?php echo $row["villager_id"] ?>" class="btn btn-danger" >
-                                    Delete
-                                </a>
-                               </td>
+                        <th scope="col" class="text-center" >ชื่อ</th>
+                        <th scope="col" class="text-center">บ้านเลขที่</th>
+                        <th scope="col" class="text-center">เบอร์โทร</th>
+                        <th scope="col" class="text-center">สถานะ</th>
+                        <th scope="col" class="text-center"></th>
                         </tr>
-                    <?php } ?>
-                </tbody>
-                </table>
+                    </thead>
+                    <tbody>
+                        <?php while($row=$result->fetch(PDO::FETCH_ASSOC)){ ?>
+                            <tr>
+                                <td class="text-start px-4"><?php echo $row["villager_fname"]."  ".$row["villager_lname"] ?></td>
+                                <td class="text-center"><?php echo $row["villager_housenum"] ?></td>
+                                <td ><?php echo $row["villager_tel"] ?></td>
+                                <?php if($row["role_id"]==1){?>
+                                    <td class="text-center"><p class="bg-info text-white"><?php echo $row["role_status"] ?></p></td>
+                                <?php }else { ?>
+                                    <td class="text-center"><p class="bg-danger text-white"><?php echo $row["role_status"] ?></p></td>
+                                <?php }?>
+                                <td class="text-center">
+                                    <a 
+                                        href="../components/editVillager.php?id=<?php echo $row["villager_id"] ?>" class="btn btn-warning">แก้ไข<i class="bi bi-pencil-square mx-2"></i>
+                                    </a>
+                                    <a onclick="return confirm('ต้องการลบข้อมูลหรือไม่ ?')"
+                                        href="../components/delete.php?id=<?php echo $row["villager_id"] ?>" class="btn btn-danger" >
+                                        Delete
+                                    </a>
+                                </td>
+                            </tr>
+                        <?php } ?>
+                    </tbody>
+                    </table>
+                </div>
+                <!-- Show stay people -->
+                <div id="stay-content" class="tabContent">
+                    <table id="villager_detail_stay" class="table ">
+                        <thead>
+                            <tr>
+                            <th scope="col" class="text-center">ชื่อ</th>
+                            <th scope="col" class="text-center">บ้านเลขที่</th>
+                            <th scope="col" class="text-center">เบอร์โทร</th>
+                            <th scope="col" class="text-center">สถานะ</th>
+                            <th scope="col" class="text-center"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php while($row=$vlgStay->fetch(PDO::FETCH_ASSOC)){ ?>
+                                <tr>
+                                    <td class="text-start px-4"><?php echo $row["villager_fname"]."  ".$row["villager_lname"] ?></td>
+                                    <td class="text-center"><?php echo $row["villager_housenum"] ?></td>
+                                    <td ><?php echo $row["villager_tel"] ?></td>
+                                    <?php if($row["role_id"]==1){?>
+                                        <td class="text-center"><p class="bg-info text-white"><?php echo $row["role_status"] ?></p></td>
+                                    <?php }else { ?>
+                                        <td class="text-center"><p class="bg-danger text-white"><?php echo $row["role_status"] ?></p></td>
+                                    <?php }?>
+                                    <td class="text-center">
+                                        <a 
+                                            href="../components/editVillager.php?id=<?php echo $row["villager_id"] ?>" class="btn btn-warning">แก้ไข<i class="bi bi-pencil-square mx-2"></i>
+                                        </a>
+                                        <a onclick="return confirm('ต้องการลบข้อมูลหรือไม่ ?')"
+                                            href="../components/delete.php?id=<?php echo $row["villager_id"] ?>" class="btn btn-danger" >
+                                            Delete
+                                        </a>
+                                    </td>
+                                </tr>
+                            <?php } ?>
+                        </tbody>
+                        </table>
+                </div>
+                <!-- show Not stay people -->
+                <div id="notStay-content" class="tabContent">
+                    <table id="villager_detail_notStay" class="table ">
+                            <thead>
+                                <tr>
+                                <th scope="col" class="text-center">ชื่อ</th>
+                                <th scope="col" class="text-center">บ้านเลขที่</th>
+                                <th scope="col" class="text-center">เบอร์โทร</th>
+                                <th scope="col" class="text-center">สถานะ</th>
+                                <th scope="col" class="text-center"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php while($row=$vlgNotStay->fetch(PDO::FETCH_ASSOC)){ ?>
+                                    <tr>
+                                        <td class="text-start px-4"><?php echo $row["villager_fname"]."  ".$row["villager_lname"] ?></td>
+                                        <td class="text-center"><?php echo $row["villager_housenum"] ?></td>
+                                        <td ><?php echo $row["villager_tel"] ?></td>
+                                        <?php if($row["role_id"]==1){?>
+                                            <td class="text-center"><p class="bg-info text-white"><?php echo $row["role_status"] ?></p></td>
+                                        <?php }else { ?>
+                                            <td class="text-center"><p class="bg-danger text-white"><?php echo $row["role_status"] ?></p></td>
+                                        <?php }?>
+                                        <td class="text-center">
+                                            <a 
+                                                href="../components/editVillager.php?id=<?php echo $row["villager_id"] ?>" class="btn btn-warning">แก้ไข<i class="bi bi-pencil-square mx-2"></i>
+                                            </a>
+                                            <a onclick="return confirm('ต้องการลบข้อมูลหรือไม่ ?')"
+                                                href="../components/delete.php?id=<?php echo $row["villager_id"] ?>" class="btn btn-danger" >
+                                                Delete
+                                            </a>
+                                        </td>
+                                    </tr>
+                                <?php } ?>
+                            </tbody>
+                            </table>
+                </div>
+            
             </div>
+
             
             
         </div>
     </div>
+    <!-- Modal -->
+
+
+
+
+    <!-- Script -->
+    <script>
+        // table
+        $(document).ready(function() {
+            $('#villager_detail').DataTable( {
+                responsive: true,
+                "pageLength": 10
+            } );
+        } );
+        $(document).ready(function() {
+            $('#villager_detail_stay').DataTable( {
+                responsive: true,
+                "pageLength": 10
+            } );
+        } );
+        $(document).ready(function() {
+            $('#villager_detail_notStay').DataTable( {
+                responsive: true,
+                "pageLength": 10
+            } );
+        } );
+
+        // header tab
+
+        function openVillager(villagerDetail, elmnt, color) {
+        // Hide all elements with class="tabcontent" by default */
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabContent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+
+            // Remove the background color of all tablinks/buttons
+            tablinks = document.getElementsByClassName("tablink");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].style.backgroundColor = "";
+            }
+
+            // Show the specific tab content
+            document.getElementById(villagerDetail).style.display = "block";
+
+            // Add the specific color to the button used to open the tab content
+            elmnt.style.backgroundColor = color;
+        }
+
+        // Get the element with id="defaultOpen" and click on it
+        document.getElementById("defaultOpen").click();
+    </script>
 
     <!-- include template -->
     <?php include_once '../components/sidebar.php' ?>
-    <script src="../javaScript/villager.js"></script>
 </body>
 </html>

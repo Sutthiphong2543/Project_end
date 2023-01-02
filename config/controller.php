@@ -50,6 +50,33 @@ class Controller {
             return false;
         }
     }
+    function stayVillagers()
+    {
+        try{
+            $sql = "SELECT * FROM villagers vlg INNER JOIN role_users r ON vlg.role_id = r.role_id WHERE vlg.role_id='1'";
+            $result = $this->db->query($sql);
+            return $result;
+
+        }catch(PDOException $e){
+            echo $e->getMessage();
+            return false;
+        }
+    }
+    function notStayVillagers()
+    {
+        try{
+            $sql = "SELECT * FROM villagers vlg INNER JOIN role_users r ON vlg.role_id = r.role_id WHERE vlg.role_id='2'";
+            $result = $this->db->query($sql);
+            return $result;
+
+        }catch(PDOException $e){
+            echo $e->getMessage();
+            return false;
+        }
+    }
+   
+
+ 
 
     function delete($id){
         try {

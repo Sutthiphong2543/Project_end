@@ -29,27 +29,27 @@
             <div class="list-group mt-3">
                 <div class="side-group">
                     <img src="../assets/Logo_Sidebar/lg-dasboard.png" alt="lg-dashboard" width="30">
-                    <a href="../views/ad_dashboard.php">Dashboard</a>
+                    <a href="../views/ad_dashboard.php?title=<?php echo "Dashboard" ?>" class="def">Dashboard</a>
                 </div>
                 <div class="side-group">
                     <img src="../assets/Logo_Sidebar/lg-pay.png" alt="lg-dashboard" width="30" >
-                    <a href="../views/ad_payment.php">การแจ้งชำระ</a>
+                    <a href="../views/ad_payment.php?title=<?php echo "การแจ้งชำระ" ?>">การแจ้งชำระ</a>
                 </div>
                 <div class="side-group">
                     <img src="../assets/Logo_Sidebar/lg-income.png" alt="lg-dashboard" width="30">
-                    <a href="../views/ad_income.php" >รายรับ-รายจ่าย</a>
+                    <a href="../views/ad_income.php?title=<?php echo "รายรับ-รายจ่าย" ?>" >รายรับ-รายจ่าย</a>
                 </div>
                 <div class="side-group">
                     <img src="../assets/Logo_Sidebar/lg-news.png" alt="lg-dashboard" width="30">
-                    <a href="../views/ad_news.php" >ประกาศข่าวสาร</a>
+                    <a href="../views/ad_news.php?title=<?php echo "ประกาศข่าวสาร" ?>" >ประกาศข่าวสาร</a>
                 </div>
                 <div class="side-group">
                     <img src="../assets/Logo_Sidebar/lg-notify.png" alt="lg-dashboard" width="30">
-                    <a href="../views/ad_repair.php" >แจ้งซ่อม และร้องเรียน</a>
+                    <a href="../views/ad_repair.php?title=<?php echo "แจ้งซ่อมและร้องเรียน" ?>" >แจ้งซ่อมและร้องเรียน</a>
                 </div>
                 <div class="side-group">
                     <img src="../assets/Logo_Sidebar/lg-people.png" alt="lg-dashboard" width="30">
-                    <a href="../views/ad_villager.php" >ข้อมูลลูกบ้าน</a>
+                    <a href="../views/ad_villager.php?title=<?php echo "ข้อมูลลูกบ้าน" ?>" >ข้อมูลลูกบ้าน</a>
                 </div>
                 <div class="side-group">
                     <img src="../assets/Logo_Sidebar/lg-logout.png" alt="lg-dashboard" width="30">

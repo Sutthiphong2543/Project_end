@@ -12,7 +12,9 @@
     position: absolute;
     min-width: 991.98px;
     width:1600px;
-    height: 912px;
+    /* height: 912px; */
+    height: auto;
+    padding:  20px 0;
     margin-top: 57px ;
     margin-left: 317px;
     background: #F4FBFE;
@@ -36,7 +38,8 @@
     position: relative;
     margin-top: 10px;
     width: 1530px;
-    height: 860px;
+    /* height: 860px; */
+    height: auto;
     border-radius: 5px;
     border: 1px solid #C2DEDE;
     padding: 10px;
@@ -66,7 +69,7 @@
     margin-left: 1000px;
     overflow: hidden;
 }
-.table-villager{
+.main-villager .table-villager{
     border: 1px solid #C2DEDE;
     margin: 10px;
     height: auto;
@@ -78,5 +81,28 @@
     font-size: 14px;
 }
 input{
-    caret-color:aqua;
+    caret-color:rgb(255, 0, 43);
 }
+
+/* Header Tab */
+.tablink {
+    background-color: #555;
+    color: white;
+    float: left;
+    border: none;
+    outline: none;
+  }
+  
+  .tablink:hover {
+    background-color: rgb(180, 180, 180);
+  }
+  
+  /* Style the tab content */
+  .tabContent {
+    color: white;
+    display: none;
+    padding: 23px;
+    text-align: center;
+  }
+  
+  
