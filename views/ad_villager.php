@@ -11,6 +11,7 @@ $vlgNotStay=$controller->notStayVillagers();
 $roleVillager=$controller->getRole_users();
 
 
+
 ?>
 
 <!DOCTYPE html>
@@ -27,6 +28,10 @@ $roleVillager=$controller->getRole_users();
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+
+    <!-- sweet alert -->
+    <script src="https://code.jquery.com/jquery-3.6.3.js" ></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     
 
     <link rel="stylesheet" href="../css/villager.css ?<?php echo time(); ?>">
@@ -64,6 +69,7 @@ $roleVillager=$controller->getRole_users();
                         <th scope="col" class="text-center">บ้านเลขที่</th>
                         <th scope="col" class="text-center">เบอร์โทร</th>
                         <th scope="col" class="text-center">username</th>
+                        <th scope="col" class="text-center">Image</th>
                         <th scope="col" class="text-center">สถานะ</th>
                         <th scope="col" class="text-center"></th>
                         </tr>
@@ -75,6 +81,7 @@ $roleVillager=$controller->getRole_users();
                                 <td class="text-center"><?php echo $row["villager_housenum"] ?></td>
                                 <td class="text-center"><?php echo $row["villager_tel"] ?></td>
                                 <td class="text-center"><?php echo $row["username"] ?></td>
+                                <td class="text-center"><img width="50" src="../upload/<?php echo $row["img_profile"] ?>" alt=""></td>
                                 <?php if($row["role_id"]==1){?>
                                     <td class="text-center"><p class="bg-info text-white"><?php echo $row["role_status"] ?></p></td>
                                 <?php }else { ?>
@@ -183,58 +190,74 @@ $roleVillager=$controller->getRole_users();
     <!-- Modal -->
     
         <div class="modal fade" id="villagerModal" tabindex="-1" aria-labelledby="villagerModalLabel" aria-hidden="true">
-            <div class="modal-dialog ">
-                <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="villagerModalLabel">เพิ่มสมาชิก ลูกบ้าน</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <!-- Form -->
-                    <form action="../signup_v2.php" method="POST" class="form-horizontal" enctype="multipart/form-data">
-                        <div class="modal-body">
-                                <div class="form-group mb-3">
-                                    <label for="fname" class="form-label">first name</label>
-                                    <input type="text" class="form-control" name="fname" aria-describedby="firstname">
-                                </div>
-                                <div class="form-group mb-3">
-                                    <label for="lname" class="form-label">last name</label>
-                                    <input type="text" class="form-control" name="lname" aria-describedby="lastname">
-                                </div>
-                                <div class="form-group mb-3">
-                                    <label for="telephone" class="form-label">เบอร์โทรศัพท์</label>
-                                    <input type="text" class="form-control" name="telephone" aria-describedby="telephone" maxlength="10">
-                                </div>
-                                <div class="form-group mb-3">
-                                    <label for="house_number" class="form-label">บ้านเลขที่</label>
-                                    <input type="text" class="form-control" name="house_number" aria-describedby="House_number" placeholder="000/000" maxlength="7">
-                                </div>
-                                <div class="form-group mb-3">
-                                    <label for="username" class="form-label">username</label>
-                                    <input type="text" class="form-control" name="username" aria-describedby="username" >
-                                </div>
-                                <div class="form-group mb-3">
-                                    <label for="password" class="form-label">password</label>
-                                    <input type="text" class="form-control" name="password" aria-describedby="password" >
-                                </div>
-                                <div class="form-group mb-3">
-                                    <label for="profile" class="form-label">password</label>
-                                    <input type="file" class="form-control" name="profile" aria-describedby="profile" >
-                                </div>
-                                <div class="form-group mb-3">
-                                    <label for="role_id" class="form-label">สถานะ</label>
-                                    <select name="role_id" class="form-select mb-3">
-                                        <?php while ($row = $roleVillager->fetch(PDO::FETCH_ASSOC)) { ?>
-                                            <option value="<?php echo $row["role_id"]; ?>"><?php echo $row["role_status"]?></option>
-                                        <?php }?>
-                                    </select>
-                                </div>
-                                
+            <div class="modal-dialog modal-lg">
+                <!-- Main -->
+                <div class="modal-content main-modal">
+                    <!-- Main box -->
+                    <div class="box-modal-content">
+                        <!-- Header -->
+                        <div class="modal-header-vlg">
+                            <h5 class="modal-title " id="villagerModalLabel">เพิ่มสมาชิก ลูกบ้าน</h5>
+                            <hr>
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="submit" name="submit_villager" class="btn btn-primary">Save changes</button>
+                        <!-- Content -->
+                        <div class="box-form mt-2">
+                            <div class="prev-img">
+                                    <img class="prev-profile" src="../upload/Defult.png" id="previewImg">
+                            </div>
+                                <!-- Form -->
+                            <form action="../signup_v2.php" method="POST" class="form-horizontal" enctype="multipart/form-data">
+                                <div class="modal-body">
+                                        <div class="form-group singIn mb-3">
+                                            <label for="fname" class="form-label lb-ad">first name</label>
+                                            <input type="text" class="form-control i-form-ad " name="fname" aria-describedby="firstname" required>
+                                        </div>
+                                        <div class="form-group singIn mb-3">
+                                            <label for="lname" class="form-label lb-ad">last name</label>
+                                            <input type="text" class="form-control i-form-ad" name="lname" aria-describedby="lastname" required>
+                                        </div>
+                                        <div class="form-group singIn mb-3">
+                                            <label for="telephone" class="form-label lb-ad">เบอร์โทรศัพท์</label>
+                                            <input type="text" class="form-control i-form-ad" name="telephone" aria-describedby="telephone" maxlength="10" required>
+                                        </div>
+                                        <div class="form-group singIn mb-3">
+                                            <label for="house_number" class="form-label lb-ad">บ้านเลขที่</label>
+                                            <input type="text" class="form-control i-form-ad" name="house_number" aria-describedby="House_number" placeholder="000/000" maxlength="7" required>
+                                        </div>
+                                        <div class="form-group singIn mb-3">
+                                            <label for="username" class="form-label lb-ad">username</label>
+                                            <input type="text" class="form-control i-form-ad" name="username" aria-describedby="username" required>
+                                        </div>
+                                        <div class="form-group singIn mb-3">
+                                            <label for="password" class="form-label lb-ad">password</label>
+                                            <input type="text" class="form-control i-form-ad" name="password" aria-describedby="password" required>
+                                        </div>
+                                        <div class="form-group singIn mb-3">
+                                            <label for="img_profile" class="form-label lb-ad">Image</label>
+                                            <input type="file" class="form-control i-form-ad" name="img_profile" id="imgInput" aria-describedby="profile" >
+                                            <!-- <img width="250" id="previewImg" alt=""> -->
+                                        </div>
+                                        <div class="form-group singIn mb-3">
+                                            <label for="role_id" class="form-label lb-ad">สถานะ</label>
+                                            <select name="role_id" class="form-select mb-3 i-form-ad">
+                                                <?php while ($row = $roleVillager->fetch(PDO::FETCH_ASSOC)) { ?>
+                                                    <option value="<?php echo $row["role_id"]; ?>"><?php echo $row["role_status"]?></option>
+                                                <?php }?>
+                                            </select>
+                                        </div>
+                                        
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="submit" name="submit_villager" class="btn btn-primary" value="insert">Save changes</button>
+                                </div>
+                            </form>
                         </div>
-                    </form>
+                        
+
+                    </div>
+                    
+                    
                 </div>
             </div>
         </div>
@@ -275,28 +298,34 @@ $roleVillager=$controller->getRole_users();
         // header tab
 
         function openVillager(villagerDetail, elmnt, color) {
-        // Hide all elements with class="tabcontent" by default */
             var i, tabcontent, tablinks;
             tabcontent = document.getElementsByClassName("tabContent");
             for (i = 0; i < tabcontent.length; i++) {
                 tabcontent[i].style.display = "none";
             }
-
-            // Remove the background color of all tablinks/buttons
             tablinks = document.getElementsByClassName("tablink");
             for (i = 0; i < tablinks.length; i++) {
                 tablinks[i].style.backgroundColor = "";
             }
-
-            // Show the specific tab content
             document.getElementById(villagerDetail).style.display = "block";
-
-            // Add the specific color to the button used to open the tab content
             elmnt.style.backgroundColor = color;
         }
-
-        // Get the element with id="defaultOpen" and click on it
         document.getElementById("defaultOpen").click();
+
+
+
+        // Preview img
+        let imgInput = document.getElementById('imgInput');
+        let previewImg = document.getElementById('previewImg');
+
+        imgInput.onchange = evt => {
+            const [file] = imgInput.files;
+            if (file){
+                previewImg.src = URL.createObjectURL(file);
+            }
+        }
+
+        
     </script>
 
     

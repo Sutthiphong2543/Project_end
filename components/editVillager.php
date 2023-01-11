@@ -3,7 +3,7 @@ require_once "../config/connect.php";
 $result=$controller->getRole_users();
 
 if(!isset($_GET["id"])){
-    header('Location:../views/ad_villager.php');
+    header('Location:../views/ad_villager.php?title=villagers');
 }else{
     $id=$_GET["id"];
     $vlg=$controller->getEditVillager($id);

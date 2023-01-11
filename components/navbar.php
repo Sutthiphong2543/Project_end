@@ -1,6 +1,20 @@
 <?php
     require_once "session.php";
-    $title=$_GET["title"];
+
+        $title=$_GET["title"];
+    if($_GET["title"]=="villagers"){
+        $title = "ข้อมูลลูกบ้าน";
+    } else if ($_GET["title"]=="dashboard"){
+        $title = "Dashboard";
+    } else if ($_GET["title"]=="payment"){
+        $title = "การแจ้งชำระ";
+    } else if ($_GET["title"]=="IOcome"){
+        $title = "รายรับ-รายจ่าย";
+    } else if ($_GET["title"]=="news"){
+        $title = "ประกาศข่าวสาร";
+    } else if ($_GET["title"]=="notify"){
+        $title = "แจ้งซ่อมและร้องเรียน";
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">

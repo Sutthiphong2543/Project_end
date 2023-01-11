@@ -19,12 +19,12 @@ class Controller {
         }
 
     }
-    function insert($fname,$lname,$telephone,$house_number,$role_id,$username,$password){
+    function insert($fname,$lname,$telephone,$house_number,$role_id,$username,$password,$fileNew){
         try{
             $new_password = md5($password.$username);
 
-            $sql = "INSERT INTO villagers(villager_fname,villager_lname,villager_tel,villager_housenum,role_id,username,password) 
-            VALUES(:villager_fname,:villager_lname,:villager_tel,:villager_housenum,:role_id,:username,:password)";
+            $sql = "INSERT INTO villagers(villager_fname,villager_lname,villager_tel,villager_housenum,role_id,username,password,img_profile) 
+            VALUES(:villager_fname,:villager_lname,:villager_tel,:villager_housenum,:role_id,:username,:password,:img_profile)";
 
             $stmt = $this->db->prepare($sql);
             $stmt->bindParam(":villager_fname",$fname);
@@ -34,6 +34,7 @@ class Controller {
             $stmt->bindParam(":role_id",$role_id);
             $stmt->bindParam(":username",$username);
             $stmt->bindParam(":password",$new_password);
+            $stmt->bindParam(":img_profile",$fileNew);
             $stmt->execute();
             return true;
 

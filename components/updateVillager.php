@@ -11,7 +11,7 @@
 
         $result=$controller->update($fname,$lname,$telephone,$house_number,$role_id,$villager_id);
         if($result){
-            header("location:../views/ad_villager.php?title=ข้อมูลลูกบ้าน");
+            header("location:../views/ad_villager.php?title=villagers");
         }
 
     }
