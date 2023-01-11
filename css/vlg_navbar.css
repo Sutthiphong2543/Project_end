@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Prompt:ital@0;1&display=swap');
+*{
+    font-family: 'Prompt';
+    font-style: normal;
+}
+body{
+    border-bottom: 1px solid #C2DEDE;
+}
+
+.vlg_content{
+     display: flex;
+     width: 1980px;
+     margin: 5px;
+     padding: 0px 50px 0px 50px;
+     gap: 5px;
+     justify-content:space-between;
+     align-items: center;
+}
+
+.content_right{
+    gap: 10px;
+}
+
+.vlg_lg_profile{
+    width: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+.vlg_lg_bell{
+    width: 50px;
+    cursor: pointer;
+}
+
+.dropdown .dropdown-menu{
+    position: absolute;
+    margin-left: -150px;
+    border-radius: 7px;
+    width: auto;
+    }
+.dropdown-menu .dr-profile{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#edit-profile{
+    position: absolute;
+    color: #111111;
+    margin-top: 40px;
+    margin-left: 55px;
+}
+.dropdown-menu .bell-btn{
+    display: flex;
+    justify-content: flex-start;
+}
+.title-bell{
+    margin-left: 15px;
+}
+.dd1 .dropdown-menu{
+    margin-left: -275px;
+}
+.dd1 .dropdown-menu li{
+    font-size: 14px;
+}

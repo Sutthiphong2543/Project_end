@@ -18,9 +18,8 @@
 <body>
     <nav class="navbar navbar-light ">
         <div class="container-fluid">
-            <div class="title-nav">
-                aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-            <a class="navbar-brand" href="#"><?php echo $title ?></a>
+            <div class="title-nav d-flex">
+                <h4 class="title"><?php echo $title ?></h4>
             </div>
             <div class="lg-bell">
                 <div class="dropdown dd1" >

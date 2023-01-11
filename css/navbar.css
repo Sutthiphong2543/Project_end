@@ -3,9 +3,7 @@
     font-family: 'Prompt';
     font-style: normal;
 }
-.title-nav{
-    padding-right:500px;
-}
+
 .lg-bell{
     position: absolute;
     right: 110px;
@@ -53,4 +51,7 @@
 }
 .dd1 .dropdown-menu li{
     font-size: 14px;
+}
+.title{
+    padding-left: 350px;
 }

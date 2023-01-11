@@ -111,7 +111,7 @@
 .title-footer{
     position: relative;
 }
-.title {
+.title-dash {
     margin:0 58px ;
 }
 .ct4-header  .btnH{
@@ -119,6 +119,7 @@
     background: #12768d;
     border-radius: 7px;
     color: #FFFFFF;
+    
 }
 .ct4-table .table{
     position: relative;
@@ -145,4 +146,49 @@
 .content2 .chart-container{
     width: 35vw;
     margin-left: 25px;
+}
+
+/* Select trimas */
+.select-mty{
+    border: 1px solid #C2DEDE;
+    border-radius: 4px;
+    height: 40px;
+    padding: 0 10px;
+}
+.ct2-box{
+    width: 728px;
+    height: 450px;
+    display: grid;
+    grid-template-rows: 55px 1fr;
+
+}
+.chart-container{
+    padding: 2px;
+}
+.vlg-head-dash{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 25px;
+}
+.trg-i{
+    width: 26px;
+    height: 26px;
+    background-color: #54CACA;
+    border-radius: 50%;
+}
+.trg-o{
+    width: 26px;
+    height: 26px;
+    background-color: #C3CDE9;
+    border-radius: 50%;
+}
+.vlg-head-left{
+    display: flex;
+    width: 200px;
+    gap: 5px;
+}
+.income-head  , .outcome-head{
+    align-items: center;
+    gap: 0 7px;
 }

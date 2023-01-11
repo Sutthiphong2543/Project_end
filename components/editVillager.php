@@ -3,7 +3,7 @@ require_once "../config/connect.php";
 $result=$controller->getRole_users();
 
 if(!isset($_GET["id"])){
-    header("Location:../views/ad_villager.php");
+    header('Location:../views/ad_villager.php');
 }else{
     $id=$_GET["id"];
     $vlg=$controller->getEditVillager($id);
@@ -55,18 +55,14 @@ if(!isset($_GET["id"])){
             </div>
             
 
-            <!-- <div class="mb-3">
+            <div class="mb-3">
                 <label for="username" class="form-label">username</label>
-                <input type="text" class="form-control" name="username" aria-describedby="username">
+                <input type="text" class="form-control" name="username" value="<?php echo $vlg["username"] ?>" aria-describedby="username">
             </div>
             <div class="mb-3">
                 <label for="password" class="form-label">password</label>
-                <input type="password" class="form-control" name="password" aria-describedby="password">
+                <input type="password" class="form-control" name="password" value="<?php echo $vlg["password"] ?>" aria-describedby="password">
             </div>
-            <div class="mb-3">
-                <label for="confirm password" class="form-label">confirm Password</label>
-                <input type="password" class="form-control" name="c_password">
-            </div> -->
             <button type="submit" name= "submit" class="btn btn-primary">ยืนยันการแก้ไขข้อมูล</button>
         </form>
     </div>

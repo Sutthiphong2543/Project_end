@@ -1,4 +1,5 @@
 <?php 
+use LDAP\Result;
     require_once"components/session.php";
     require_once"config/connect.php";
     if($_SERVER["REQUEST_METHOD"] == "POST"){
@@ -14,6 +15,11 @@
         $_SESSION["userid"] = $result["id"];
         header("Location:views/ad_dashboard.php?title=Dashboard");
         }
+
+        
+       
+
+        
         
     }
 ?>

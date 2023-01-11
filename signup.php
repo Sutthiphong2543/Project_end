@@ -1,6 +1,7 @@
 <?php
     session_start();
     require_once "config/connect.php";
+
     $result=$controller->getRole_users();
 
     if(isset($_POST["submit"])){
@@ -16,7 +17,7 @@
         }else {
             $status=$controller->insert($fname,$lname,$telephone,$house_number,$role_id);
             if($status){
-                header("Location:views/ad_villager.php");
+                header("Location:views/ad_villager.php?title=ข้อมูลลูกบ้าน");
             }else {
                 echo" insert not successful";
             }
@@ -53,7 +54,7 @@
     <div class="container">
             <h1 class="text-center mt-3">Sign Up</h1>
 
-                        <form action="signup.php" method="post">
+                        <form action="signup.php" method="post" class="form-horizontal" enctype="multipart/form-data">
                         <div class="form-group mb-3">
                             <label for="fname" class="form-label">first name</label>
                             <input type="text" class="form-control" name="fname" aria-describedby="firstname">
@@ -77,6 +78,22 @@
                                     <option value="<?php echo $row["role_id"]; ?>"><?php echo $row["role_status"]?></option>
                                 <?php }?>
                             </select>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="username" class="form-label">Username :</label>
+                            <input type="text" class="form-control" name="username" aria-describedby="username" >
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="password" class="form-label">Password :</label>
+                            <input type="text" class="form-control" name="password" aria-describedby="password" >
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="cf_password" class="form-label">Password :</label>
+                            <input type="text" class="form-control" name="cf_password" aria-describedby="cf_password" >
+                        </div>
+                        <div class="form-group mb-3">
+                            <label class="form-label" for="customFile">อัพโหลดรูปภาพ :</label>
+                            <input type="file" name="txt_file" class="form-control" id="customFile" />
                         </div>
                         <button type="submit" name= "submit" class="btn btn-primary">Submit</button>
                         </form>

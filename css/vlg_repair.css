@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css2?family=Prompt:ital@0;1&display=swap');
+*{
+    font-family: 'Prompt';
+    font-style: normal;
+}
+.main-container{
+    display: flex;
+    position: absolute;
+    min-width: 991.98px;
+    width:1595px;
+    height: 892px;
+    margin-top: 0px ;
+    margin-left: 322px;
+    background: #F4FBFE;
+    justify-content: center;
+    align-items: center;
+    overflow: auto;
+    z-index: -1;
+
+}
+
+
+@media (max-width: 991.98px) { 
+    .main-container{
+        margin-left: 78px;
+        transition: 0.3s;
+    }
+}
+
+/*...........content...........*/
+.vlg_repair {
+    position: relative;
+    margin-top: 10px;
+    width: 1530px;
+    height: 860px;
+    border-radius: 5px;
+    border: 1px solid #C2DEDE;
+    padding: 10px;
+    background: #FFFFFF;
+    display: grid;
+    grid-template-rows: 50px 2fr;
+}
+.re_header{
+    margin: 5px;
+}
+.re_btn{
+    display: flex;
+    justify-content: space-between;
+    padding: 0 25px 0 10px;
+}
+.re_left .btn{
+    border: 1px solid #C2DEDE;
+    background-color: #0D5A6B;
+    color: #FFFFFF;
+}
+.re_right .btn{
+    border: 1px solid #C2DEDE;
+}
+#re_table{
+    border: 1px solid #C2DEDE;
+    padding: 15px;
+    margin: 0 15px;
+    border-radius: 7px;
+}
+#ap_table{
+    border: 1px solid #C2DEDE;
+    padding: 15px;
+    margin: 0 15px;
+    border-radius: 7px;
+}
+#re_btn_status{
+    margin: 2px;
+    border-radius: 5px;
+}

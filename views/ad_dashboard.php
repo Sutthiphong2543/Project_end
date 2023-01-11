@@ -36,8 +36,65 @@
                     </div>
                 </div>
         </div>
-        <div class="content2 text-center">
-            <div class="head-ct2 ml-3 d-flex ">
+        <div class="content2 ">
+            <div class="ct2-box">
+                <div class="vlg-head-dash">
+                    <!-- Head left -->
+                    <div class="vlg-head-left">
+                        <div class="income-head d-flex">
+                            <div class="trg-i"></div>
+                            <label>รายรับ</label>
+                        </div>
+                        <div class="outcome-head d-flex">
+                            <div class="trg-o"></div>
+                            <label>รายจ่าย</label>
+                        </div>
+                    </div>
+                    <!-- Head right -->
+                    <div class="vlg-head-right">
+                        <!--Month  -->
+                        <select size="1" name="month" class="select-mty">
+                            <option selected value="1">มกราคม</option>
+                            <option value="2">กุมภาพันธ์</option>
+                            <option value="3">มีนาคม</option>
+                            <option value="4">เมษายน</option>
+                            <option value="5">พฤษภาคม</option>
+                            <option value="6">มิถุนายน</option>
+                            <option value="7">กรกฎาคม</option>
+                            <option value="8">สิงหาคม</option>
+                            <option value="9">กันยายน</option>
+                            <option value="10">ตุลาคม</option>
+                            <option value="11">พฤศจิกายน</option>
+                            <option value="12">ธันวาคม</option>
+                        </select>
+
+                        <!-- ไตรมาส -->
+                        <select size="1" name="trimas" class="select-mty">
+                            <option selected >ไตรมาส</option>
+                            <option value="2">ไตรมาส 1</option>
+                            <option value="3">ไตรมาส 2</option>
+                            <option value="4">ไตรมาส 3</option>
+                            <option value="5">ไตรมาส 4</option>
+                        </select>
+
+                        <!-- Year -->
+                        <select name="select" class="select-mty">
+                            <?php 
+                            for($i = date('Y') ; $i >= 1999; $i--){
+                                echo "<option>$i</option>";
+                            }
+                            ?>
+                        </select>
+                    </div>
+                </div>
+                <!-- Chart Dashboard -->
+                <div class="chart-container mt-3">
+                    <canvas id="myChart"></canvas>
+                </div>
+            </div>
+
+
+            <!-- <div class="head-ct2 ml-3 d-flex ">
                     <button class="btn"> ไตรมาส 1</button>
                     <button class="btn"> ไตรมาส 2</button>
                     <button class="btn"> ไตรมาส 3</button>
@@ -50,11 +107,13 @@
                             <li><button class="dropdown-item" type="button">Something else here</button></li>
                         </ul>
                     </div>
-            </div>
-            <div class="chart-container mt-3">
-                <canvas id="myChart"></canvas>
-            </div>
+            </div> -->
+           
+            
+
+            
         </div>
+        <!-- Chart status -->
         <div class="content3 text-center ">
             <div class="chart-footer d-flex">
                 <div class="chart-container" style="position: relative; height:13vh; width:33vw">
@@ -68,64 +127,113 @@
                 </div>
             </div>
             <div class="title-footer d-flex m-2">
-                <h3 class="title">ชำระแล้ว</h3>
-                <h3 class="title">รอดำเนินการ</h3>
-                <h3 class="title">ค้างชำระ</h3>
+                <h3 class="title-dash">ชำระแล้ว</h3>
+                <h3 class="title-dash">รอดำเนินการ</h3>
+                <h3 class="title-dash">ค้างชำระ</h3>
             </div>
             
         </div>
+        <!-- Table Status -->
         <div class="content4 ">
             <div class="ct4-header ">
-                <button class="btn btnH">ลูกบ้านค้างชำระ</button>
-                <button class="btn btnH">ลูกบ้านชำระล่วงหน้า</button>
+                <button class="btn btnH tablink" onclick="openVillagerDashboard('vlg-1', this, 'orange')" id="defaultOpen">ลูกบ้านค้างชำระ</button>
+                <button class="btn btnH tablink" onclick="openVillagerDashboard('vlg-2', this, '#0dcaf0')">ลูกบ้านชำระล่วงหน้า</button>
             </div>
-            <div class="ct4-table">
-                <table class="table table-ct4">
-                    <thead>
-                        <tr>
-                        <th scope="col">ชื่อ</th>
-                        <th scope="col">บ้านเลขที่</th>
-                        <th scope="col">รวม</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>นางสาวฐา วันดี</td>
-                            <td>241/1</td>
-                            <td>2 เดือน</td>
-                        </tr>
-                        <tr>
-                            <td>นางสาวฐา วันดี</td>
-                            <td>241/1</td>
-                            <td>2 เดือน</td>
-                        </tr>
-                        <tr>
-                            <td>นางสาวฐา วันดี</td>
-                            <td>241/1</td>
-                            <td>2 เดือน</td>
-                        </tr>
-                        <tr>
-                            <td>นางสาวฐา วันดี</td>
-                            <td>241/1</td>
-                            <td>2 เดือน</td>
-                        </tr>
-                        <tr>
-                            <td>นางสาวฐา วันดี</td>
-                            <td>241/1</td>
-                            <td>2 เดือน</td>
-                        </tr>
-                        <tr>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>tets</td>
-                        </tr>
-                        
-                    </tbody>
-                </table>
+            <div class="table-dash">
+                <!-- ค้างชำระ -->
+                <div id="vlg-1" class="ct4-table tabContent">
+                    <table class="table table-ct4 ">
+                        <thead>
+                            <tr>
+                            <th scope="col">ชื่อ</th>
+                            <th scope="col">บ้านเลขที่</th>
+                            <th scope="col">ยอดค้างชำระ</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>นางสาวฐา วันดี</td>
+                                <td>241/1</td>
+                                <td>2 เดือน</td>
+                            </tr>
+                            <tr>
+                                <td>นางสาวฐา วันดี</td>
+                                <td>241/1</td>
+                                <td>2 เดือน</td>
+                            </tr>
+                            <tr>
+                                <td>นางสาวฐา วันดี</td>
+                                <td>241/1</td>
+                                <td>2 เดือน</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <!--ชำระล่วงหน้า -->
+                <div id="vlg-2" class="ct4-table tabContent">
+                    <table class="table table-ct4 ">
+                        <thead>
+                            <tr>
+                            <th scope="col">ชื่อ</th>
+                            <th scope="col">บ้านเลขที่</th>
+                            <th scope="col">ชำระล่วงหน้า</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>นางสาวฐา วันดี</td>
+                                <td>241/1</td>
+                                <td>2 เดือน</td>
+                            </tr>
+                            <tr>
+                                <td>นางสาวฐา วันดี</td>
+                                <td>241/1</td>
+                                <td>2 เดือน</td>
+                            </tr>
+                            <tr>
+                                <td>นางสาวฐา วันดี</td>
+                                <td>241/1</td>
+                                <td>2 เดือน</td>
+                            </tr>
+                            <tr>
+                                <td>นางสาวฐา วันดี</td>
+                                <td>241/1</td>
+                                <td>2 เดือน</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
+            
         </div>
         <!-- Main-container -->
     </div>
+
+    <script>
+        function openVillagerDashboard(villagerDetail, elmnt, color) {
+        // Hide all elements with class="tabcontent" by default */
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabContent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+
+            // Remove the background color of all tablinks/buttons
+            tablinks = document.getElementsByClassName("tablink");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].style.backgroundColor = "";
+            }
+
+            // Show the specific tab content
+            document.getElementById(villagerDetail).style.display = "block";
+
+            // Add the specific color to the button used to open the tab content
+            elmnt.style.backgroundColor = color;
+        }
+
+        // Get the element with id="defaultOpen" and click on it
+        document.getElementById("defaultOpen").click();
+    </script>
     
     
     <?php include '../components/sidebar.php' ?>

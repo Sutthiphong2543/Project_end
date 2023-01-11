@@ -19,15 +19,20 @@
 <body>
     <div class="main-container ">
         <div class="main-news1">
-            <div class="head-name1 mx-2">
+            <div class="head-name1 ">
                 <label>เรื่อง :</label>
-                <input type="text" class="form-control input-news1 mt-2">
+                <input type="text" class="form-control input-news1">
+                <hr>
             </div>
-            <div class="head-name2 mx-2 mt-3">
+            <div class="head-name2 ">
                 <label>รายละเอียด :</label>
+                <div class="head-area">
+                    <textarea class="area-news form-control" name="detail_news" id="detail_news" cols="30" rows="10"></textarea>
+                </div>
             </div>
-            <div class="head-area mt-2">
-                <textarea class="area-news mx-2 form-control" name="detail_news" id="detail_news" cols="30" rows="10"></textarea>
+            <div class="create-news">
+                <hr>
+                <button class="btn cre-new">สร้างข่าวสาร</button>
             </div>
             
         </div>

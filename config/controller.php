@@ -19,10 +19,25 @@ class Controller {
         }
 
     }
-    function insert($fname,$lname,$telephone,$house_number,$role_id){
+    function insert($fname,$lname,$telephone,$house_number,$role_id,$username,$password){
         try{
-            $sql = "INSERT INTO villagers(villager_fname,villager_lname,villager_tel,villager_housenum,role_id) 
-            VALUES(:villager_fname,:villager_lname,:villager_tel,:villager_housenum,:role_id)";
+            // $sql = "INSERT INTO villagers(villager_fname,villager_lname,villager_tel,villager_housenum,role_id,username,password) 
+            // VALUES(:villager_fname,:villager_lname,:villager_tel,:villager_housenum,:role_id,:username,:password)";
+
+            // $stmt = $this->db->prepare($sql);
+            // $stmt->bindParam(":villager_fname",$fname);
+            // $stmt->bindParam(":villager_lname",$lname);
+            // $stmt->bindParam(":villager_tel",$telephone);
+            // $stmt->bindParam(":villager_housenum",$house_number);
+            // $stmt->bindParam(":role_id",$role_id);
+            // $stmt->bindParam(":username",$username);
+            // $stmt->bindParam(":password",$password);
+            // $stmt->execute();
+            // return true;
+            $new_password = md5($password.$username);
+
+            $sql = "INSERT INTO villagers(villager_fname,villager_lname,villager_tel,villager_housenum,role_id,username,password) 
+            VALUES(:villager_fname,:villager_lname,:villager_tel,:villager_housenum,:role_id,:username,:password)";
 
             $stmt = $this->db->prepare($sql);
             $stmt->bindParam(":villager_fname",$fname);
@@ -30,6 +45,8 @@ class Controller {
             $stmt->bindParam(":villager_tel",$telephone);
             $stmt->bindParam(":villager_housenum",$house_number);
             $stmt->bindParam(":role_id",$role_id);
+            $stmt->bindParam(":username",$username);
+            $stmt->bindParam(":password",$new_password);
             $stmt->execute();
             return true;
 

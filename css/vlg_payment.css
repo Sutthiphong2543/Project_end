@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Prompt:ital@0;1&display=swap');
+*{
+    font-family: 'Prompt';
+    font-style: normal;
+}
+.main-container{
+    display: flex;
+    position: absolute;
+    min-width: 991.98px;
+    width:1595px;
+    height: 892px;
+    margin-top: 0px ;
+    margin-left: 322px;
+    background: #F4FBFE;
+    justify-content: center;
+    align-items: center;
+    overflow: auto;
+    z-index: -1;
+
+}
+
+
+@media (max-width: 991.98px) { 
+    .main-container{
+        margin-left: 78px;
+        transition: 0.3s;
+    }
+}
+
+/*...........content...........*/
+.vlg_payment {
+    position: relative;
+    margin-top: 10px;
+    width: 1530px;
+    height: 860px;
+    border-radius: 5px;
+    border: 1px solid #C2DEDE;
+    padding: 10px;
+    background: #FFFFFF;
+    display: grid;
+    grid-template-rows: 50px 2fr;
+}
+.pay_header{
+    margin: 5px;
+}
+.pay_btn{
+    display: flex;
+    justify-content: space-between;
+    padding: 0 25px 0 10px;
+}
+.pay_left .btn{
+    border: 1px solid #C2DEDE;
+    background-color: #0D5A6B;
+    color: #FFFFFF;
+}
+.pay_right .btn{
+    border: 1px solid #C2DEDE;
+}
+.pay_content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 1505px;
+    height: 600px;
+    border: 1px solid #C2DEDE;
+    border-radius: 7px;
+}
+.pay_box{
+    width: 500px;
+    height: 550px;
+    border: 1px solid #C2DEDE;
+    padding: 10px;
+    display: grid;
+    grid-template-rows: 75px 1fr 100px ;
+    gap: 5px 0;
+    border-radius: 7px;
+}
+.p_box{
+    border: 1px solid #C2DEDE;
+    padding: 5px 0;
+    border-radius: 5px;
+}
+.p_box p{
+    color: #B8B6B6;
+}
+.pay_table{
+    margin: 10px;
+    padding: 5px;
+}
+.prg{
+    color: #B8B6B6;
+}
+.pay_box3{
+    display: grid;
+    justify-content: center;
+    gap: 5px;
+}
+.pay_box3 .btn{
+    border: 1px solid #C2DEDE;
+}
+.history_pay_v{
+    border: 1px solid #C2DEDE;
+    margin: 0 10px;
+    padding: 10px;
+    border-radius: 7px;
+}
