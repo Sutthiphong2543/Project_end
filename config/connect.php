@@ -18,5 +18,5 @@ require_once"user.php";
 $controller = new Controller($pdo);
 $user = new User($pdo);
 
-$user->insertUser('admin', '123456');
+// $user->insertUser('admin', '123456');
 ?>

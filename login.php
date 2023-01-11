@@ -8,19 +8,42 @@ use LDAP\Result;
         $new_password = md5($password.$username);
         $result=$user->getUser($username, $new_password);
 
-        if(!$result){
-            echo '<div class= "alert alert-danger">ชื่อผู้ใช้และรหัสผ่านไม่ถูกต้อง</div>';
+        $usernameVlg = $_POST["username"];
+        $passwordVlg = $_POST["password"];
+        $new_passwordVlg = md5($passwordVlg.$usernameVlg);
+        $resultVlg = $controller->getLoginVLG($usernameVlg, $new_passwordVlg);
+        
+        if($result){
+            $_SESSION["username"] = $username;
+            $_SESSION["userid"] = $result["id"];
+            header("Location:views/ad_dashboard.php?title=Dashboard");
+        } else if ($resultVlg) {
+            $_SESSION["username"] = $username;
+            $_SESSION["villagers_id"] = $resultVlg["villager_id"];
+            header("Location:views/v_dashboard.php?title=Dashboard");
         }else{
-        $_SESSION["username"] = $username;
-        $_SESSION["userid"] = $result["id"];
-        header("Location:views/ad_dashboard.php?title=Dashboard");
+            echo '<div class= "alert alert-danger">ชื่อผู้ใช้และรหัสผ่านไม่ถูกต้อง</div>';
         }
 
-        
-       
+
+        // if(!$result){
+        //     echo '<div class= "alert alert-danger">ชื่อผู้ใช้และรหัสผ่านไม่ถูกต้อง</div>';
+        // }else{
+        // $_SESSION["username"] = $username;
+        // $_SESSION["userid"] = $result["id"];
+        // header("Location:views/ad_dashboard.php?title=Dashboard");
+        // }
+
+        // if(!$resultVlg){
+        //     echo '<div class= "alert alert-danger">ชื่อvlgและรหัสผ่านไม่ถูกต้อง</div>';
+        // }else{
+        // $_SESSION["username"] = $username;
+        // $_SESSION["villager_id"] = $result["villager_id"];
+        // header("Location:views/v_dashboard.php?title=Dashboard");
+        // }
 
         
-        
+
     }
 ?>
 

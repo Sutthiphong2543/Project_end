@@ -1,3 +1,9 @@
+<?php 
+    require_once"../components/session.php";
+    require_once"../components/check_villager.php";
+    
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,7 +28,7 @@
                 <div class="re_btn">
                     <div class="re_left">
                         <button class="btn tablink" onclick="openRepair_v('re_table', this, 'orange')" id="defaultOpen">รายการแจ้งซ่อม</button>
-                        <button class="btn tablink" onclick="openRepair_v('ap_table', this, 'orange')"">รายการร้องเรียน</button>
+                        <button class="btn tablink" onclick="openRepair_v('ap_table', this, 'orange')">รายการร้องเรียน</button>
                     </div>
                     <div class="re_right">
                         <button class="btn "><i class="bi bi-file-earmark-plus mx-1" ></i>แจ้งซ่อม</button>

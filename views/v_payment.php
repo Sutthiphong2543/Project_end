@@ -1,3 +1,9 @@
+<?php 
+    require_once"../components/session.php";
+    require_once"../components/check_villager.php";
+    
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

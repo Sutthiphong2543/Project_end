@@ -189,6 +189,7 @@ $roleVillager=$controller->getRole_users();
                     <h5 class="modal-title" id="villagerModalLabel">เพิ่มสมาชิก ลูกบ้าน</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
+                <!-- Form -->
                     <form action="../signup_v2.php" method="POST" class="form-horizontal" enctype="multipart/form-data">
                         <div class="modal-body">
                                 <div class="form-group mb-3">
@@ -214,6 +215,10 @@ $roleVillager=$controller->getRole_users();
                                 <div class="form-group mb-3">
                                     <label for="password" class="form-label">password</label>
                                     <input type="text" class="form-control" name="password" aria-describedby="password" >
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="profile" class="form-label">password</label>
+                                    <input type="file" class="form-control" name="profile" aria-describedby="profile" >
                                 </div>
                                 <div class="form-group mb-3">
                                     <label for="role_id" class="form-label">สถานะ</label>

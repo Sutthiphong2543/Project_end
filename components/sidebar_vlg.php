@@ -34,7 +34,7 @@
             </div>
             <div class="item-group">
                 <img src="../assets/vlg_logout.svg" width="30">
-                <a href="">ออกจากระบบ</a>
+                <a href="../components/logout.php">ออกจากระบบ</a>
             </div>
         </div>
         
