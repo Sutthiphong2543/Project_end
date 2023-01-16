@@ -80,6 +80,10 @@
     display: grid;
     grid-template-rows: 1fr 1fr 75px;
 }
+.modal-payment1{
+    display: grid;
+    grid-template-rows: 1fr 75px;
+}
 .payment-1{
     margin: 10px;
 }

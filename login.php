@@ -15,7 +15,7 @@ use LDAP\Result;
         
         if($result){
             $_SESSION["username"] = $username;
-            $_SESSION["userid"] = $result["id"];
+            $_SESSION["admin_id"] = $result["id"];
             header("Location:views/ad_dashboard.php?title=Dashboard");
         } else if ($resultVlg) {
             $_SESSION["username"] = $username;
@@ -56,7 +56,8 @@ use LDAP\Result;
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
 
-    <link rel="stylesheet" href="css/login_style.css">
+    <link rel="stylesheet" href="css/login_style.css?<?php echo time(); ?>">
+    <title>Repair</title>
     <title>Login</title>
 </head>
 <body>
@@ -84,14 +85,10 @@ use LDAP\Result;
                 <input type="password" class="form-control" name="password">
                 <i class="bi bi-eye-fill"></i>
             </div>
-            <div class="mb-3 form-check">
-                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                <label class="form-check-label" for="exampleCheck1">Remember me</label>
+            <div class="mb-3 field">
                 <a href=""><label class="forgot-pass">Forget password</label></a>
             </div>
             <button type="submit" value="Login Success" class="btn btn-primary " name="signin">LOGIN</button>
-            <br>
-            <p class="text-center mt-3"><a href="signup.php">Signup?</a></p>
             </form>
             
             

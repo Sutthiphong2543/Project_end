@@ -1,5 +1,28 @@
 <?php 
- $title=$_GET["title"];
+require_once"../components/session.php";
+require_once"../components/check_villager.php";
+require_once"../config/connect.php";
+
+$vlgNotiInvoice = $controller->getInvoice($id);
+
+
+
+
+
+$title=$_GET["title"];
+if($_GET["title"]=="villagers"){
+    $title = "ข้อมูลลูกบ้าน";
+} else if ($_GET["title"]=="dashboard"){
+    $title = "Dashboard";
+} else if ($_GET["title"]=="payment"){
+    $title = "การแจ้งชำระ";
+} else if ($_GET["title"]=="IOcome"){
+    $title = "รายรับ-รายจ่าย";
+} else if ($_GET["title"]=="news"){
+    $title = "ประกาศข่าวสาร";
+} else if ($_GET["title"]=="notify"){
+    $title = "แจ้งซ่อมและร้องเรียน";
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -28,24 +51,24 @@
                             <div class="bell-btn d-flex mt-2">
                                 <h5 class="title-bell">การแจ้งเตือน</h5>
                             </div>
-                            <li><button class="dropdown-item" type="button">Amornsap village ได้ส่งใบแจ้งชำระประจำเดือนมกราคม มาให้คุณ  </button></li>
-                            <li><button class="dropdown-item" type="button">Amornsap village ได้ส่งใบเสร็จประจำเดือนเดือนกุมภาพันธ์  มาให้คุณ  </button></li>
-                            <li><button class="dropdown-item" type="button">Amornsap village ได้ส่งใบแจ้งชำระ เดือนกุมภาพันธ์  มาให้คุณ  </button></li>
-                            <li><button class="dropdown-item" type="button">Amornsap village ได้ส่งใบเสร็จประจำเดือนกุมภาพันธ์  มาให้คุณ </button></li>
+                            <?php foreach($vlgNotiInvoice as $notiInvoice){?>
+                            <li><a class="text-decoration-none" href="../views/v_payment.php?title=payment"><button class="dropdown-item" type="button">Amornsap village ได้ส่งใบแจ้งชำระประจำเดือน<?php echo $controller->checkMonth($notiInvoice['month']) ?> มาให้คุณ  </button></a></li>
+                            <?php } ?>
                         </ul>
                     </div>
                 </div>
                 <!-- Profile nav -->
                 <div class="box_lg">
                     <div class="dropdown">
-                        <img id="dropdownMenu2" class="vlg_lg_profile mx-3" data-bs-toggle="dropdown" aria-expanded="false" src="../assets/lg-profile.png" alt="" width="40">
+                        <img id="dropdownMenu2" class="vlg_lg_profile " data-bs-toggle="dropdown" aria-expanded="false"  src="../upload/<?php echo $vlg['img_profile'] ?>">
+                        <!-- content dropdown -->
                         <ul class="dropdown-menu mt-2" aria-labelledby="dropdownMenu2">
                             <div class="dr-profile mt-2">
-                                <img src="../assets/lg-profile.png" alt="" width="55">
+                                <img class="rounded-circle" src="../upload/<?php echo $vlg['img_profile'] ?>" width="70" height="70">
                                 <i id="edit-profile" class="bi bi-pencil-square"></i>
                             </div>
-                            <li><button class="dropdown-item text-center mt-2" type="button">ชื่อ : นางสาวฐา วันจัน </button></li>
-                            <li><button class="dropdown-item text-center " type="button">เบอร์โทรศัพท์ : 0954690775</button></li>
+                            <li><button class="dropdown-item text-center mt-2" type="button">ชื่อ : <?php echo $vlg['villager_fname'].' '.$vlg['villager_lname'] ?> </button></li>
+                            <li><button class="dropdown-item text-center " type="button">เบอร์โทรศัพท์ : <?php echo $vlg['villager_tel'] ?></button></li>
                             <li><button class="dropdown-item text-center" type="button">เปลี่ยนรหัสผ่าน</button></li>
                         </ul>
                     </div>

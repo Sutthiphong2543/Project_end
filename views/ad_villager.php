@@ -24,8 +24,8 @@ $roleVillager=$controller->getRole_users();
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css">
-
+    <!-- table -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
 
@@ -77,22 +77,22 @@ $roleVillager=$controller->getRole_users();
                     <tbody>
                         <?php while($row=$result->fetch(PDO::FETCH_ASSOC)){ ?>
                             <tr>
-                                <td class="text-start px-4"><?php echo $row["villager_fname"]."  ".$row["villager_lname"] ?></td>
-                                <td class="text-center"><?php echo $row["villager_housenum"] ?></td>
-                                <td class="text-center"><?php echo $row["villager_tel"] ?></td>
-                                <td class="text-center"><?php echo $row["username"] ?></td>
-                                <td class="text-center"><img width="50" src="../upload/<?php echo $row["img_profile"] ?>" alt=""></td>
+                                <td class="text-start px-4 ht-1"><?php echo $row["villager_fname"]."  ".$row["villager_lname"] ?></td>
+                                <td class="text-center "><?php echo $row["villager_housenum"] ?></td>
+                                <td class="text-center "><?php echo $row["villager_tel"] ?></td>
+                                <td class="text-center "><?php echo $row["username"] ?></td>
+                                <td class="text-center "><img width="50" src="../upload/<?php echo $row["img_profile"] ?>" alt=""></td>
                                 <?php if($row["role_id"]==1){?>
-                                    <td class="text-center"><p class="bg-info text-white"><?php echo $row["role_status"] ?></p></td>
+                                    <td class="text-center "><p class="bg-info text-white"><?php echo $row["role_status"] ?></p></td>
                                 <?php }else { ?>
                                     <td class="text-center"><p class="bg-danger text-white"><?php echo $row["role_status"] ?></p></td>
                                 <?php }?>
-                                <td class="text-center">
+                                <td class="text-center ">
                                     <a 
-                                        href="../components/editVillager.php?id=<?php echo $row["villager_id"] ?>" class="btn btn-warning">แก้ไข<i class="bi bi-pencil-square mx-2"></i>
+                                        href="../components/ad_editVillagers.php?id=<?php echo $row["villager_id"]?>&title=villagers" class="btn btn-warning">แก้ไข<i class="bi bi-pencil-square mx-2"></i>
                                     </a>
-                                    <a onclick="return confirm('ต้องการลบข้อมูลหรือไม่ ?')"
-                                        href="../components/delete.php?id=<?php echo $row["villager_id"] ?>" class="btn btn-danger" >
+                                    <a data-id="<?php echo $row["villager_id"]?>" 
+                                        href="../components/delete.php?id=<?php echo $row["villager_id"] ?>" class="btn btn-danger delete-btn" >
                                         Delete
                                     </a>
                                 </td>
@@ -110,6 +110,7 @@ $roleVillager=$controller->getRole_users();
                             <th scope="col" class="text-center">บ้านเลขที่</th>
                             <th scope="col" class="text-center">เบอร์โทร</th>
                             <th scope="col" class="text-center">username</th>
+                            <th scope="col" class="text-center">Image</th>
                             <th scope="col" class="text-center">สถานะ</th>
                             <th scope="col" class="text-center"></th>
                             </tr>
@@ -121,6 +122,7 @@ $roleVillager=$controller->getRole_users();
                                     <td class="text-center"><?php echo $row["villager_housenum"] ?></td>
                                     <td class="text-center"><?php echo $row["villager_tel"] ?></td>
                                     <td class="text-center"><?php echo $row["username"] ?></td>
+                                    <td class="text-center"><img width="50" src="../upload/<?php echo $row["img_profile"] ?>" alt=""></td>
                                     <?php if($row["role_id"]==1){?>
                                         <td class="text-center"><p class="bg-info text-white"><?php echo $row["role_status"] ?></p></td>
                                     <?php }else { ?>
@@ -128,10 +130,10 @@ $roleVillager=$controller->getRole_users();
                                     <?php }?>
                                     <td class="text-center">
                                         <a 
-                                            href="../components/editVillager.php?id=<?php echo $row["villager_id"] ?>" class="btn btn-warning">แก้ไข<i class="bi bi-pencil-square mx-2"></i>
+                                            href="../components/ad_editVillagers.php?id=<?php echo $row["villager_id"] ?>" class="btn btn-warning">แก้ไข<i class="bi bi-pencil-square mx-2"></i>
                                         </a>
-                                        <a onclick="return confirm('ต้องการลบข้อมูลหรือไม่ ?')"
-                                            href="../components/delete.php?id=<?php echo $row["villager_id"] ?>" class="btn btn-danger" >
+                                        <a data-id="<?php echo $row["villager_id"]?>" 
+                                            href="../components/delete.php?id=<?php echo $row["villager_id"] ?>" class="btn btn-danger delete-btn" >
                                             Delete
                                         </a>
                                     </td>
@@ -149,6 +151,7 @@ $roleVillager=$controller->getRole_users();
                                 <th scope="col" class="text-center">บ้านเลขที่</th>
                                 <th scope="col" class="text-center">เบอร์โทร</th>
                                 <th scope="col" class="text-center">username</th>
+                                <th scope="col" class="text-center">Image</th>
                                 <th scope="col" class="text-center">สถานะ</th>
                                 <th scope="col" class="text-center"></th>
                                 </tr>
@@ -160,6 +163,7 @@ $roleVillager=$controller->getRole_users();
                                         <td class="text-center"><?php echo $row["villager_housenum"] ?></td>
                                         <td class="text-center"><?php echo $row["villager_tel"] ?></td>
                                         <td class="text-center"><?php echo $row["username"] ?></td>
+                                        <td class="text-center"><img width="50" src="../upload/<?php echo $row["img_profile"] ?>" alt=""></td>
                                         <?php if($row["role_id"]==1){?>
                                             <td class="text-center"><p class="bg-info text-white"><?php echo $row["role_status"] ?></p></td>
                                         <?php }else { ?>
@@ -169,8 +173,8 @@ $roleVillager=$controller->getRole_users();
                                             <a 
                                                 href="../components/editVillager.php?id=<?php echo $row["villager_id"] ?>" class="btn btn-warning">แก้ไข<i class="bi bi-pencil-square mx-2"></i>
                                             </a>
-                                            <a onclick="return confirm('ต้องการลบข้อมูลหรือไม่ ?')"
-                                                href="../components/delete.php?id=<?php echo $row["villager_id"] ?>" class="btn btn-danger" >
+                                            <a data-id="<?php echo $row["villager_id"]?>" 
+                                                href="../components/delete.php?id=<?php echo $row["villager_id"] ?>" class="btn btn-danger delete-btn" >
                                                 Delete
                                             </a>
                                         </td>
@@ -187,7 +191,7 @@ $roleVillager=$controller->getRole_users();
 
 
 
-    <!-- Modal -->
+    <!-- Modal AdVillagers-->
     
         <div class="modal fade" id="villagerModal" tabindex="-1" aria-labelledby="villagerModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">
@@ -234,7 +238,7 @@ $roleVillager=$controller->getRole_users();
                                         </div>
                                         <div class="form-group singIn mb-3">
                                             <label for="img_profile" class="form-label lb-ad">Image</label>
-                                            <input type="file" class="form-control i-form-ad" name="img_profile" id="imgInput" aria-describedby="profile" >
+                                            <input type="file" class="form-control i-form-ad" name="img_profile" id="imgInput" aria-describedby="profile" required>
                                             <!-- <img width="250" id="previewImg" alt=""> -->
                                         </div>
                                         <div class="form-group singIn mb-3">
@@ -249,31 +253,31 @@ $roleVillager=$controller->getRole_users();
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    <button type="submit" name="submit_villager" class="btn btn-primary" value="insert">Save changes</button>
+                                    <button type="submit" name="submit_villager" class="btn btn-primary" value="insert">บันทึกข้อมูล</button>
                                 </div>
                             </form>
                         </div>
-                        
-
                     </div>
-                    
-                    
                 </div>
             </div>
         </div>
 
-        <!-- alert -->
-        <?php
-        if(isset($_SESSION['adVillager']) && $_SESSION['adVillager'] != ''){
-            ?>
-            <h5><?php echo $_SESSION["adVillager"]; ?></h5>
-            <?php
-            unset($_SESSION['adVillager']);
-        } 
-        ?>
+
+
+
+
+
+
+        
 
 
     <!-- Script -->
+    <!-- Import -->
+    
+    <script src="https://code.jquery.com/jquery-3.6.3.js" ></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+    <!-- script function -->
     <script>
         // table
         $(document).ready(function() {
@@ -323,6 +327,49 @@ $roleVillager=$controller->getRole_users();
             if (file){
                 previewImg.src = URL.createObjectURL(file);
             }
+        }
+
+        // alert delete
+        $('.delete-btn').click(function(e){
+            var userId = $(this).data('id');
+            e.preventDefault();
+            deleteConfirm(userId);
+
+        })
+
+        function deleteConfirm(userId) {
+            Swal.fire({
+                title: 'Are you sure you want to delete',
+                text:'คุณต้องการลบจริงหรือไม่',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, dele it',
+                showLoaderOnConfirm: true,
+                preConfirm: function() {
+                    return new Promise(function(resolve){
+                        $.ajax({
+                            url:'../components/delete.php',
+                            type:'GET',
+                            data:'id='+ userId,
+                        })
+                        .done(function() {
+                            Swal.fire({
+                                title: 'Success',
+                                text: 'Data deleted successfully',
+                                icon:'success'
+                            }).then(() =>{
+                                document.location.href='../views/ad_villager.php?title=villagers';
+                            })
+                        })
+                        .fail(function() {
+                            Swal.fire('Oops..', ' Something went wrong with ajax!','error');
+                            window.location.reload();
+                        })
+                })
+                }
+
+            })
         }
 
         

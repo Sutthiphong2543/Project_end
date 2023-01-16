@@ -61,8 +61,7 @@
     justify-content: center;
     align-items: center;
     width: 1505px;
-    height: 600px;
-    border: 1px solid #C2DEDE;
+    height: 700px;
     border-radius: 7px;
 }
 .pay_box{
@@ -71,7 +70,7 @@
     border: 1px solid #C2DEDE;
     padding: 10px;
     display: grid;
-    grid-template-rows: 75px 1fr 100px ;
+    grid-template-rows: 75px 1fr 65px ;
     gap: 5px 0;
     border-radius: 7px;
 }
@@ -93,14 +92,22 @@
 .pay_box3{
     display: grid;
     justify-content: center;
-    gap: 5px;
 }
 .pay_box3 .btn{
     border: 1px solid #C2DEDE;
+    width: 150px;
 }
-.history_pay_v{
+.table-history{
     border: 1px solid #C2DEDE;
-    margin: 0 10px;
-    padding: 10px;
+    margin: 10px;
+    padding: 15px;
     border-radius: 7px;
+}
+.table tbody{
+    font-size: 14px;
+}
+
+/* Modal */
+.contentFormPayVlg{
+    padding:  15px 20px;
 }

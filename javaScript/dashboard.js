@@ -1,6 +1,5 @@
 const ctx = document.getElementById('myChart').getContext('2d');
 
-
 const data = {
   labels: ['Jan', 'Feb', 'Mar', 'April', 'Purple', 'Orange','Orange'],
   datasets: [{

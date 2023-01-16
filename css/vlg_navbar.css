@@ -9,7 +9,7 @@ body{
 
 .vlg_content{
      display: flex;
-     width: 1980px;
+     width: 1960px;
      margin: 5px;
      padding: 0px 50px 0px 50px;
      gap: 5px;
@@ -18,13 +18,7 @@ body{
 }
 
 .content_right{
-    gap: 10px;
-}
-
-.vlg_lg_profile{
-    width: 50px;
-    border-radius: 50%;
-    cursor: pointer;
+    gap: 28px;
 }
 .vlg_lg_bell{
     width: 50px;
@@ -33,7 +27,7 @@ body{
 
 .dropdown .dropdown-menu{
     position: absolute;
-    margin-left: -150px;
+    margin-left: -170px;
     border-radius: 7px;
     width: auto;
     }
@@ -44,9 +38,10 @@ body{
 }
 #edit-profile{
     position: absolute;
-    color: #111111;
-    margin-top: 40px;
-    margin-left: 55px;
+    color: rgb(0, 0, 0);
+    margin-top: 50px;
+    margin-left: 60px;
+    cursor: pointer;
 }
 .dropdown-menu .bell-btn{
     display: flex;
@@ -60,4 +55,27 @@ body{
 }
 .dd1 .dropdown-menu li{
     font-size: 14px;
+}
+/* .box-img-profile{
+    border-bottom: 1px solid #C2DEDE;
+    width: 55px;
+    height: 55px;
+    border-radius: 100%;
+    cursor: pointer;
+}
+.box-img-profile .img-profile-vlg{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+} */
+.dropdown{
+    width: 50px;
+    height: 50px;
+}
+.dropdown .vlg_lg_profile{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 1px solid #C2DEDE;
 }

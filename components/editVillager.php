@@ -24,7 +24,7 @@ if(!isset($_GET["id"])){
 </head>
 <body>
     <div class="container">
-        <h1 class="text-center mt-3">Sign Up</h1>
+        <h1 class="text-center mt-3">Edit villagers</h1>
 
         <form action="updateVillager.php" method="post">
             <input type="hidden" name="villager_id" value="<?php echo $vlg["villager_id"] ?>">
@@ -64,7 +64,9 @@ if(!isset($_GET["id"])){
                 <input type="password" class="form-control" name="password" value="<?php echo $vlg["password"] ?>" aria-describedby="password">
             </div>
             <button type="submit" name= "submit" class="btn btn-primary">ยืนยันการแก้ไขข้อมูล</button>
+            
         </form>
     </div>
+    
 </body>
 </html>
