@@ -19,8 +19,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
     <link rel="stylesheet" href="../css/payment.css ?<?php echo time(); ?>">
 
@@ -29,9 +27,11 @@
     <script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
     
 
-    <title>Document</title>
+    <title>Payment</title>
 </head>
 <body>
+<?php require_once'../components/ad_template.php'?>
+<!-- .......................... -->
     <div class="main-container ">
         <div class="main-dash">
             <div class="header-dash d-flex mt-2">
@@ -419,7 +419,6 @@
         // Get the element with id="defaultOpen" and click on it
         document.getElementById("defaultOpen").click();
 </script>
-    <!-- include template -->
-    <?php include_once '../components/sidebar.php' ?>
+
 </body>
 </html>

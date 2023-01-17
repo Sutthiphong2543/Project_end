@@ -19,4 +19,5 @@ $controller = new Controller($pdo);
 $user = new User($pdo);
 
 // $user->insertUser('admin', '123456');
+// $user->insertAdmin('admin','legal','0954690775','admin','123456','?');
 ?>

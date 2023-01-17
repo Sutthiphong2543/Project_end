@@ -1,0 +1,110 @@
+@import url('https://fonts.googleapis.com/css2?family=Prompt:ital@0;1&display=swap');
+*{
+    font-family: 'Prompt';
+    font-style: normal;
+}
+.temp_sidebar{
+    width: 318px;
+    height: 965px;
+    background: #FFFFFF;
+    float: left;
+    border-right: 1px solid #C2DEDE;
+}
+#vlg-lg_home{
+    width: 40px;
+}
+.temp-box-area{
+    display: grid;
+    grid-template-rows:  75px auto;
+}
+/* .temp-header-logo{
+    border: 1px solid #C2DEDE;
+}
+.temp-list{
+    border: 1px solid #C2DEDE;
+} */
+.temp-group-header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding:10px 0;
+    gap: 3px;
+}
+.temp-group-header .temp-head-title{
+    padding-top: 20px;
+    font-weight: 400;
+    font-size: 25px;
+    color: #535050;
+}
+.temp-side-group{
+    padding: 10px 45px;
+
+}
+.temp-side-group:hover{
+    background: #d5e6e6;
+}
+.temp-text-a{
+    text-decoration: none;
+    margin-left: 10px;
+    color: #14768C;
+    font-weight: 400;
+    font-size: 18px;
+}
+.temp-text-a:hover{
+    color: #ffffff;
+}
+
+
+
+
+
+
+
+
+
+/* ............Navbar......................... */
+.tem-navbar{
+    border-bottom: 1px solid #C2DEDE;
+    
+}
+.temp-box-nav{
+    display: flex;
+    width: 1600px;
+    margin: 0 10px;
+    padding: 0px 20px 0px 15px;
+    gap: 5px;
+    justify-content:space-between;
+    align-items: center;
+}
+.temp-right-nav{
+    display: grid;
+    height: 50px;
+    width: 150px;
+    align-items: center;
+}
+.temp-content-right{
+    display: grid;
+    grid-template-columns: auto auto;
+}
+#temp-drop-bell{
+    width: 40px;
+    align-items: center;
+}
+.dropdown .temp-dd1{
+    border: 1px solid #C2DEDE;
+    top: 50px;
+    left: -245px;
+  
+}
+.dropdown .temp-dd2{
+    border: 1px solid #C2DEDE;
+    top: 50px;
+    left: -140px;
+    border-radius: 7px;
+}
+.dropdown .temp-bell-btn{
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 10px;
+    margin: 0 15px;
+}

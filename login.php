@@ -3,10 +3,14 @@ use LDAP\Result;
     require_once"components/session.php";
     require_once"config/connect.php";
     if($_SERVER["REQUEST_METHOD"] == "POST"){
+        // $username = $_POST["username"];
+        // $password = $_POST["password"];
+        // $new_password = md5($password.$username);
+        // $result=$user->getUser($username, $new_password);
         $username = $_POST["username"];
         $password = $_POST["password"];
         $new_password = md5($password.$username);
-        $result=$user->getUser($username, $new_password);
+        $result=$user->getLegal($username, $new_password);
 
         $usernameVlg = $_POST["username"];
         $passwordVlg = $_POST["password"];
@@ -15,7 +19,7 @@ use LDAP\Result;
         
         if($result){
             $_SESSION["username"] = $username;
-            $_SESSION["admin_id"] = $result["id"];
+            $_SESSION["admin_id"] = $result["legal_entity_id"];
             header("Location:views/ad_dashboard.php?title=Dashboard");
         } else if ($resultVlg) {
             $_SESSION["username"] = $username;
@@ -57,7 +61,6 @@ use LDAP\Result;
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
 
     <link rel="stylesheet" href="css/login_style.css?<?php echo time(); ?>">
-    <title>Repair</title>
     <title>Login</title>
 </head>
 <body>

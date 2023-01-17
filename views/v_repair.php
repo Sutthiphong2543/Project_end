@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 
     <link rel="stylesheet" href="../css/vlg_repair.css?<?php echo time(); ?>">
-    <title>Villager Payment</title>
+    <title>Villager Repair</title>
 </head>
 <body>
     <?php 

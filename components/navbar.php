@@ -15,6 +15,8 @@
     } else if ($_GET["title"]=="notify"){
         $title = "แจ้งซ่อมและร้องเรียน";
     }
+// .......................
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -65,7 +67,6 @@
                     </ul>
                 </div>
             </div>
-            <p class="ml-3 "><?php echo $_SESSION["username"];  ?></p>
         </div>
         
     </nav>
