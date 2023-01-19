@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 16, 2023 at 09:43 PM
+-- Generation Time: Jan 19, 2023 at 10:59 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -97,9 +97,12 @@ INSERT INTO `invoice` (`invoice_id`, `villager_id`, `month`, `invoice_cmf`, `ele
 (43, 46, 1, 100, 0, 0, 0, '2023-01-16', '2023-01-23', 3),
 (44, 48, 1, 100, 0, 0, 0, '2023-01-16', '2023-01-23', 2),
 (46, 46, 2, 100, 0, 0, 0, '2023-01-17', '2023-01-24', 3),
-(61, 46, 1, 100, 0, 0, 0, '2023-01-17', '2023-01-30', 1),
+(61, 46, 1, 100, 0, 0, 0, '2023-01-17', '2023-01-30', 2),
 (62, 48, 1, 100, 0, 0, 0, '2023-01-17', '2023-01-30', 1),
-(63, 50, 1, 100, 0, 0, 0, '2023-01-17', '2023-01-30', 1);
+(63, 50, 1, 100, 0, 0, 0, '2023-01-17', '2023-01-30', 1),
+(64, 46, 1, 100, 0, 0, 0, '2023-01-20', '2023-02-05', 1),
+(65, 48, 1, 100, 0, 0, 0, '2023-01-20', '2023-02-05', 1),
+(66, 50, 1, 100, 0, 0, 0, '2023-01-20', '2023-02-05', 1);
 
 -- --------------------------------------------------------
 
@@ -108,14 +111,21 @@ INSERT INTO `invoice` (`invoice_id`, `villager_id`, `month`, `invoice_cmf`, `ele
 --
 
 CREATE TABLE `legal_entity` (
-  `legal_entity_id` int(11) NOT NULL,
+  `legal_entity_id` int(5) NOT NULL,
   `legal_entity_fname` varchar(50) NOT NULL,
   `legal_entity_lname` varchar(30) NOT NULL,
   `legal_entity_tel` varchar(12) NOT NULL,
-  `legal_entity_username` varchar(30) NOT NULL,
-  `legal_entity_password` varchar(10) NOT NULL,
-  `legal_entity_img` mediumblob NOT NULL
+  `legal_entity_username` varchar(50) NOT NULL,
+  `legal_entity_password` varchar(50) NOT NULL,
+  `legal_entity_img` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Dumping data for table `legal_entity`
+--
+
+INSERT INTO `legal_entity` (`legal_entity_id`, `legal_entity_fname`, `legal_entity_lname`, `legal_entity_tel`, `legal_entity_username`, `legal_entity_password`, `legal_entity_img`) VALUES
+(1, 'First', 'Admin', '0888888888', 'admin', 'b9d11b3be25f5a1a7dc8ca04cd310b28', '254369410.jpg');
 
 -- --------------------------------------------------------
 
@@ -222,9 +232,9 @@ CREATE TABLE `villagers` (
 --
 
 INSERT INTO `villagers` (`villager_id`, `villager_fname`, `villager_lname`, `villager_housenum`, `villager_tel`, `add_date`, `role_id`, `username`, `password`, `img_profile`) VALUES
-(46, 'Sutthiphong', 'Singkham', '241/119', '0954690775', '2023-01-14 08:28:16', 1, 'amornsap241119', 'feab66b55151f9544eac2ec2097c14c7', '1225909356.jpg'),
-(48, 'สุทธิพงษ์', 'สิงห์คำ', '241/118', '0954690775', '2023-01-14 11:57:40', 2, 'amornsap241118', '0f8b2401e26b0331f59d1e1c262775a7', '1134737351.jpg'),
-(50, 'Yanisa', 'noivisat', '241/117', '0854685131', '2023-01-16 20:26:38', 1, 'aoyyanis', 'bf89f5c68c1baaa72390f14827cad98a', '919728075.jpg');
+(46, 'Sutthiphong', 'Singkham', '241/119', '0954690775', '2023-01-17 16:13:56', 1, 'amornsap241119', 'feab66b55151f9544eac2ec2097c14c7', '2068865871.jpg'),
+(48, 'สุทธิพงษ์', 'สิงห์คำ', '241/118', '0954690775', '2023-01-17 10:38:59', 1, 'amornsap241118', '0f8b2401e26b0331f59d1e1c262775a7', '1134737351.jpg'),
+(50, 'Yanisa', 'noivisat', '241/117', '0854685131', '2023-01-19 09:11:36', 2, 'aoyyanis', 'bf89f5c68c1baaa72390f14827cad98a', '919728075.jpg');
 
 --
 -- Indexes for dumped tables
@@ -342,13 +352,13 @@ ALTER TABLE `income`
 -- AUTO_INCREMENT for table `invoice`
 --
 ALTER TABLE `invoice`
-  MODIFY `invoice_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
+  MODIFY `invoice_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
 
 --
 -- AUTO_INCREMENT for table `legal_entity`
 --
 ALTER TABLE `legal_entity`
-  MODIFY `legal_entity_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `legal_entity_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `notice_payment`
