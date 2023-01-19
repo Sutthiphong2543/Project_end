@@ -16,7 +16,10 @@ if($_GET["title"]=="villagers"){
     $title = "ประกาศข่าวสาร";
 } else if ($_GET["title"]=="notify"){
     $title = "แจ้งซ่อมและร้องเรียน";
+}else if ($_GET["title"]=="editProfile"){
+    $title = "ข้อมูลส่วนตัว";
 }
+
 
 // .....................
 
@@ -29,6 +32,7 @@ if($_GET["title"]=="villagers"){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <link rel="stylesheet" href="../css/ad_template.css?<?php echo time(); ?>">
 
     <title>Ad Navbar</title>
@@ -58,16 +62,26 @@ if($_GET["title"]=="villagers"){
                         </div>
                     </div>
                     <div class="temp-profile">
-                        <div class="dropdown">
-                            <img id="dropdownMenu2" class="mx-3" data-bs-toggle="dropdown" aria-expanded="false" src="../assets/lg-profile.png" alt="" width="40">
+                        <div class="dropdown temp-drop">
+                            <img id="temp-drop-profile" class="legal-lg-profile " data-bs-toggle="dropdown" aria-expanded="false" src="../upload/<?php echo $legal['legal_entity_img'] ?>" width="40">
+                            
                             <ul class="dropdown-menu temp-dd2 mt-2" aria-labelledby="dropdownMenu2">
                                 <div class="dr-profile text-center mt-2">
-                                    <img src="../assets/lg-profile.png" alt="" width="55">
-                                    <i id="edit-profile" class="bi bi-pencil-square"></i>
+                                    <img class="rounded-circle " src="../upload/<?php echo $legal['legal_entity_img'] ?>"  width="70" height="70">
+                                    <a class="text-decoration-none" href="../components/ad_editProfile.php?title=editProfile&id=<?php echo $id ?>" >
+                                        <i id="temp-edit-profile" class="bi bi-pencil-square"></i>
+                                    </a>
+                                    
                                 </div>
-                                <li><button class="dropdown-item text-center mt-2" type="button">ชื่อ : <?php echo $legal['legal_entity_fname'].' '.$legal['legal_entity_lname']; ?> </button></li>
-                                <li><button class="dropdown-item text-center " type="button">เบอร์โทรศัพท์ : 0954690775</button></li>
-                                <li><button class="dropdown-item text-center" type="button">เปลี่ยนรหัสผ่าน</button></li>
+                                <li><a class="text-decoration-none" href="../components/ad_editProfile.php?title=editProfile&id=<?php echo $id ?>">
+                                    <button class="dropdown-item text-center mt-2" type="button">ชื่อ : <?php echo $legal['legal_entity_fname'].' '.$legal['legal_entity_lname']; ?> </button>
+                                </a></li>
+                                <li><a class="text-decoration-none" href="../components/ad_editProfile.php?title=editProfile&id=<?php echo $id ?>">
+                                <button class="dropdown-item text-center " type="button">เบอร์โทรศัพท์ : 0954690775</button>
+                                </a></li>
+                                <li><a class="text-decoration-none" href="../components/ad_editProfile.php?title=editProfile&id=<?php echo $id ?>">
+                                <button class="dropdown-item text-center" type="button">แก้ไขโปรไฟล์</button>
+                                </a></li>
                             </ul>
                         </div>
 

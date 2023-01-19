@@ -6,8 +6,6 @@ require_once"../config/connect.php";
 $vlgNotiInvoice = $controller->getInvoice($id);
 
 
-
-
 $title=$_GET["title"];
 if($_GET["title"]=="villagers"){
     $title = "ข้อมูลลูกบ้าน";
@@ -21,7 +19,10 @@ if($_GET["title"]=="villagers"){
     $title = "ประกาศข่าวสาร";
 } else if ($_GET["title"]=="notify"){
     $title = "แจ้งซ่อมและร้องเรียน";
+}else if ($_GET["title"]=="editProfile"){
+    $title = "ข้อมูลส่วนตัว";
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,6 +32,7 @@ if($_GET["title"]=="villagers"){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 
     <link rel="stylesheet" href="../css/vlg_navbar.css?<?php echo time(); ?>">
     <title>Navbar</title>
@@ -64,20 +66,20 @@ if($_GET["title"]=="villagers"){
                         <ul class="dropdown-menu mt-2" aria-labelledby="dropdownMenu2">
                             <div class="dr-profile mt-2">
                                 <img class="rounded-circle" src="../upload/<?php echo $vlg['img_profile'] ?>" width="70" height="70">
-                                <a href="../components/vlg_editProfile.php?title=villagers&id=<?php echo $id ?>" class="idp text-decoration-none"><i id="edit-profile" class="bi bi-pencil-square"></i></a>
+                                <a href="../components/vlg_editProfile.php?title=editProfile&id=<?php echo $id ?>" class="idp text-decoration-none"><i id="edit-profile" class="bi bi-pencil-square"></i></a>
                             </div>
                             <li>
-                                <a href="../components/vlg_editProfile.php?title=villagers&id=<?php echo $id ?>" class="text-decoration-none">
+                                <a href="../components/vlg_editProfile.php?title=editProfile&id=<?php echo $id ?>" class="text-decoration-none">
                                     <button class="dropdown-item text-center mt-2" type="button">ชื่อ : <?php echo $vlg['villager_fname'].' '.$vlg['villager_lname'] ?> </button>
                                 </a>
                             </li>
                             <li>
-                                <a href="../components/vlg_editProfile.php?title=villagers&id=<?php echo $id ?>" class="text-decoration-none">
+                                <a href="../components/vlg_editProfile.php?title=editProfile&id=<?php echo $id ?>" class="text-decoration-none">
                                     <button class="dropdown-item text-center " type="button">เบอร์โทรศัพท์ : <?php echo $vlg['villager_tel'] ?></button>
                                 </a>
                                 
                             </li>
-                            <li><button class="dropdown-item text-center" type="button">เปลี่ยนรหัสผ่าน</button></li>
+                            <li><button class="dropdown-item text-center" type="button">แก้ไขโปรไฟล์</button></li>
                         </ul>
                     </div>
                 </div>

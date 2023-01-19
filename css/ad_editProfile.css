@@ -1,0 +1,72 @@
+/* Import */
+@import url('https://fonts.googleapis.com/css2?family=Prompt:ital@0;1&display=swap');
+
+/* Main */
+*{
+    font-family: 'Prompt';
+    font-style: normal;
+}
+
+.main-container{
+    display: flex;
+    position: absolute;
+    min-width: 991.98px;
+    width:1600px;
+    height: 901px;
+    margin-left: 315px;
+    background: #F4FBFE;
+    justify-content: center;
+    align-items: center;
+    overflow: auto;
+    z-index: -2;
+
+}
+
+
+@media (max-width: 991.98px) { 
+    .main-container{
+        margin-left: 78px;
+        transition: 0.3s;
+    }
+}
+
+/*...........content...........*/
+.ad-editProfile-container {
+    position: relative;
+    margin-top: 10px;
+    width: 1530px;
+    height: 860px;
+    border-radius: 5px;
+    border: 1px solid #C2DEDE;
+    padding: 10px;
+    background: #FFFFFF;
+    display: grid;
+    grid-template-rows: 1fr 2fr;
+}
+.box-edit{
+    margin: 15px;
+    height: 750px;
+    display: grid;
+    grid-template-columns: 320px 2fr;
+}
+.prev-img .prev-profile{
+    border: 1px solid #C2DEDE;
+    border-radius: 15px;
+    width: 250px;
+    margin-top: 15px ;
+}
+.header-edit{
+    padding: 5px 15px;
+}
+.box-edit-2{
+    padding: 10px 15px;
+}
+.i-wd-1{
+    width: 550px;
+}
+.box-name-vlg{
+    gap: 0 25px;
+}
+.mr-15{
+    margin: 0 15px;
+}

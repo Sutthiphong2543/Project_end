@@ -109,6 +109,26 @@ class User {
             return false;
         }
     }
+
+    function updateLegal($fname,$lname,$telephone,$legal_id,$username,$fileNew){
+        try {
+            $sql = "UPDATE legal_entity SET legal_entity_fname=:legal_fname, legal_entity_lname=:legal_lname, legal_entity_tel=:legal_tel, legal_entity_username=:username, legal_entity_img=:img_profile
+            WHERE legal_entity_id  = :legal_id";
+            $stmt=$this->db->prepare($sql);
+            $stmt->bindParam(":legal_fname",$fname);
+            $stmt->bindParam(":legal_lname",$lname);
+            $stmt->bindParam(":legal_tel",$telephone);
+            $stmt->bindParam(":legal_id",$legal_id);
+            $stmt->bindParam(":username", $username);
+            $stmt->bindParam(":img_profile",$fileNew);
+            $stmt->execute();
+            return true;
+
+        }catch(PDOException $e){
+            echo $e->getMessage();
+            return false;
+        }
+    }
     
 
 

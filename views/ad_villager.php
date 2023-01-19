@@ -28,7 +28,7 @@ $roleVillager=$controller->getRole_users();
     <script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
 
     <!-- sweet alert -->
-    <script src="https://code.jquery.com/jquery-3.6.3.js" ></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.6.3.js" ></script> -->
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     
 
@@ -271,11 +271,6 @@ $roleVillager=$controller->getRole_users();
 
 
     <!-- Script -->
-    <!-- Import -->
-    
-    <script src="https://code.jquery.com/jquery-3.6.3.js" ></script>
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    
     <!-- script function -->
     <script>
         // table
@@ -297,6 +292,8 @@ $roleVillager=$controller->getRole_users();
                 "pageLength": 10
             } );
         } );
+        
+        
 
         // header tab
 

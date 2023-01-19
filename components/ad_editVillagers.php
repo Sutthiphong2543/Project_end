@@ -67,7 +67,8 @@ if(!isset($_GET["id"])){
                             </div>
                             <div class="form-group mb-3">
                                 <label for="telephone" class="form-label">เบอร์โทรศัพท์</label>
-                                <input type="text" class="form-control" name="telephone" value="<?php echo $vlg["villager_tel"] ?>" maxlength="10">
+                                <input oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                 type="number" class="form-control" name="telephone" value="<?php echo $vlg["villager_tel"] ?>" maxlength="10">
                             </div>
                             <div class="form-group mb-3">
                                 <label for="house_number" class="form-label">บ้านเลขที่</label>
