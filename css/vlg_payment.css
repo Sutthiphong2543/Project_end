@@ -111,3 +111,11 @@
 .contentFormPayVlg{
     padding:  15px 20px;
 }
+.btn.btn-sendTP{
+    background:#0D5A6B;
+    color:#ffffff;
+}
+.btn.btn-sendTP:hover{
+    background:#1f798d;
+    color:#ffffff;
+}

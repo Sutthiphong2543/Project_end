@@ -22,7 +22,6 @@ if($_GET["title"]=="villagers"){
 }else if ($_GET["title"]=="editProfile"){
     $title = "ข้อมูลส่วนตัว";
 }
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -79,7 +78,11 @@ if($_GET["title"]=="villagers"){
                                 </a>
                                 
                             </li>
-                            <li><button class="dropdown-item text-center" type="button">แก้ไขโปรไฟล์</button></li>
+                            <li>
+                                <a href="../components/vlg_editProfile.php?title=editProfile&id=<?php echo $id ?>" class="text-decoration-none">
+                                    <button class="dropdown-item text-center" type="button">แก้ไขโปรไฟล์</button>
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </div>

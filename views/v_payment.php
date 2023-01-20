@@ -8,14 +8,21 @@
     $invoiceVlg_waiting = $controller->getInvoice_waiting($id); // id เอามาจาก check_villager
 
 
+    // check date and time
+    // $date1 = "2022-01-20";
+    // $date2 = "2022-01-25";
     
-
-    // print_r($invoiceVlg) ;
-
+    // $timestamp1 = strtotime($date1);
+    // $timestamp2 = strtotime($date2);
     
-    // $date = new DateTime();
-    // $date_real = $date->format('Y-m-d ');
-    // echo 'real date:'.$date_real;
+    // if ($timestamp1 > $timestamp2) {
+    //     echo "$date1 is greater than $date2";
+    // } else if ($timestamp1 < $timestamp2) {
+    //     echo "$date1 is less than $date2";
+    // } else {
+    //     echo "$date1 is equal to $date2";
+    // }
+
 ?>
 
 <!DOCTYPE html>
@@ -70,6 +77,16 @@
                         </div>
                         <!-- table content -->
                         <div class="p_box pay_box2">
+                            <!--  -->
+                            <!-- <div class="container">
+                                <div>
+                                    <input class="form-control" type="text" id="amount" placeholder="amount">
+                                    <button class="btn btn-success mt-2" onclick="genQR()">Generate</button>
+                                </div>
+                                <img id="imgqr" src="" style="width: 500px; object-fit: contain;">
+                            </div> -->
+
+                        <!--  -->
                             <div class="pay_table">
                                 <table class="table table-striped">
                                     <thead>
@@ -111,7 +128,7 @@
                         </div>
                         <!-- button click -->
                         <div class="p_box pay_box3">
-                            <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#vlg_pay_step1_modal">แจ้งชำระ</button>
+                            <button class="btn btn-sendTP btn-success" data-bs-toggle="modal" data-bs-target="#vlg_pay_step1_modal">แจ้งชำระ</button>
                         </div>
                     </div>
                     <?php } ?>
@@ -177,15 +194,13 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-            <form action="" method="POST" class="form-horizontal" enctype="multipart/form-data">
-                <!-- <div class="headerFormPayVlg">
-                    <h4 class="text-center">แจ้งชำระ</h4>
-                </div> -->
+            <form id="formMonth" action="../components/vlg_payMent.php" method="POST" class="form-horizontal" enctype="multipart/form-data">
                 <div class="contentFormPayVlg">
                     <div class="form-group " >
-                        <label for="selectMonth">เลือกจำนวนเดือนที่ต้องชำระ</label>
-                        <select class="form-select mt-2" name="payMonth" id="payMonth" aria-label="Select month to pay">
-                            <option selected value="1">1 เดือน</option>
+                        <label class="form-label" for="selectMonth">เลือกจำนวนเดือนที่ต้องชำระ</label>
+                        <select class="form-select" name="payMonth" id="payMonth" aria-label="Select month to pay" onclick="month(this.value)">
+                            <option selected value="0">เลือก</option>
+                            <option value="1">1 เดือน</option>
                             <option value="2">2 เดือน</option>
                             <option value="3">3 เดือน</option>
                             <option value="4">4 เดือน</option>
@@ -200,22 +215,99 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="totalPay">ยอดรวม</label>
-                        <input type="text" class="form-control" value="0" readonly>
+                        <label class="form-label" for="selectMonth">รวมยอด(บาท)</label>
+                        <input class="form-control" type="text" id="showSum" name="sumMonth" readonly>
+
                     </div>
-
-
+                    <div class="form-group">
+                        <button class="btn btn-sendTP form-control mt-3" type="submit" onclick="genQR()" >ยืนยัน</button>
+                    </div>
                 </div>
             </form>
         </div>
         <!-- End Content -->
+
+    </div>
+  </div>
+</div>
+        
+<div class="modal fade" id="vlg_pay_step2_modal" tabindex="-1" aria-labelledby="modalStep1" aria-hidden="true">
+  <div class="modal-dialog ">
+    <div class="modal-content">
+        <!-- Content -->
+        <div class="modal-header">
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="container text-center">
+                <h3 class="form-label text-center" for="upload">SCAN HERE TO PAY</h3>
+                <div>
+                    <!-- <input class="form-control" type="hidden" id="amount" name="amount" placeholder="amount" readonly>
+                    <button class="btn btn-success mt-2" onclick="genQR()">Payment</button> -->
+                </div>
+                <img id="imgqr" src="" style="width:400px; object-fit: contain;">
+            </div>
+            <div class="container">
+                <!-- Form -->
+            <?php foreach ($invoiceVlg as $invoice) { ?>
+            <form action="../components/vlg_payMent.php" method="POST" class="form-horizontal" enctype="multipart/form-data">
+                <input class="form-control" type="hidden" id="amount" name="amount" placeholder="amount" readonly>
+                <input class="form-control" type="hidden"  name="invoice_id" value="<?php echo $invoice['invoice_id']; ?>"  readonly>
+                <label class="form-label" for="upload">แนบหลักฐานการโอน</label>
+                <input type="file" class="form-control" name="img_slip" required>
+                <div class="form-group mt-2">
+                    <button class="btn form-control btn-sendTP" type="submit" name="sendToPay"  >แจ้งชำระ</button>
+                </div>
+
+            </form>
+            <?php }?>
+            </div>
+        </div>
+        <!-- End Content -->
+
     </div>
   </div>
 </div>
 
 
 
+<!-- <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script> -->
     <script>
+        function genQR() {
+            $.ajax({
+                method: 'post',
+                url: 'http://localhost:3000/generateQR',
+                data: {
+                    amount: parseFloat($("#amount").val())
+                },
+                success: function(response) {
+                    console.log('good', response)
+                    $("#imgqr").attr('src', response.Result)
+                }, error: function(err) {
+                    console.log('bad', err)
+                }
+            })
+        }
+    // Open Modal
+    $("#formMonth").submit(function(e){
+        e.preventDefault();
+        $("#vlg_pay_step1_modal").modal("hide");
+        $("#vlg_pay_step2_modal").modal("show");
+    });
+
+//   calculate Month
+    function month(e){
+    var select = document.getElementById('payMonth');
+    document.getElementById('showSum').value = select.value*100;
+    document.getElementById('amount').value = select.value*100;   
+    }
+    select = document.getElementById('payMonth');
+    document.getElementById('showSum').value = select.value*100;   
+    
+
+//  end calculate Month
+
+// Function tab bar
     function openPayment_v(villagerDetail, elmnt, color) {
         // Hide all elements with class="tabcontent" by default */
             var i, tabcontent, tablinks;

@@ -313,20 +313,6 @@ class Controller {
             return false;
         }
     }
-    // function getInvoice($id){
-    //     try {
-    //         $sql = "SELECT * FROM invoice ice INNER JOIN villagers vlg ON ice.villager_id = vlg.villager_id WHERE ice.villager_id = :id";
-    //         $stmt= $this->db->prepare($sql);
-    //         $stmt->bindValue(':id',$id);
-    //         $stmt->execute();
-    //         $result=$stmt->fetchAll(PDO::FETCH_ASSOC);
-    //         return $result;
-    //     }catch(PDOException $e){
-    //         echo $e->getMessage();
-    //         return false;
-    //     }
-    // }
-
     function checkMonth($month){
         if($month == '1'){
             echo "มกราคม";
@@ -368,6 +354,27 @@ class Controller {
             echo 'ชำระล่วงหน้า'; 
         }
     }
+    // vlg payment Invoice
+    function vlgPayment($status_pay,$fileNew, $amount, $date_pay, $invoice_id ){
+        try {
+            $sql = "UPDATE  invoice SET status_pay=:status_pay, img_slip=:img, pay_amount=:amount, date_pay=:date_pay
+            WHERE invoice_id = :invoice_id";
+            $stmt = $this->db->prepare($sql);
+            $stmt->bindParam(":status_pay", $status_pay);
+            $stmt->bindParam(":img", $fileNew);
+            $stmt->bindParam(":amount", $amount);
+            $stmt->bindParam(":date_pay",$date_pay);
+            $stmt->bindParam(":invoice_id",$invoice_id);
+            $stmt->execute();
+            return true;
+            
+
+        }catch(PDOException $e){
+            echo $e->getMessage();
+            return false;
+        }
+    }
+
 
 
 }
