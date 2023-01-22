@@ -23,6 +23,20 @@
     //     echo "$date1 is equal to $date2";
     // }
 
+foreach($invoiceVlg as $ice){
+    date_default_timezone_set("Asia/Bangkok");
+    $dateTimeNow = date("Y-m-d");
+
+    $date2 = "2022-01-25";
+    
+    $timeNow = strtotime($dateTimeNow);
+    $timeEnd = strtotime($ice['date_end']);
+    
+    if ($timeNow > $timeEnd) {
+        $vlgOverPayment=$controller->checkOverPay('4', $ice['invoice_id'],$ice['invoice_cmf'] );
+    } 
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -115,11 +129,11 @@
                                         </tr>
                                         <tr>
                                             <td class="prg">ค้างชำระ</td>
-                                            <td class="text-end prg"><?php  ?></td>
+                                            <td class="text-end prg"><?php echo $key['invoice_overdue'] ?></td>
                                         </tr>
                                         <tr>
                                             <td scope="col">รวม</td>
-                                            <td scope="col" class="text-end "><?php echo $totalInvoice =$key['invoice_cmf']+$key['elect_bill']+$key['water_bill']+$key['another_bill'] ?></td>
+                                            <td scope="col" class="text-end "><?php echo $key['total_amount'] ?></td>
                                         </tr>
                                     
                                     </tbody>
@@ -198,7 +212,7 @@
                 <div class="contentFormPayVlg">
                     <div class="form-group " >
                         <label class="form-label" for="selectMonth">เลือกจำนวนเดือนที่ต้องชำระ</label>
-                        <select class="form-select" name="payMonth" id="payMonth" aria-label="Select month to pay" onclick="month(this.value)">
+                        <select class="form-select" name="payMonth" id="payMonth" aria-label="Select month to pay" onclick="month(this.value)" required>
                             <option selected value="0">เลือก</option>
                             <option value="1">1 เดือน</option>
                             <option value="2">2 เดือน</option>
@@ -217,6 +231,7 @@
                     <div class="form-group">
                         <label class="form-label" for="selectMonth">รวมยอด(บาท)</label>
                         <input class="form-control" type="text" id="showSum" name="sumMonth" readonly>
+                        <input class="form-control" type="hidden" id="total" value="<?php echo $key['total_amount'] ?>" readonly>
 
                     </div>
                     <div class="form-group">
@@ -236,16 +251,14 @@
     <div class="modal-content">
         <!-- Content -->
         <div class="modal-header">
+            <button class="btn back" onclick="backSelectMonth()">&lsaquo; Go Back</button>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
             <div class="container text-center">
                 <h3 class="form-label text-center" for="upload">SCAN HERE TO PAY</h3>
-                <div>
-                    <!-- <input class="form-control" type="hidden" id="amount" name="amount" placeholder="amount" readonly>
-                    <button class="btn btn-success mt-2" onclick="genQR()">Payment</button> -->
-                </div>
                 <img id="imgqr" src="" style="width:400px; object-fit: contain;">
+                <center><h4>Sutthiphong Singkham</h4></center>
             </div>
             <div class="container">
                 <!-- Form -->
@@ -287,7 +300,7 @@
                     console.log('bad', err)
                 }
             })
-        }
+        };
     // Open Modal
     $("#formMonth").submit(function(e){
         e.preventDefault();
@@ -295,41 +308,38 @@
         $("#vlg_pay_step2_modal").modal("show");
     });
 
+    function backSelectMonth(){
+        $("#vlg_pay_step1_modal").modal("show");
+        $("#vlg_pay_step2_modal").modal("hide");
+    };
+
 //   calculate Month
     function month(e){
     var select = document.getElementById('payMonth');
-    document.getElementById('showSum').value = select.value*100;
-    document.getElementById('amount').value = select.value*100;   
-    }
+    var total = document.getElementById('total');
+    document.getElementById('showSum').value = Number(select.value)*100 + Number(total.value);
+    document.getElementById('amount').value = Number(select.value)*100 + Number(total.value);  
+    };
     select = document.getElementById('payMonth');
-    document.getElementById('showSum').value = select.value*100;   
+    document.getElementById('showSum').value = Number(select.value)*100 ;  
     
 
 //  end calculate Month
 
 // Function tab bar
     function openPayment_v(villagerDetail, elmnt, color) {
-        // Hide all elements with class="tabcontent" by default */
             var i, tabcontent, tablinks;
             tabcontent = document.getElementsByClassName("tabContent");
             for (i = 0; i < tabcontent.length; i++) {
                 tabcontent[i].style.display = "none";
             }
-
-            // Remove the background color of all tablinks/buttons
             tablinks = document.getElementsByClassName("tablink");
             for (i = 0; i < tablinks.length; i++) {
                 tablinks[i].style.backgroundColor = "";
             }
-
-            // Show the specific tab content
             document.getElementById(villagerDetail).style.display = "block";
-
-            // Add the specific color to the button used to open the tab content
             elmnt.style.backgroundColor = color;
         }
-
-        // Get the element with id="defaultOpen" and click on it
         document.getElementById("defaultOpen").click();
 
         // ................................................................

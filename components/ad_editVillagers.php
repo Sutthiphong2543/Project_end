@@ -32,6 +32,8 @@ if(!isset($_GET["id"])){
     <title>Document</title>
 </head>
 <body>
+<?php require_once'../components/ad_template.php'?>
+<!-- .......................... -->
     
     <div class="main-container ">
         <div class="main-editVillager">
@@ -123,7 +125,5 @@ if(!isset($_GET["id"])){
         }
 
 </script>
-<!-- include template -->
-<?php require_once '../components/sidebar.php';?>
 </body>
 </html>

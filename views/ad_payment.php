@@ -54,8 +54,8 @@
                         <tr>
                         <th scope="col" class="text-center">ชื่อ</th>
                         <th scope="col" class="text-center">บ้านเลขที่</th>
-                        <th scope="col" class="text-center">วันที่แจ้ง</th>
-                        <th scope="col" class="text-center">เดือนที่แจ้ง</th>
+                        <th scope="col" class="text-center">วันที่ส่งใบแจ้งชำระ</th>
+                        <th scope="col" class="text-center">เดือน</th>
                         <th scope="col" class="text-center">สถานะ</th>
                         <th scope="col"></th>
                         </tr>
@@ -81,8 +81,8 @@
                         <tr>
                         <th scope="col" class="text-center">ชื่อ</th>
                         <th scope="col" class="text-center">บ้านเลขที่</th>
-                        <th scope="col" class="text-center">วันที่แจ้ง</th>
-                        <th scope="col" class="text-center">เดือนที่แจ้ง</th>
+                        <th scope="col" class="text-center">วันที่แจ้งชำระ</th>
+                        <th scope="col" class="text-center">เดือน</th>
                         <th scope="col" class="text-center">สถานะ</th>
                         <th scope="col"></th>
                         </tr>
@@ -93,10 +93,10 @@
                         <tr>
                         <th class="text-nowrap"><?php echo $invoice_2['villager_fname'].' '.$invoice_2['villager_lname'] ?></th>
                         <td class="text-center"><?php echo $invoice_2['villager_housenum'] ?></td>
-                        <td class="text-center"><?php echo $invoice_2['date_start'] ?></td>
+                        <td class="text-center"><?php echo $invoice_2['date_pay'] ?></td>
                         <td class="text-center"><?php echo $controller->checkMonth($invoice_2['month']) ?></td>
                         <td class="text-center"><?php echo $controller->checkStatusPay($invoice_2['status_pay']) ?></td>
-                        <td class="text-center">รายละเอียดเพิ่มเติม<i class="bi bi-zoom-in mx-2"></i></td>
+                        <td class="text-center"> <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#getPaymentModal">ตรวจสอบการชำระ</i> <i class="bi bi-zoom-in mx-2"></i></button> </td>
                         </tr>
                         <?php }?>
                     </tbody>
@@ -146,7 +146,7 @@
                     <tbody>
                     <?php foreach($dataInvoice_4 as $invoice_4){ ?>
                         <tr>
-                        <th class="text-nowrap"><?php echo $invoiinvoice_4ce_3['villager_fname'].' '.$invoice_4['villager_lname'] ?></th>
+                        <th class="text-nowrap"><?php echo $invoice_4['villager_fname'].' '.$invoice_4['villager_lname'] ?></th>
                         <td class="text-center"><?php echo $invoice_4['villager_housenum'] ?></td>
                         <td class="text-center"><?php echo $invoice_4['date_start'] ?></td>
                         <td class="text-center"><?php echo $controller->checkMonth($invoice_4['month']) ?></td>
@@ -207,7 +207,7 @@
                                 <div class="d-vlg-p">
                                         <div class="form-group">
                                             <label>เดือน : </label>
-                                            <select size="1" name="month" class="form-control select-mty">
+                                            <select size="1" name="month" class="form-control select-mty" required>
                                                 <option selected >เลือกเดือน</option>
                                                 <option value="1">มกราคม</option>
                                                 <option value="2">กุมภาพันธ์</option>
@@ -244,11 +244,11 @@
                                 <div class="date-pay-right">
                                     <div class="form-group">
                                             <label>วันที่แจ้งชำระ :</label>
-                                            <input type="date" name="date-start" class="form-control">
+                                            <input type="date" name="date-start" class="form-control" required>
                                     </div>
                                     <div class="form-group">
                                         <label>ชำระก่อนวันที่ :</label>
-                                        <input type="date" name="date-end" class="form-control">
+                                        <input type="date" name="date-end" class="form-control" required>
                                     </div>
                                 </div>
                             </div>
@@ -268,7 +268,7 @@
 
      <!-- Modal ใบเสร็จรับเงิน -->
     
-        <div class="modal fade" id="paymentModal" tabindex="-1" aria-labelledby="villagerModalLabel" aria-hidden="true">
+        <div class="modal fade" id="getPaymentModal" tabindex="-1" aria-labelledby="villagerModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-payment">

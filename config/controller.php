@@ -169,10 +169,10 @@ class Controller {
 
 
     // Payment Method...............................................................
-    function insertInvoice($vlg_id, $month, $invoice_cmf, $elect_bill, $water_bill, $another_bill, $date_start, $date_end){
+    function insertInvoice($vlg_id, $month, $invoice_cmf, $elect_bill, $water_bill, $another_bill,$invoice_ovd,$sumTotal, $date_start, $date_end){
         try {
-            $sql = "INSERT INTO invoice(villager_id,month, invoice_cmf, elect_bill, water_bill, another_bill, date_start, date_end) 
-            VALUE (:villager_id,:month, :invoice_cmf, :elect_bill, :water_bill, :another_bill, :date_start, :date_end)";
+            $sql = "INSERT INTO invoice(villager_id,month, invoice_cmf, elect_bill, water_bill, another_bill,invoice_overdue,total_amount, date_start, date_end) 
+            VALUE (:villager_id,:month, :invoice_cmf, :elect_bill, :water_bill, :another_bill,:invoice_ovd,:sumTotal, :date_start, :date_end)";
 
             $stmt = $this->db->prepare($sql);
             $stmt->bindParam(":villager_id", $vlg_id);
@@ -181,6 +181,8 @@ class Controller {
             $stmt->bindParam(":elect_bill", $elect_bill);
             $stmt->bindParam(":water_bill", $water_bill);
             $stmt->bindParam(":another_bill", $another_bill);
+            $stmt->bindParam(":invoice_ovd", $invoice_ovd);
+            $stmt->bindParam(":sumTotal", $sumTotal);
             $stmt->bindParam(":date_start", $date_start);
             $stmt->bindParam(":date_end", $date_end);
             $stmt->execute();
@@ -191,7 +193,7 @@ class Controller {
             return false;
         }
     }
-    function getIdUsers(){
+    function getIdVillagers(){
         try {
             $sql = "SELECT villager_id FROM villagers ORDER BY villager_id";
             $stmt= $this->db->prepare($sql);
@@ -374,6 +376,87 @@ class Controller {
             return false;
         }
     }
+
+    function checkOverPay($status_pay,$invoice_id,$amount ){
+        try {
+            $sql = "UPDATE  invoice SET status_pay=:status_pay, pay_amount=:amount
+            WHERE invoice_id = :invoice_id";
+            $stmt = $this->db->prepare($sql);
+            $stmt->bindParam(":status_pay", $status_pay);
+            $stmt->bindParam(":invoice_id",$invoice_id);
+            $stmt->bindParam(":amount",$amount);
+            $stmt->execute();
+            return true;
+            
+
+        }catch(PDOException $e){
+            echo $e->getMessage();
+            return false;
+        }
+    }
+
+    function checkSumOverDues($villager_id,$status_pay ){
+        try {
+            $sql = "SELECT count(status_pay) as sumOVD FROM `invoice` WHERE villager_id = :villager_id AND status_pay=:status_pay";
+            $stmt = $this->db->prepare($sql);
+            $stmt->bindParam(":villager_id",$villager_id);
+            $stmt->bindParam(":status_pay",$status_pay);
+            $stmt->execute();
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $result;
+            
+
+        }catch(PDOException $e){
+            echo $e->getMessage();
+            return false;
+        }
+    }
+
+        function checkOverDues_2($month,$villager_id,$status_pay ){
+            try {
+                $sql = "SELECT month ,status_pay FROM `invoice` WHERE month < :month AND villager_id = :villager_id AND status_pay=:status_pay";
+                $stmt = $this->db->prepare($sql);
+                $stmt->bindParam(":month", $month);
+                $stmt->bindParam(":villager_id",$villager_id);
+                $stmt->bindParam(":status_pay",$status_pay);
+                $stmt->execute();
+                $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                return $result;
+                
+    
+            }catch(PDOException $e){
+                echo $e->getMessage();
+                return false;
+            }
+        }
+
+        function getReplaceOverdue($villager_id){
+            try {
+                $sql = "SELECT villager_id,invoice_id ,status_pay FROM `invoice` WHERE villager_id = :villager_id AND status_pay = '4'";
+                $stmt = $this->db->prepare($sql);
+                $stmt->bindParam(':villager_id',$villager_id);
+                $stmt->execute();
+                $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                return $result;
+            }catch(PDOException $e){
+                echo $e->getMessage();
+                return false;
+            }
+        }
+
+        function replaceOverdue($invoice_id ){
+            try {
+                $sql = "UPDATE  invoice SET status_pay='3' WHERE invoice_id = :invoice_id";
+                $stmt = $this->db->prepare($sql);
+                $stmt->bindParam(":invoice_id",$invoice_id);
+                $stmt->execute();
+                return true;
+            }catch(PDOException $e){
+                echo $e->getMessage();
+                return false;
+            }
+        }
+
 
 
 
