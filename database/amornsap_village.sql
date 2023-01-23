@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 19, 2023 at 10:59 AM
+-- Generation Time: Jan 23, 2023 at 10:25 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -84,25 +84,27 @@ CREATE TABLE `invoice` (
   `elect_bill` int(5) NOT NULL,
   `water_bill` int(5) NOT NULL,
   `another_bill` int(5) NOT NULL,
+  `invoice_overdue` int(5) NOT NULL,
+  `total_amount` int(5) NOT NULL,
   `date_start` date NOT NULL,
   `date_end` date NOT NULL,
-  `status_pay` int(2) NOT NULL DEFAULT 1
+  `status_pay` int(2) NOT NULL DEFAULT 1,
+  `img_slip` varchar(250) NOT NULL,
+  `pay_amount` int(5) NOT NULL,
+  `date_pay` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `invoice`
 --
 
-INSERT INTO `invoice` (`invoice_id`, `villager_id`, `month`, `invoice_cmf`, `elect_bill`, `water_bill`, `another_bill`, `date_start`, `date_end`, `status_pay`) VALUES
-(43, 46, 1, 100, 0, 0, 0, '2023-01-16', '2023-01-23', 3),
-(44, 48, 1, 100, 0, 0, 0, '2023-01-16', '2023-01-23', 2),
-(46, 46, 2, 100, 0, 0, 0, '2023-01-17', '2023-01-24', 3),
-(61, 46, 1, 100, 0, 0, 0, '2023-01-17', '2023-01-30', 2),
-(62, 48, 1, 100, 0, 0, 0, '2023-01-17', '2023-01-30', 1),
-(63, 50, 1, 100, 0, 0, 0, '2023-01-17', '2023-01-30', 1),
-(64, 46, 1, 100, 0, 0, 0, '2023-01-20', '2023-02-05', 1),
-(65, 48, 1, 100, 0, 0, 0, '2023-01-20', '2023-02-05', 1),
-(66, 50, 1, 100, 0, 0, 0, '2023-01-20', '2023-02-05', 1);
+INSERT INTO `invoice` (`invoice_id`, `villager_id`, `month`, `invoice_cmf`, `elect_bill`, `water_bill`, `another_bill`, `invoice_overdue`, `total_amount`, `date_start`, `date_end`, `status_pay`, `img_slip`, `pay_amount`, `date_pay`) VALUES
+(19, 46, 1, 100, 0, 0, 0, 0, 100, '2023-01-22', '2023-01-29', 4, '1149281660.jpg', 200, '2023-01-22 21:07:49'),
+(20, 48, 1, 100, 0, 0, 0, 0, 100, '2023-01-22', '2023-01-29', 2, '1827944481.jpg', 100, '2023-01-22 21:25:37'),
+(21, 50, 1, 100, 0, 0, 0, 0, 100, '2023-01-22', '2023-01-29', 1, '', 0, '0000-00-00 00:00:00'),
+(22, 46, 2, 100, 0, 0, 0, 100, 200, '2023-01-25', '2023-02-05', 2, '1736089573.jpg', 200, '2023-01-22 21:34:54'),
+(23, 48, 2, 100, 0, 0, 0, 0, 100, '2023-01-25', '2023-02-05', 1, '', 0, '0000-00-00 00:00:00'),
+(24, 50, 2, 100, 0, 0, 0, 0, 100, '2023-01-25', '2023-02-05', 1, '', 0, '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -352,7 +354,7 @@ ALTER TABLE `income`
 -- AUTO_INCREMENT for table `invoice`
 --
 ALTER TABLE `invoice`
-  MODIFY `invoice_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
+  MODIFY `invoice_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `legal_entity`
