@@ -10,6 +10,9 @@
     $dataInvoice_5 = $controller->getInvoice_5();
 
 
+
+
+
     
 ?>
 <!DOCTYPE html>
@@ -96,7 +99,8 @@
                         <td class="text-center"><?php echo $invoice_2['date_pay'] ?></td>
                         <td class="text-center"><?php echo $controller->checkMonth($invoice_2['month']) ?></td>
                         <td class="text-center"><?php echo $controller->checkStatusPay($invoice_2['status_pay']) ?></td>
-                        <td class="text-center"> <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#getPaymentModal">ตรวจสอบการชำระ</i> <i class="bi bi-zoom-in mx-2"></i></button> </td>
+                        <td class="text-center"> <button class="btn btn-info"  data-bs-toggle="modal" data-bs-target="#getPaymentModal" >ตรวจสอบการชำระ</i> <i class="bi bi-zoom-in mx-2"></i></button> </td>
+                        
                         </tr>
                         <?php }?>
                     </tbody>
@@ -271,92 +275,47 @@
         <div class="modal fade" id="getPaymentModal" tabindex="-1" aria-labelledby="villagerModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
-                    <div class="modal-payment">
-                        <!-- payment1 -->
-                        <div class="payment-1">
-                            <!-- title head -->
-                            <div class="head-pay">
-                                <h2 class="text-center">ใบเสร็จรับเงินค่าส่วนกลาง</h2>
+                    <div class="main-detail-payment">
+                        <div class="container">
+                            <div class="header">
+                                <h4 class="text-center">รายละเอียดการแจ้งชำระ</h4>
                             </div>
                             <hr>
-                            <!-- Detail vlg  -->
-                            <div class="detail-vlg-pay">
-                                <div class="d-vlg-p">
-                                    <div class="form-group">
-                                        <label>บ้านเลขที่ : </label>
-                                        <label>241/1</label>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>ชื่อ : </label>
-                                        <label>นางสาวฐา วันดี</label>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>วันที่แจ้งชำระ :</label>
-                                        <label>16 มกราคม 2566</label>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>ชำระล่วงหน้า :</label>
-                                        <label>มกราคม กุมพาพันธ์</label>
+                            <div class="content-detail-payment">
+                                <div class="detail-left">
+                                    <div class="pre-img-slip">
+                                        <img id="img-slip" src="../upload/Slip/1149281660.jpg" >
                                     </div>
                                 </div>
-                                <div class="form-group text-end">
-                                        <label>ชำระก่อนวันที่ :</label>
-                                        <label>5 มกราคม 2565</label>
+                                <div class="detail-right">
+                                    <div class="detail-right-content">
+                                        <div class="form-detail">
+                                            <label class="form-label">บ้านเลขที่ : 241/119</label>
+                                        </div>
+                                        <div class="form-detail">
+                                            <label class="form-label">ชื่อ : Sutthiphong Singkham</label>
+                                        </div>
+                                        <div class="form-detail">
+                                            <label class="form-label">ค้างชำระ : 0 บาท</label>
+                                        </div>
+                                        <div class="form-detail">
+                                            <label class="form-label">ชำระล่วงหน้า : 0 เดือน</label>
+                                        </div>
+                                        <div class="form-detail">
+                                            <label class="form-label">วันที่แจ้งชำระ : 16/02/2565 18.30</label>
+                                        </div>
+                                        <div class="btn-detail-payment">
+                                            <button class="btn btn-detail-success">ยืนยันการชำระ</button>
+                                            <button class="btn btn-vlg-close"data-bs-dismiss="modal" >ยกเลิก</button>
+                                        </div>
+
                                     </div>
-                            </div>
-
-
-                        </div>
-                        <div class="payment-2">
-                                <!-- table content -->
-                            <div class="pay-table-box">
-                                <div class="pay_table">
-                                    <table class="table table-striped">
-                                        <thead>
-                                            <tr>
-                                            <th scope="col">รายการ</th>
-                                            <th scope="col" class="text-end">จำนวน (บาท)</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td class="prg">ค่าส่วนกลาง</td>
-                                                <td class="text-end prg">100</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="prg">ค่าไฟ</td>
-                                                <td class="text-end prg">-</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="prg">ค่าน้ำ</td>
-                                                <td class="text-end prg">-</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="prg">อื่นๆ</td>
-                                                <td class="text-end prg">-</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="prg">ค้างชำระ</td>
-                                                <td class="text-end prg">100</td>
-                                            </tr>
-                                            <tr>
-                                                <td scope="col">รวม</td>
-                                                <td scope="col" class="text-end ">200</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
                                 </div>
                             </div>
                         </div>
-                        <!-- btn  -->
-                        <div class="payment-3">
-                            <div class="btn-pay-vlg">
-                                <button class="btn btn-vlg-success">ส่ง</button>
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
-                            </div>
-
-                        </div>
+                        
                     </div>
+                  
                     
                 </div>
             </div>
@@ -418,6 +377,9 @@
 
         // Get the element with id="defaultOpen" and click on it
         document.getElementById("defaultOpen").click();
+
+        // Open detail slip
+
 </script>
 
 </body>

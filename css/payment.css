@@ -121,3 +121,44 @@
     color: #14768C;
     border: 1px solid #C2DEDE;
 }
+
+
+/* Modal */
+.header{
+    margin: 15px;
+}
+.content-detail-payment{
+    display: grid;
+    grid-template-columns: 355px auto;
+    margin: 15px;
+    padding: 5px;
+}
+/* .detail-left{
+    border-right: 1px solid #C2DEDE;
+} */
+/* .detail-right{
+    border: 1px solid #C2DEDE;
+} */
+.pre-img-slip{
+    width: 350px;
+    height: 100%;
+}
+.pre-img-slip #img-slip{
+    width: 100%;
+    height: 100%;
+}
+.form-detail{
+    width: 100%;
+    padding: 7px;
+    margin-left: 15px;
+}
+.btn-detail-payment{
+    padding: 7px;
+    margin-left: 15px;
+    margin-top: 10px;
+}
+.btn.btn-detail-success{
+    background: #14768C;
+    width: 150px;
+    color: #FFFFFF;
+}

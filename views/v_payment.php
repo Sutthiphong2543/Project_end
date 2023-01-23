@@ -317,11 +317,16 @@ foreach($invoiceVlg as $ice){
     function month(e){
     var select = document.getElementById('payMonth');
     var total = document.getElementById('total');
-    document.getElementById('showSum').value = Number(select.value)*100 + Number(total.value);
-    document.getElementById('amount').value = Number(select.value)*100 + Number(total.value);  
+    if(select.value == 0){
+        document.getElementById('showSum').value = (Number(select.value)*100);
+    }else {
+        document.getElementById('showSum').value = (Number(select.value)*100)+ Number(total.value)-100 ;
+        document.getElementById('amount').value =  (Number(select.value)*100)+ Number(total.value)-100;  
+    }
+    
     };
     select = document.getElementById('payMonth');
-    document.getElementById('showSum').value = Number(select.value)*100 ;  
+    document.getElementById('showSum').value = (Number(select.value)*100) ;  
     
 
 //  end calculate Month
