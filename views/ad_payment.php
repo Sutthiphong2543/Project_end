@@ -71,8 +71,57 @@
                         <td class="text-center"><?php echo $invoice_1['date_start'] ?></td>
                         <td class="text-center"><?php echo $controller->checkMonth($invoice_1['month']) ?></td>
                         <td class="text-center"><?php echo $controller->checkStatusPay($invoice_1['status_pay']) ?></td>
-                        <td class="text-center">รายละเอียดเพิ่มเติม<i class="bi bi-zoom-in mx-2"></i></td>
+                        <td class="text-center"><button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#getPaymentModal<?php echo $invoice_1['invoice_id'] ?>">รายละเอียดเพิ่มเติม<i class="bi bi-zoom-in mx-2"></i></button> </td>
                         </tr>
+                        <!-- Modal ใบแจ้งชำระ สถานะ ยังไม่ดำเนินการ -->
+    
+                        <div class="modal fade" id="getPaymentModal<?php echo $invoice_1['invoice_id'] ?>" tabindex="-1" aria-labelledby="villagerModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+                                    <div class="main-detail-payment">
+                                        <div class="container">
+                                            <div class="header">
+                                                <h4 class="text-center">รายละเอียดการแจ้งชำระ</h4>
+                                            </div>
+                                            <hr>
+                                            <div class="content-detail-payment">
+                                                <div class="detail-left">
+                                                    <div class="pre-img-slip-default">
+                                                        <center><h3>รูปสลิป</h3></center>
+                                                    </div>
+                                                </div>
+                                                <div class="detail-right">
+                                                    <div class="detail-right-content">
+                                                        <div class="form-detail">
+                                                            <label class="form-label">บ้านเลขที่ : <?php echo $invoice_1['villager_housenum'] ?></label>
+                                                        </div>
+                                                        <div class="form-detail">
+                                                            <label class="form-label">ชื่อ : <?php echo $invoice_1['villager_fname'].' '.$invoice_1['villager_lname'] ?></label>
+                                                        </div>
+                                                        <div class="form-detail">
+                                                            <label class="form-label">ค่าส่วนกลาง : <?php echo $invoice_1['invoice_cmf'] ?> บาท</label>
+                                                        </div>
+                                                        <div class="form-detail">
+                                                            <label class="form-label">ค้างชำระ : <?php echo $invoice_1['invoice_overdue'] ?> บาท</label>
+                                                        </div>
+                                                        <div class="form-detail">
+                                                            <label class="form-label">รวม : <?php echo $invoice_1['total_amount'] ?> บาท</label>
+                                                        </div>
+                                                        <div class="btn-detail-payment">
+                                                            <button class="btn btn-vlg-success"data-bs-dismiss="modal" >ปิด</button>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                
+                                    
+                                </div>
+                            </div>
+                        </div>
                         <?php }?>
                     </tbody>
                     </table>
@@ -99,9 +148,65 @@
                         <td class="text-center"><?php echo $invoice_2['date_pay'] ?></td>
                         <td class="text-center"><?php echo $controller->checkMonth($invoice_2['month']) ?></td>
                         <td class="text-center"><?php echo $controller->checkStatusPay($invoice_2['status_pay']) ?></td>
-                        <td class="text-center"> <button class="btn btn-info"  data-bs-toggle="modal" data-bs-target="#getPaymentModal" >ตรวจสอบการชำระ</i> <i class="bi bi-zoom-in mx-2"></i></button> </td>
+                        <td class="text-center"> <button class="btn btn-info"  data-bs-toggle="modal" data-bs-target="#getPaymentModal<?php echo $invoice_2['invoice_id'] ?>">ตรวจสอบการชำระ</i> <i class="bi bi-zoom-in mx-2"></i></button> </td>
                         
                         </tr>
+                        <!-- Modal ใบเสร็จรับเงิน -->
+    
+                        <div class="modal fade" id="getPaymentModal<?php echo $invoice_2['invoice_id'] ?>" tabindex="-1" aria-labelledby="villagerModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+                                    <div class="main-detail-payment">
+                                        <div class="container">
+                                            <div class="header">
+                                                <h4 class="text-center">รายละเอียดการแจ้งชำระ</h4>
+                                            </div>
+                                            <hr>
+                                            <div class="content-detail-payment">
+                                                <div class="detail-left">
+                                                    <div class="pre-img-slip">
+                                                        <img id="img-slip" src="../upload/Slip/<?php echo $invoice_2['img_slip'] ?>" >
+                                                    </div>
+                                                </div>
+                                                <div class="detail-right">
+                                                    <div class="detail-right-content">
+                                                        <div class="form-detail">
+                                                            <label class="form-label">บ้านเลขที่ : <?php echo $invoice_2['villager_housenum'] ?></label>
+                                                        </div>
+                                                        <div class="form-detail">
+                                                            <label class="form-label">ชื่อ : <?php echo $invoice_2['villager_fname'].' '.$invoice_2['villager_lname'] ?></label>
+                                                        </div>
+                                                        <div class="form-detail">
+                                                            <label class="form-label">ค่าส่วนกลาง : <?php echo $invoice_2['invoice_cmf'] ?> บาท</label>
+                                                        </div>
+                                                        <div class="form-detail">
+                                                            <label class="form-label">ค้างชำระ : <?php echo $invoice_2['invoice_overdue'] ?> บาท</label>
+                                                        </div>
+                                                        <div class="form-detail">
+                                                            <label class="form-label">ชำระล่วงหน้า : <?php echo (($invoice_2['pay_amount'])-($invoice_2['total_amount']))/100 ?> เดือน </label>
+                                                        </div>
+                                                        <div class="form-detail">
+                                                            <label class="form-label">รวม : <?php echo $invoice_2['pay_amount'] ?> บาท</label>
+                                                        </div>
+                                                        <div class="form-detail">
+                                                            <label class="form-label">วันที่แจ้งชำระ : <?php echo $invoice_2['date_pay'] ?></label>
+                                                        </div>
+                                                        <div class="btn-detail-payment">
+                                                            <a class="btn btn-detail-success" href="../components/ad_checkPayment.php?villager_id=<?php echo $invoice_2['villager_id'] ?>&invoiceID=<?php echo $invoice_2['invoice_id'] ?>">ยืนยันการชำระ</a>
+                                                            <button class="btn btn-vlg-close"data-bs-dismiss="modal" >ยกเลิก</button>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                
+                                    
+                                </div>
+                            </div>
+                        </div>
                         <?php }?>
                     </tbody>
                     </table>
@@ -116,7 +221,7 @@
                         <th scope="col" class="text-center">วันที่แจ้ง</th>
                         <th scope="col" class="text-center">เดือนที่แจ้ง</th>
                         <th scope="col" class="text-center">สถานะ</th>
-                        <th scope="col"></th>
+                        <!-- <th scope="col"></th> -->
                         </tr>
                     </thead>
                     <tbody>
@@ -127,8 +232,61 @@
                         <td class="text-center"><?php echo $invoice_3['date_start'] ?></td>
                         <td class="text-center"><?php echo $controller->checkMonth($invoice_3['month']) ?></td>
                         <td class="text-center"><?php echo $controller->checkStatusPay($invoice_3['status_pay']) ?></td>
-                        <td class="text-center">รายละเอียดเพิ่มเติม<i class="bi bi-zoom-in mx-2"></i></td>
+                        <!-- <td class="text-center"><button class="btn btn-info"  data-bs-toggle="modal" data-bs-target="#getPaymentModal<?php echo $invoice_3['invoice_id'] ?>">รายละเอียดเพิ่มเติม<i class="bi bi-zoom-in mx-2"></i></button></td> -->
                         </tr>
+
+                        <!-- Modal ใบเสร็จรับเงิน
+    
+                        <div class="modal fade" id="getPaymentModal<?php echo $invoice_3['invoice_id'] ?>" tabindex="-1" aria-labelledby="villagerModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+                                    <div class="main-detail-payment">
+                                        <div class="container">
+                                            <div class="header">
+                                                <h4 class="text-center">รายละเอียดการแจ้งชำระ</h4>
+                                            </div>
+                                            <hr>
+                                            <div class="content-detail-payment">
+                                                <div class="detail-left">
+                                                    <div class="pre-img-slip">
+                                                        <img id="img-slip" src="../upload/Slip/<?php echo $invoice_3['img_slip'] ?>" >
+                                                    </div>
+                                                </div>
+                                                <div class="detail-right">
+                                                    <div class="detail-right-content">
+                                                        <div class="form-detail">
+                                                            <label class="form-label">บ้านเลขที่ : <?php echo $invoice_3['villager_housenum'] ?></label>
+                                                        </div>
+                                                        <div class="form-detail">
+                                                            <label class="form-label">ชื่อ : <?php echo $invoice_3['villager_fname'].' '.$invoice_3['villager_lname'] ?></label>
+                                                        </div>
+                                                        <div class="form-detail">
+                                                            <label class="form-label">ค่าส่วนกลาง : <?php echo $invoice_3['invoice_cmf'] ?> บาท</label>
+                                                        </div>
+                                                        <div class="form-detail">
+                                                            <label class="form-label">ค้างชำระ : <?php echo $invoice_3['invoice_overdue'] ?> บาท</label>
+                                                        </div>
+                                                        <div class="form-detail">
+                                                            <label class="form-label">ชำระล่วงหน้า : <?php echo (($invoice_3['pay_amount'])-($invoice_3['total_amount']))/100 ?> เดือน </label>
+                                                        </div>
+                                                        <div class="form-detail">
+                                                            <label class="form-label">รวม : <?php echo $invoice_3['pay_amount'] ?> บาท</label>
+                                                        </div>
+                                                        <div class="form-detail">
+                                                            <label class="form-label">วันที่แจ้งชำระ : <?php echo $invoice_3['date_pay'] ?></label>
+                                                        </div>
+                                                        <div class="btn-detail-payment">
+                                                            <button class="btn btn-vlg-close"data-bs-dismiss="modal" >ปิด</button>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> -->
                     <?php }?>
                         
                     </tbody>
@@ -141,8 +299,8 @@
                         <tr>
                         <th scope="col" class="text-center">ชื่อ</th>
                         <th scope="col" class="text-center">บ้านเลขที่</th>
-                        <th scope="col" class="text-center">วันที่แจ้ง</th>
-                        <th scope="col" class="text-center">เดือนที่แจ้ง</th>
+                        <th scope="col" class="text-center">วันที่ค้างชำระ</th>
+                        <th scope="col" class="text-center">เดือนที่ค้างชำระ</th>
                         <th scope="col" class="text-center">สถานะ</th>
                         <th scope="col"></th>
                         </tr>
@@ -270,56 +428,7 @@
             </div>
         </div>
 
-     <!-- Modal ใบเสร็จรับเงิน -->
-    
-        <div class="modal fade" id="getPaymentModal" tabindex="-1" aria-labelledby="villagerModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                    <div class="main-detail-payment">
-                        <div class="container">
-                            <div class="header">
-                                <h4 class="text-center">รายละเอียดการแจ้งชำระ</h4>
-                            </div>
-                            <hr>
-                            <div class="content-detail-payment">
-                                <div class="detail-left">
-                                    <div class="pre-img-slip">
-                                        <img id="img-slip" src="../upload/Slip/1149281660.jpg" >
-                                    </div>
-                                </div>
-                                <div class="detail-right">
-                                    <div class="detail-right-content">
-                                        <div class="form-detail">
-                                            <label class="form-label">บ้านเลขที่ : 241/119</label>
-                                        </div>
-                                        <div class="form-detail">
-                                            <label class="form-label">ชื่อ : Sutthiphong Singkham</label>
-                                        </div>
-                                        <div class="form-detail">
-                                            <label class="form-label">ค้างชำระ : 0 บาท</label>
-                                        </div>
-                                        <div class="form-detail">
-                                            <label class="form-label">ชำระล่วงหน้า : 0 เดือน</label>
-                                        </div>
-                                        <div class="form-detail">
-                                            <label class="form-label">วันที่แจ้งชำระ : 16/02/2565 18.30</label>
-                                        </div>
-                                        <div class="btn-detail-payment">
-                                            <button class="btn btn-detail-success">ยืนยันการชำระ</button>
-                                            <button class="btn btn-vlg-close"data-bs-dismiss="modal" >ยกเลิก</button>
-                                        </div>
 
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                    </div>
-                  
-                    
-                </div>
-            </div>
-        </div>
 
 <script>
     // table
@@ -379,6 +488,8 @@
         document.getElementById("defaultOpen").click();
 
         // Open detail slip
+        
+
 
 </script>
 

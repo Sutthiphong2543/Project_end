@@ -237,7 +237,7 @@ class Controller {
         try {
             $sql = "SELECT * FROM invoice ice
             INNER JOIN villagers vlg ON ice.villager_id = vlg.villager_id
-            WHERE ice.status_pay = 3";
+            WHERE ice.status_pay = 3  ORDER BY ice.month DESC";
             $stmt= $this->db->prepare($sql);
             $stmt->execute();
             $result=$stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -291,7 +291,9 @@ class Controller {
     }
     function getInvoice_history($id){
         try {
-            $sql = "SELECT * FROM invoice WHERE villager_id =:id AND status_pay = '3'";
+            $sql = "SELECT * FROM invoice ice
+            INNER JOIN villagers vlg ON ice.villager_id = vlg.villager_id
+            WHERE ice.status_pay = 3 AND ice.villager_id = :id";
             $stmt= $this->db->prepare($sql);
             $stmt->bindParam(':id',$id);
             $stmt->execute();
@@ -304,7 +306,9 @@ class Controller {
     }
     function getInvoice_waiting($id){
         try {
-            $sql = "SELECT * FROM invoice WHERE villager_id =:id AND status_pay = '2'";
+            $sql = "SELECT * FROM invoice ice
+            INNER JOIN villagers vlg ON ice.villager_id = vlg.villager_id
+            WHERE ice.villager_id =:id AND ice.status_pay = '2' ";
             $stmt= $this->db->prepare($sql);
             $stmt->bindParam(':id',$id);
             $stmt->execute();
@@ -357,14 +361,15 @@ class Controller {
         }
     }
     // vlg payment Invoice
-    function vlgPayment($status_pay,$fileNew, $amount, $date_pay, $invoice_id ){
+    function vlgPayment($status_pay,$fileNew, $amount,$sumMonthPay , $date_pay, $invoice_id ){
         try {
-            $sql = "UPDATE  invoice SET status_pay=:status_pay, img_slip=:img, pay_amount=:amount, date_pay=:date_pay
+            $sql = "UPDATE  invoice SET status_pay=:status_pay, img_slip=:img, pay_amount=:amount,sum_month_pay=:sumMonthPay, date_pay=:date_pay
             WHERE invoice_id = :invoice_id";
             $stmt = $this->db->prepare($sql);
             $stmt->bindParam(":status_pay", $status_pay);
             $stmt->bindParam(":img", $fileNew);
             $stmt->bindParam(":amount", $amount);
+            $stmt->bindParam(":sumMonthPay", $sumMonthPay);
             $stmt->bindParam(":date_pay",$date_pay);
             $stmt->bindParam(":invoice_id",$invoice_id);
             $stmt->execute();
@@ -432,7 +437,7 @@ class Controller {
 
         function getReplaceOverdue($villager_id){
             try {
-                $sql = "SELECT villager_id,invoice_id ,status_pay FROM `invoice` WHERE villager_id = :villager_id AND status_pay = '4'";
+                $sql = "SELECT invoice_id ,status_pay FROM `invoice` WHERE villager_id = :villager_id AND status_pay = '4'";
                 $stmt = $this->db->prepare($sql);
                 $stmt->bindParam(':villager_id',$villager_id);
                 $stmt->execute();
@@ -451,6 +456,63 @@ class Controller {
                 $stmt->bindParam(":invoice_id",$invoice_id);
                 $stmt->execute();
                 return true;
+            }catch(PDOException $e){
+                echo $e->getMessage();
+                return false;
+            }
+        }
+
+        // Check max month to pay   
+        function checkMaxMonthPay($villager_id ){
+            try {
+                $sql = "SELECT MAX(sum_month_pay) as maxMonthPay FROM `invoice` WHERE villager_id = :vlg_id";
+                $stmt = $this->db->prepare($sql);
+                $stmt->bindParam(":vlg_id",$villager_id);
+                $stmt->execute();
+                $result = $stmt->fetch(PDO::FETCH_ASSOC);
+                return $result;
+            }catch(PDOException $e){
+                echo $e->getMessage();
+                return false;
+            }
+        }
+
+        //check count Invoice_id
+        function checkCountInvoice($villager_id ){
+            try {
+                $sql = "SELECT COUNT(invoice_id) as sumCountInvoice FROM `invoice` WHERE villager_id = :vlg_id";
+                $stmt = $this->db->prepare($sql);
+                $stmt->bindParam(":vlg_id",$villager_id);
+                $stmt->execute();
+                $result = $stmt->fetch(PDO::FETCH_ASSOC);
+                return $result;
+            }catch(PDOException $e){
+                echo $e->getMessage();
+                return false;
+            }
+        }
+
+        //Insert Pay Over
+        function insertPayOver($vlg_id, $month, $invoice_cmf, $elect_bill, $water_bill, $another_bill,$notInvoice_ovd,$total, $date_start, $date_end,$status_pay){
+            try {
+                $sql = "INSERT INTO invoice(villager_id,month, invoice_cmf, elect_bill, water_bill, another_bill,invoice_overdue,total_amount, date_start, date_end, status_pay) 
+                VALUE (:villager_id,:month, :invoice_cmf, :elect_bill, :water_bill, :another_bill,:invoice_ovd,:sumTotal, :date_start, :date_end, :status_pay)";
+    
+                $stmt = $this->db->prepare($sql);
+                $stmt->bindParam(":villager_id", $vlg_id);
+                $stmt->bindParam(":month", $month);
+                $stmt->bindParam(":invoice_cmf", $invoice_cmf);
+                $stmt->bindParam(":elect_bill", $elect_bill);
+                $stmt->bindParam(":water_bill", $water_bill);
+                $stmt->bindParam(":another_bill", $another_bill);
+                $stmt->bindParam(":invoice_ovd", $notInvoice_ovd);
+                $stmt->bindParam(":sumTotal", $total);
+                $stmt->bindParam(":date_start", $date_start);
+                $stmt->bindParam(":date_end", $date_end);
+                $stmt->bindParam(":status_pay", $status_pay);
+                $stmt->execute();
+                return true;
+    
             }catch(PDOException $e){
                 echo $e->getMessage();
                 return false;

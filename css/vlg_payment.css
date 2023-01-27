@@ -15,7 +15,7 @@
     justify-content: center;
     align-items: center;
     overflow: auto;
-    z-index: -1;
+    /* z-index: -1; */
 
 }
 
@@ -121,4 +121,70 @@
 }
 .btn.back:hover{
     background:#e2e2e2;
+}
+
+/* Modal */
+.header{
+    margin: 15px;
+}
+.content-detail-payment{
+    display: grid;
+    grid-template-columns: 355px auto;
+    margin: 15px;
+    padding: 5px;
+}
+/* .detail-left{
+    border-right: 1px solid #C2DEDE;
+} */
+/* .detail-right{
+    border: 1px solid #C2DEDE;
+} */
+.pre-img-slip{
+    width: 350px;
+    height: 100%;
+}
+.pre-img-slip-default{
+    width: 350px;
+    height: 100%;
+    border: 1px solid #C2DEDE;
+    border-radius: 7px;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.pre-img-slip #img-slip{
+    width: 100%;
+    height: 100%;
+}
+.form-detail{
+    width: 100%;
+    padding: 7px;
+    margin-left: 15px;
+}
+.btn-detail-payment{
+    padding: 7px;
+    margin-left: 15px;
+    margin-top: 10px;
+}
+.btn.btn-detail-success{
+    background: #14768C;
+    width: 150px;
+    color: #FFFFFF;
+}
+.modal {
+    position: fixed;
+    z-index: -9999;
+}
+.btn.btn-vlg-success{
+    background: #14768C;
+    width: 100px;
+    color: #FFFFFF;
+}
+.btn.btn-vlg-close{
+    background: #FFFFFF;
+    width: 100px;
+    color: #14768C;
+    border: 1px solid #C2DEDE;
 }

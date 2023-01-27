@@ -9,8 +9,12 @@ require_once "../components/check_villager.php";
 if (isset($_POST['sendToPay'])) {
     $invoice_id = $_POST["invoice_id"];
     $status_pay = '2';
+    // ................
     $amount = $_POST["amount"];
-
+    $getMaxMonthPay = $controller->checkMaxMonthPay($id);
+    $maxMonthPay = $getMaxMonthPay['maxMonthPay'];
+    $sumMonthPay = ($amount / 100) + $maxMonthPay;
+    //................
     date_default_timezone_set("Asia/Bangkok");
     $currentDateTime = date("Y-m-d H:i:s");
     $date_pay = $currentDateTime;
@@ -26,13 +30,7 @@ if (isset($_POST['sendToPay'])) {
 if(in_array($fileActExt, $allow)){
         if($img['size'] > 0 && $img['error'] ==0){
             if(move_uploaded_file($img['tmp_name'],$filePath)){
-
-                // ********** admin update status 3 *************
-                // $getReplaceOvd = $controller->getReplaceOverdue($id);
-                // foreach($getReplaceOvd as $key){
-                //     $replace = $controller->replaceOverdue($key['invoice_id']);
-                // }
-                $vlgPayment=$controller->vlgPayment($status_pay,$fileNew, $amount, $date_pay, $invoice_id );
+                $vlgPayment=$controller->vlgPayment($status_pay,$fileNew, $amount, $sumMonthPay, $date_pay, $invoice_id );
                 if($vlgPayment){
                     $_SESSION['success'] = " Data has been inserted successfully.";
                     echo "<script>
@@ -64,13 +62,13 @@ if(in_array($fileActExt, $allow)){
                     header('refresh:1;/project_end/views/v_dashboard.php?title=dashboard');
                 }
             }else{
-                // header('refresh:1;/project_end/views/ad_villager.php?title=villagers');
+                header('refresh:1;/project_end/views/ad_villager.php?title=villagers');
             }
         }else{
-            // header('refresh:1;/project_end/views/ad_villager.php?title=villagers');
+            header('refresh:1;/project_end/views/ad_villager.php?title=villagers');
         }
     }else{
-        // header('refresh:1;/project_end/views/ad_villager.php?title=villagers');
+        header('refresh:1;/project_end/views/ad_villager.php?title=villagers');
     }
 }
 
