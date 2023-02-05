@@ -188,3 +188,32 @@
     color: #14768C;
     border: 1px solid #C2DEDE;
 }
+
+.content-detail-history{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin: 15px;
+    padding: 5px;
+    height: auto;
+}
+.history-left{
+    display: grid;
+    gap: 15px;
+}
+.history-right{
+    display: grid;
+    gap: 15px;
+    justify-content: flex-end;
+}
+.ml{
+    padding-left: 20px;
+}
+.mr{
+   display: grid;
+   justify-content: flex-end;
+}
+.footer{
+    display: grid;
+    justify-content: center;
+    margin: 10px;
+}

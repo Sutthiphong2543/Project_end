@@ -89,7 +89,7 @@ use LDAP\Result;
                 <i class="bi bi-eye-fill"></i>
             </div>
             <div class="mb-3 field">
-                <a href=""><label class="forgot-pass">Forget password</label></a>
+                <a href="" class="text-decoration-none"><label class="forgot-pass">Forget password</label></a>
             </div>
             <button type="submit" value="Login Success" class="btn btn-primary " name="signin">LOGIN</button>
             </form>

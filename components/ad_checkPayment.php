@@ -19,12 +19,12 @@ if($updateSuccess){
                                 title: 'success',
                                 text: 'ยืนยันการชำระเสร็จสิ้น',
                                 icon: 'success',
-                                timer: 2500,
+                                timer: 2000,
                                 showConfirmButton: false
                             });
                         });
                     </script>";
-                    header('refresh:2;/project_end/views/ad_payment.php?title=payment');
+                    header('refresh:1;/project_end/views/ad_payment.php?title=payment');
                 }else {
                     $_SESSION['error'] = " Data has been inserted fails.";
                     echo "<script>

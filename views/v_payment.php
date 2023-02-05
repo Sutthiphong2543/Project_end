@@ -27,8 +27,6 @@ foreach($invoiceVlg as $ice){
     date_default_timezone_set("Asia/Bangkok");
     $dateTimeNow = date("Y-m-d");
 
-    $date2 = "2022-01-25";
-    
     $timeNow = strtotime($dateTimeNow);
     $timeEnd = strtotime($ice['date_end']);
     
@@ -36,6 +34,8 @@ foreach($invoiceVlg as $ice){
         $vlgOverPayment=$controller->checkOverPay('4', $ice['invoice_id'],$ice['invoice_cmf'] );
     } 
 }
+
+$monthOver = ['1 เดือน','2 เดือน','3 เดือน','4 เดือน','5 เดือน','6 เดือน','7 เดือน','8 เดือน','9 เดือน','10 เดือน','11 เดือน','12 เดือน'];
 
 ?>
 
@@ -83,7 +83,7 @@ foreach($invoiceVlg as $ice){
                 <!-- box -->
                 <div class="pay_content">
                     <!-- content inside -->
-                    <?php foreach($invoiceVlg as $key){  ?>
+                    <?php foreach($invoiceVlg as $key){ $monthNow = abs($key['month']-12) //คำนวณว่าจ่ายล่วงหน้าได้กี่เดือน ?>
                     <div class="pay_box">
                         <div class="p_box pay_box1">
                             <h4 class="text-center">ใบแจ้งชำระค่าส่วนกลางประจำเดือน<?php echo $controller->checkMonth($key['month']);?></h4>
@@ -248,44 +248,66 @@ foreach($invoiceVlg as $ice){
                                             <div class="main-detail-payment">
                                                 <div class="container">
                                                     <div class="header">
-                                                        <h4 class="text-center">รายละเอียดการแจ้งชำระ</h4>
+                                                        <h4 class="text-center">ใบเสร็จรับเงินค่าส่วนกลาง ประจำเดือน <?php echo $controller->checkMonth($ice_history['month']) ?></h4>
                                                     </div>
                                                     <hr>
-                                                    <div class="content-detail-payment">
-                                                        <div class="detail-left">
-                                                            <div class="pre-img-slip">
-                                                                <img id="img-slip" src="../upload/Slip/<?php echo $ice_history['img_slip'] ?>" >
+                                                    <div class="content-detail-history">
+                                                        <div class="history-left">
+                                                            <div class="form-group">
+                                                                <h5 class="font-weight-bold">รายการ</h5>
+                                                            </div>
+                                                            <div class="form-group ml">
+                                                                <label>ค่าส่วนกลาง</label>
+                                                            </div>
+                                                            <div class="form-group ml">
+                                                                <label>ค่าไฟ</label>
+                                                            </div>
+                                                            <div class="form-group ml">
+                                                                <label>ค่าน้ำ</label>
+                                                            </div>
+                                                            <div class="form-group ml">
+                                                                <label>อื่น ๆ</label>
+                                                            </div>
+                                                            <div class="form-group ml">
+                                                                <label>ค้างชำระ</label>
+                                                            </div>
+                                                            <div class="form-group ml">
+                                                                <label>ชำระล่วงหน้า</label>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <h5 class="font-weight-bold">จำนวนเงินที่ชำระ</h5>
                                                             </div>
                                                         </div>
-                                                        <div class="detail-right">
-                                                            <div class="detail-right-content">
-                                                                <div class="form-detail">
-                                                                    <label class="form-label">บ้านเลขที่ : <?php echo $ice_history['villager_housenum'] ?></label>
-                                                                </div>
-                                                                <div class="form-detail">
-                                                                    <label class="form-label">ชื่อ : <?php echo $ice_history['villager_fname'].' '.$ice_history['villager_lname'] ?></label>
-                                                                </div>
-                                                                <div class="form-detail">
-                                                                    <label class="form-label">ค่าส่วนกลาง : <?php echo $ice_history['invoice_cmf'] ?> บาท</label>
-                                                                </div>
-                                                                <div class="form-detail">
-                                                                    <label class="form-label">ค้างชำระ : <?php echo $ice_history['invoice_overdue'] ?> บาท</label>
-                                                                </div>
-                                                                <div class="form-detail">
-                                                                    <label class="form-label">ชำระล่วงหน้า : <?php echo (($ice_history['pay_amount'])-($ice_history['total_amount']))/100 ?> เดือน </label>
-                                                                </div>
-                                                                <div class="form-detail">
-                                                                    <label class="form-label">รวม : <?php echo $ice_history['pay_amount'] ?> บาท</label>
-                                                                </div>
-                                                                <div class="form-detail">
-                                                                    <label class="form-label">วันที่แจ้งชำระ : <?php echo $ice_history['date_pay'] ?></label>
-                                                                </div>
-                                                                <div class="btn-detail-payment">
-                                                                    <button class="btn btn-vlg-close"data-bs-dismiss="modal" >ปิด</button>
-                                                                </div>
-
+                                                        <div class="history-right">
+                                                            <div class="form-group">
+                                                                <h5 class="font-weight-bold">จำนวน (บาท)</h5>
+                                                            </div>
+                                                            <div class="form-group mr">
+                                                                <label><?php echo $cmf=$ice_history['invoice_cmf'] ?></label>
+                                                            </div>
+                                                            <div class="form-group mr">
+                                                                <label><?php echo $elect=$ice_history['elect_bill'] ?></label>
+                                                            </div>
+                                                            <div class="form-group mr">
+                                                                <label><?php echo $water=$ice_history['water_bill'] ?></label>
+                                                            </div>
+                                                            <div class="form-group mr">
+                                                                <label><?php echo $another=$ice_history['another_bill'] ?></label>
+                                                            </div>
+                                                            <div class="form-group mr">
+                                                                <label><?php echo $overdue=$ice_history['invoice_overdue'] ?></label>
+                                                            </div>
+                                                            <div class="form-group mr">
+                                                                <label><?php echo $payOver=abs($ice_history['pay_amount'] - $ice_history['total_amount'])?></label>
+                                                            </div>
+                                                            <div class="form-group mr">
+                                                                <h5 class="font-weight-bold"><?php echo $ice_history['pay_amount'].' '.'บาท' ?></h5>
                                                             </div>
                                                         </div>
+                                                    </div>
+                                                    <hr>
+                                                    <div class="footer">
+                                                        <button class="btn btn-vlg-close"data-bs-dismiss="modal" >ปิด</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -319,7 +341,10 @@ foreach($invoiceVlg as $ice){
                         <label class="form-label" for="selectMonth">เลือกจำนวนเดือนที่ต้องชำระ</label>
                         <select class="form-select" name="payMonth" id="payMonth" aria-label="Select month to pay" onclick="month(this.value)" required>
                             <option selected value="0">เลือก</option>
-                            <option value="1">1 เดือน</option>
+                            <?php for ($m = 0; $m <= $monthNow; $m++) {
+                               echo '<option value="' . $m+1 . '">' . $monthOver[$m] . '</option>';
+                            }?>
+                            <!-- <option value="1">1 เดือน</option>
                             <option value="2">2 เดือน</option>
                             <option value="3">3 เดือน</option>
                             <option value="4">4 เดือน</option>
@@ -330,7 +355,7 @@ foreach($invoiceVlg as $ice){
                             <option value="9">9 เดือน</option>
                             <option value="10">10 เดือน</option>
                             <option value="11">11 เดือน</option>
-                            <option value="12">12 เดือน</option>
+                            <option value="12">12 เดือน</option> -->
                         </select>
                     </div>
                     <div class="form-group">

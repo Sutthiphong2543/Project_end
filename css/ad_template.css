@@ -4,11 +4,13 @@
     font-style: normal;
 }
 .temp_sidebar{
+    position: relative;
     width: 318px;
     height: 965px;
     background: #FFFFFF;
     float: left;
     border-right: 1px solid #C2DEDE;
+    z-index: 1;
 }
 #vlg-lg_home{
     width: 40px;

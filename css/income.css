@@ -51,16 +51,7 @@
 .main-income .filter{
     margin-left: 890px;
 }
-.filter .btn-filer{
-    background: #FFFFFF;
-    color: #1D1D1F;
-    border: 1px solid #C2DEDE;
-}
-.printer .btn-printer{
-    background: #FFFFFF;
-    color: #1D1D1F;
-    border: 1px solid #C2DEDE;
-}
+
 .table-income{
     margin: 5px 10px;
     padding: 10px;
@@ -72,4 +63,15 @@
 }
 .bi-x-circle{
     color: red;
+}
+.table-income{
+    border: 1px solid #C2DEDE;
+    border-radius: 7px;
+    margin: 7px;
+    padding: 15px;
+}
+.btn.btn-printer{
+    border: 1px solid #C2DEDE;
+    background-color: #FFFFFF;
+    color: black;
 }

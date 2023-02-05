@@ -302,7 +302,6 @@
                         <th scope="col" class="text-center">วันที่ค้างชำระ</th>
                         <th scope="col" class="text-center">เดือนที่ค้างชำระ</th>
                         <th scope="col" class="text-center">สถานะ</th>
-                        <th scope="col"></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -313,7 +312,6 @@
                         <td class="text-center"><?php echo $invoice_4['date_start'] ?></td>
                         <td class="text-center"><?php echo $controller->checkMonth($invoice_4['month']) ?></td>
                         <td class="text-center"><?php echo $controller->checkStatusPay($invoice_4['status_pay']) ?></td>
-                        <td class="text-center">รายละเอียดเพิ่มเติม<i class="bi bi-zoom-in mx-2"></i></td>
                         </tr>
                     <?php }?>
                     </tbody>
@@ -340,8 +338,64 @@
                         <td class="text-center"><?php echo $invoice_5['date_start'] ?></td>
                         <td class="text-center"><?php echo $controller->checkMonth($invoice_5['month']) ?></td>
                         <td class="text-center"><?php echo $controller->checkStatusPay($invoice_5['status_pay']) ?></td>
-                        <td class="text-center">รายละเอียดเพิ่มเติม<i class="bi bi-zoom-in mx-2"></i></td>
+                        <td class="text-center"> <button class="btn btn-info"  data-bs-toggle="modal" data-bs-target="#getPaymentModal<?php echo $invoice_5['invoice_id'] ?>">ดูละเอียดเพิ่มเติม</i> <i class="bi bi-zoom-in mx-2"></i></button> </td>
                         </tr>
+
+                        <!-- Modal ใบเสร็จรับเงิน -->
+    
+                        <div class="modal fade" id="getPaymentModal<?php echo $invoice_5['invoice_id'] ?>" tabindex="-1" aria-labelledby="villagerModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+                                    <div class="main-detail-payment">
+                                        <div class="container">
+                                            <div class="header">
+                                                <h4 class="text-center">รายละเอียดการแจ้งชำระ</h4>
+                                            </div>
+                                            <hr>
+                                            <div class="content-detail-payment">
+                                                <div class="detail-left">
+                                                    <div class="pre-img-slip">
+                                                        <img id="img-slip" src="../upload/Slip/<?php echo $invoice_5['img_slip'] ?>" >
+                                                    </div>
+                                                </div>
+                                                <div class="detail-right">
+                                                    <div class="detail-right-content">
+                                                        <div class="form-detail">
+                                                            <label class="form-label">บ้านเลขที่ : <?php echo $invoice_5['villager_housenum'] ?></label>
+                                                        </div>
+                                                        <div class="form-detail">
+                                                            <label class="form-label">ชื่อ : <?php echo $invoice_5['villager_fname'].' '.$invoice_5['villager_lname'] ?></label>
+                                                        </div>
+                                                        <div class="form-detail">
+                                                            <label class="form-label">ค่าส่วนกลาง : <?php echo $invoice_5['invoice_cmf'] ?> บาท</label>
+                                                        </div>
+                                                        <div class="form-detail">
+                                                            <label class="form-label">ค้างชำระ : <?php echo $invoice_5['invoice_overdue'] ?> บาท</label>
+                                                        </div>
+                                                        <div class="form-detail">
+                                                            <label class="form-label">ชำระล่วงหน้า : <?php echo (($invoice_5['pay_amount'])-($invoice_5['total_amount']))/100 ?> เดือน </label>
+                                                        </div>
+                                                        <div class="form-detail">
+                                                            <label class="form-label">รวม : <?php echo $invoice_5['pay_amount'] ?> บาท</label>
+                                                        </div>
+                                                        <div class="form-detail">
+                                                            <label class="form-label">วันที่แจ้งชำระ : <?php echo $invoice_5['date_pay'] ?></label>
+                                                        </div>
+                                                        <div class="btn-detail-payment">
+                                                            <button class="btn btn-vlg-close"data-bs-dismiss="modal" >ปิด</button>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                
+                                    
+                                </div>
+                            </div>
+                        </div>
                     <?php }?>
                     </tbody>
                     </table>
@@ -371,18 +425,18 @@
                                             <label>เดือน : </label>
                                             <select size="1" name="month" class="form-control select-mty" required>
                                                 <option selected >เลือกเดือน</option>
-                                                <option value="1">มกราคม</option>
-                                                <option value="2">กุมภาพันธ์</option>
-                                                <option value="3">มีนาคม</option>
-                                                <option value="4">เมษายน</option>
-                                                <option value="5">พฤษภาคม</option>
-                                                <option value="6">มิถุนายน</option>
-                                                <option value="7">กรกฎาคม</option>
-                                                <option value="8">สิงหาคม</option>
-                                                <option value="9">กันยายน</option>
-                                                <option value="10">ตุลาคม</option>
-                                                <option value="11">พฤศจิกายน</option>
-                                                <option value="12">ธันวาคม</option>
+                                                <option value="1">1. มกราคม</option>
+                                                <option value="2">2. กุมภาพันธ์</option>
+                                                <option value="3">3. มีนาคม</option>
+                                                <option value="4">4. เมษายน</option>
+                                                <option value="5">5. พฤษภาคม</option>
+                                                <option value="6">6. มิถุนายน</option>
+                                                <option value="7">7. กรกฎาคม</option>
+                                                <option value="8">8. สิงหาคม</option>
+                                                <option value="9">9. กันยายน</option>
+                                                <option value="10">10. ตุลาคม</option>
+                                                <option value="11">11. พฤศจิกายน</option>
+                                                <option value="12">12. ธันวาคม</option>
                                             </select>
                                         </div>
                                         <div class="form-group">

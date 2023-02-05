@@ -15,8 +15,10 @@ try {
 
 require_once"controller.php";
 require_once"user.php";
+require_once"fc_income.php";
 $controller = new Controller($pdo);
 $user = new User($pdo);
+$fucIncome = new income($pdo);
 
 // $user->insertUser('admin', '123456');
 // $user->insertAdmin('admin','legal','0954690775','admin','123456','?');

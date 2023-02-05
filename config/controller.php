@@ -265,7 +265,7 @@ class Controller {
         try {
             $sql = "SELECT * FROM invoice ice
             INNER JOIN villagers vlg ON ice.villager_id = vlg.villager_id
-            WHERE ice.status_pay = 5";
+            WHERE ice.pay_amount > ice.total_amount";
             $stmt= $this->db->prepare($sql);
             $stmt->execute();
             $result=$stmt->fetchAll(PDO::FETCH_ASSOC);
