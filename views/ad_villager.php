@@ -21,6 +21,7 @@ $roleVillager=$controller->getRole_users();
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
+    <!-- Bootstrap -->
 
     <!-- table -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
@@ -162,7 +163,7 @@ $roleVillager=$controller->getRole_users();
                                         <td class="text-center"><?php echo $row["villager_housenum"] ?></td>
                                         <td class="text-center"><?php echo $row["villager_tel"] ?></td>
                                         <td class="text-center"><?php echo $row["username"] ?></td>
-                                        <td class="text-center"><img width="50" src="../upload/<?php echo $row["img_profile"] ?>" alt=""></td>
+                                        <td class="text-center"><img width="50" src="../upload/<?php echo $row["img_profile"] ?>" ></td>
                                         <?php if($row["role_id"]==1){?>
                                             <td class="text-center"><p class="bg-info text-white"><?php echo $row["role_status"] ?></p></td>
                                         <?php }else { ?>
@@ -209,35 +210,56 @@ $roleVillager=$controller->getRole_users();
                                     <img class="prev-profile" src="../upload/Defult.png" id="previewImg">
                             </div>
                                 <!-- Form -->
-                            <form action="../signup_v2.php" method="POST" class="form-horizontal" enctype="multipart/form-data">
+                            <form action="../signup_v2.php" method="POST" class="form-horizontal needs-validation" enctype="multipart/form-data" novalidate>
                                 <div class="modal-body">
                                         <div class="form-group singIn mb-3">
                                             <label for="fname" class="form-label lb-ad">first name</label>
-                                            <input type="text" class="form-control i-form-ad " name="fname" aria-describedby="firstname" required>
+                                            <input type="text" class="form-control i-form-ad " name="fname" aria-describedby="firstname" id="fname" required>
+                                            <div id="fname" class="invalid-feedback">
+                                             กรุณากรอกชื่อ
+                                            </div>
                                         </div>
                                         <div class="form-group singIn mb-3">
                                             <label for="lname" class="form-label lb-ad">last name</label>
-                                            <input type="text" class="form-control i-form-ad" name="lname" aria-describedby="lastname" required>
+                                            <input type="text" class="form-control i-form-ad" name="lname" aria-describedby="lastname" id="lname" required>
+                                            <div id="lname" class="invalid-feedback">
+                                             กรุณากรอกนามสกุล
+                                            </div>
                                         </div>
                                         <div class="form-group singIn mb-3">
                                             <label for="telephone" class="form-label lb-ad">เบอร์โทรศัพท์</label>
-                                            <input type="text" class="form-control i-form-ad" name="telephone" aria-describedby="telephone" maxlength="10" required>
+                                            <input type="text" class="form-control i-form-ad" name="telephone" aria-describedby="telephone" maxlength="10" id="phone" required>
+                                            <div id="phone" class="invalid-feedback">
+                                             กรุณากรอกเบอร์โทร
+                                            </div>
                                         </div>
                                         <div class="form-group singIn mb-3">
                                             <label for="house_number" class="form-label lb-ad">บ้านเลขที่</label>
-                                            <input type="text" class="form-control i-form-ad" name="house_number" aria-describedby="House_number" placeholder="000/000" maxlength="7" required>
+                                            <input type="text" class="form-control i-form-ad" name="house_number" aria-describedby="House_number" placeholder="000/000" maxlength="7" id="HouseNum" required>
+                                            <div id="HouseNum" class="invalid-feedback">
+                                             กรุณากรอกบ้านเลขที่
+                                            </div>
                                         </div>
                                         <div class="form-group singIn mb-3">
                                             <label for="username" class="form-label lb-ad">username</label>
-                                            <input type="text" class="form-control i-form-ad" name="username" aria-describedby="username" required>
+                                            <input type="text" class="form-control i-form-ad" name="username" aria-describedby="username" id="user" required>
+                                            <div id="user" class="invalid-feedback">
+                                            กรุณากรอกชื่อผู้ใช้
+                                            </div>
                                         </div>
                                         <div class="form-group singIn mb-3">
                                             <label for="password" class="form-label lb-ad">password</label>
-                                            <input type="text" class="form-control i-form-ad" name="password" aria-describedby="password" required>
+                                            <input type="text" class="form-control i-form-ad" name="password" aria-describedby="password" id="pass" required>
+                                            <div id="pass" class="invalid-feedback">
+                                             กรุณากรอกรหัสผ่าน
+                                            </div>
                                         </div>
                                         <div class="form-group singIn mb-3">
                                             <label for="img_profile" class="form-label lb-ad">Image</label>
-                                            <input type="file" class="form-control i-form-ad" name="img_profile" id="imgInput" aria-describedby="profile" required>
+                                            <input type="file" class="form-control i-form-ad" name="img_profile" id="imgInput" aria-describedby="profile" id="img-profile" required>
+                                            <div id="img-profile" class="invalid-feedback">
+                                             กรุณาเลือกรูปภาพ
+                                            </div>
                                             <!-- <img width="250" id="previewImg" alt=""> -->
                                         </div>
                                         <div class="form-group singIn mb-3">
@@ -280,6 +302,7 @@ $roleVillager=$controller->getRole_users();
                 "pageLength": 10
             } );
         } );
+
         $(document).ready(function() {
             $('#villager_detail_stay').DataTable( {
                 responsive: true,
@@ -367,6 +390,29 @@ $roleVillager=$controller->getRole_users();
 
             })
         }
+
+
+        // Function alerts
+        // Example starter JavaScript for disabling form submissions if there are invalid fields
+(function () {
+  'use strict'
+
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  var forms = document.querySelectorAll('.needs-validation')
+
+  // Loop over them and prevent submission
+  Array.prototype.slice.call(forms)
+    .forEach(function (form) {
+      form.addEventListener('submit', function (event) {
+        if (!form.checkValidity()) {
+          event.preventDefault()
+          event.stopPropagation()
+        }
+
+        form.classList.add('was-validated')
+      }, false)
+    })
+})()
 
         
     </script>

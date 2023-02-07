@@ -177,3 +177,10 @@
     position: fixed;
     z-index: -9999;
 }
+
+/* Filter */
+.filter{
+    /* border: 1px solid #C2DEDE; */
+    width: 150px;
+    margin-bottom: 10px;
+}

@@ -3,30 +3,15 @@
     require_once"../components/check_admin.php";
     require_once"../config/connect.php";
 
-    // $data = $controller->getInvoice_1();
-    // foreach ( $data as $year){
-    // $show= $year['date_start'];
-    // $year = date('Y', strtotime($show));
-    // echo $year;
-    // }
 
 $name = $fucIncome->getIncomeName();
 $sumCol = 0;// sum Column
 
-//test
-// $countPayOver = $fucIncome->getCountPayOver(2);
-// foreach($countPayOver as $countOverpay){
-//     $resultCountOverPay = abs($countOverpay['total_amount']-$countOverpay['pay_amount']) /100;
-// }
-// $arr = [];
-// for ($i = 1; $i <= 12; $i++) {
-//     $arr[] = $i;
-// }
-// for($ad=1; $ad <=$resultCountOverPay;$ad++){
-//     $arr[] = max($arr) + 1;
-// }
-// print_r($arr);
+//Filter Year
+$viewFilter = $filterClass->filterYear();
 
+//Get Max Year
+$year = '2024';
     
 ?>
 <!DOCTYPE html>
@@ -35,6 +20,8 @@ $sumCol = 0;// sum Column
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Use Ajax -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>  
     
     <link rel="stylesheet" href="../css/income.css ?<?php echo time(); ?>">
     <title>income</title>
@@ -50,12 +37,13 @@ $sumCol = 0;// sum Column
                 <button class="btn tablink" onclick="tabIOcome('table-report', this, '#F86594')">สรุป</button>
                 <div class="filter">
                     <!-- <button class="btn btn-filer"><i class="bi bi-sliders mx-2" ></i>2022</button> -->
-                    <select class="form-select mt-2" aria-label="Default select example">
-                        <option selected>2022</option>
-                        <option value="1">2023</option>
-                        <option value="2">2024</option>
-                        <option value="3">2025</option>
+                    
+                    <select id="filterYear" class="form-select mt-2" aria-label="Filter Year">
+                        <?php foreach ($viewFilter as $yearFil) { ?>
+                            <option value="<?php echo $yearFil['date_filter']; ?>"><?php echo $yearFil['date_filter'] ?></option>
+                        <?php }?>
                     </select>
+                    
                 </div>
                 <div class="printer">
                     <button class="btn btn-printer"><i class="bi bi-printer mx-2" ></i>พิมพ์</button>
@@ -86,15 +74,15 @@ $sumCol = 0;// sum Column
                     <tbody class="text-center">
                     <?php foreach ($name as $name) {
                         $id = $name['villager_id'];
-                        $maxPay = $fucIncome->getIncomeMaxSumPay($id);
+                        $maxPay = $fucIncome->getIncomeMaxSumPay($id,$year);
 
                         //get all pay
-                        $sumPay = $fucIncome->getSumPay($id);
+                        $sumPay = $fucIncome->getSumPay($id,$year);
                         foreach ( $sumPay as $SumPay){
                             $resultSumPay = $SumPay['sumMonth']/100;
                         }
                         //get min month
-                        $minMonth = $fucIncome->getMinMonth($id);
+                        $minMonth = $fucIncome->getMinMonth($id,$year);
                         foreach ( $minMonth as $MinPay){
                             $resultMinPay = $MinPay['minMonth'];
                         }
@@ -393,8 +381,9 @@ $sumCol = 0;// sum Column
         </div>
     </div>
 
-
+    <!-- ........................................JavaScript................................................. -->
 <script>
+    // Filter Year
 
 
      // header tab

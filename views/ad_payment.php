@@ -10,7 +10,8 @@
     $dataInvoice_5 = $controller->getInvoice_5();
 
 
-
+//Filter Year
+$viewFilterMonth = $filterClass->filterMonth();
 
 
     
@@ -28,6 +29,7 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+
     
 
     <title>Payment</title>
@@ -213,6 +215,14 @@
                 </div>
                 <!-- ชำระแล้ว -->
                 <div id="pay-3" class="table-pay tabContent">
+                    <div class="filter">
+                        <select id="filterYear" class="form-select mt-2" aria-label="Filter Year">
+                            <?php foreach ($viewFilterMonth as $yearFil) { ?>
+                                <option value="<?php echo $yearFil['date_filter'] ?>"><?php echo $controller->checkMonth($yearFil['date_filter']) ?></option>
+                            <?php }?>
+                        </select>
+                        
+                    </div>
                 <table id="table-pay-3" class="table">
                     <thead>
                         <tr>
@@ -460,11 +470,11 @@
                                 <div class="date-pay-right">
                                     <div class="form-group">
                                             <label>วันที่แจ้งชำระ :</label>
-                                            <input type="date" name="date-start" class="form-control" required>
+                                            <input type="date" name="date-start" id="date1" class="form-control" required>
                                     </div>
                                     <div class="form-group">
                                         <label>ชำระก่อนวันที่ :</label>
-                                        <input type="date" name="date-end" class="form-control" required>
+                                        <input type="date" name="date-end" id="date2" class="form-control" required>
                                     </div>
                                 </div>
                             </div>
@@ -485,6 +495,23 @@
 
 
 <script>
+
+    // Filter Year
+    
+
+
+    //select month
+    const date1Input = document.getElementById("date1");
+    const date2Input = document.getElementById("date2");
+
+    date1Input.addEventListener("input", function() {
+    const date1 = new Date(date1Input.value);
+    const date2 = new Date(date1.getTime() + 15 * 24 * 60 * 60 * 1000);
+    date2Input.value = date2.toISOString().substr(0, 10);
+    });
+
+
+
     // table
         $(document).ready(function() {
             $('#table-pay-1').DataTable( {
