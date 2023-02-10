@@ -11,7 +11,8 @@ $sumCol = 0;// sum Column
 $viewFilter = $filterClass->filterYear();
 
 //Get Max Year
-$year = '2024';
+date_default_timezone_set("Asia/Bangkok");
+$year = date("Y");;
     
 ?>
 <!DOCTYPE html>
@@ -38,9 +39,13 @@ $year = '2024';
                 <div class="filter">
                     <!-- <button class="btn btn-filer"><i class="bi bi-sliders mx-2" ></i>2022</button> -->
                     
-                    <select id="filterYear" class="form-select mt-2" aria-label="Filter Year">
+                    <select id="filterYear" class="form-select mt-2" aria-label="Filter Year" onchange="filterYear(this.value)">
                         <?php foreach ($viewFilter as $yearFil) { ?>
-                            <option value="<?php echo $yearFil['date_filter']; ?>"><?php echo $yearFil['date_filter'] ?></option>
+                            <?php if ($yearFil['date_filter'] == $year){ ?>
+                                <option selected value="<?php echo $yearFil['date_filter']; ?>"><?php echo $yearFil['date_filter'] ?></option>
+                            <?php } else { ?>
+                                <option value="<?php echo $yearFil['date_filter']; ?>"><?php echo $yearFil['date_filter'] ?></option>
+                            <?php } ?>
                         <?php }?>
                     </select>
                     
@@ -90,7 +95,7 @@ $year = '2024';
                         ?>
                         <!-- table house number and villager name -->
                         <tr >
-                        <th><?php echo $name['villager_housenum'] ?></th>
+                        <td><?php echo $name['villager_housenum'] ?></td>
                         <td class="text-start"><?php echo $name['villager_fname'].' '.$name['villager_lname'] ?></td>
                         
                         <!-- loop create icons -->
@@ -384,6 +389,18 @@ $year = '2024';
     <!-- ........................................JavaScript................................................. -->
 <script>
     // Filter Year
+    
+    function filterYear(year) {
+        $.ajax({
+            type: "POST",
+            url: "../components/filterIncome.php",
+            data:{year:year},
+            success: function(data) {
+                $("#table-income").html(data);
+            }
+        })
+        
+    }
 
 
      // header tab

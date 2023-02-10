@@ -228,14 +228,16 @@ $monthOver = ['1 เดือน','2 เดือน','3 เดือน','4 เ
                 <table id="history_pay_vlg" class="table">
                             <thead>
                                 <tr>
+                                <th scope="col"  >#</th>
                                 <th scope="col" class="text-center">เดือน</th>
                                 <th scope="col" class="text-center">ใบเสร็จ</th>
                                 <th scope="col" class="text-center">สถานะ</th>
                                 </tr>
                             </thead>
                             <tbody>
-                            <?php foreach($invoiceVlg_history as $ice_history){ ?>
+                            <?php foreach($invoiceVlg_history as $index =>$ice_history){ ?>
                                 <tr>
+                                <th ><?php echo $index+1 ?></th>
                                 <th class="text-nowrap"><?php echo $controller->checkMonth($ice_history['month']) ?></th>
                                 <td class="text-center"><button class="btn bg-info text-white" data-bs-toggle="modal" data-bs-target="#getPaymentModal<?php echo $ice_history['invoice_id'] ?>"><i class="bi bi-eye-fill mx-2"></i>ดูข้อมูล</button></td>
                                 <td class="text-center"><?php echo $controller->checkStatusPay($ice_history['status_pay']) ?></td>

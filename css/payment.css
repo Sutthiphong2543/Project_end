@@ -181,6 +181,16 @@
 /* Filter */
 .filter{
     /* border: 1px solid #C2DEDE; */
-    width: 150px;
-    margin-bottom: 10px;
+    display: flex;
+    width: 300px;
+    gap:5px;
+}
+.box-filter{
+    /* border: 1px solid #C2DEDE; */
+    display: flex;
+    justify-content: flex-end;
+    margin: 15px 0 15px 0;
+}
+td {
+    border: 1px solid #C2DEDE;
 }

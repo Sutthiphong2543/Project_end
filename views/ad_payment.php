@@ -2,16 +2,22 @@
     require_once"../components/session.php";
     require_once"../components/check_admin.php";
     require_once"../config/connect.php";
+    // get date time thailand
+    date_default_timezone_set("Asia/Bangkok");
+    $monthNow = date("m");
+    $yearNow = date("Y");
 
+    //Get data
     $dataInvoice_1 = $controller->getInvoice_1();
     $dataInvoice_2 = $controller->getInvoice_2();
-    $dataInvoice_3 = $controller->getInvoice_3();
+    $dataInvoice_3 = $controller->getInvoice_3($monthNow,$yearNow);
     $dataInvoice_4 = $controller->getInvoice_4();
-    $dataInvoice_5 = $controller->getInvoice_5();
+    $dataInvoice_5 = $controller->getInvoice_5($monthNow,$yearNow);
 
 
-//Filter Year
-$viewFilterMonth = $filterClass->filterMonth();
+    //Filter Year
+    $viewFilterMonth = $filterClass->filterMonth();
+    $viewFilterYear = $filterClass->filterYear();
 
 
     
@@ -54,9 +60,10 @@ $viewFilterMonth = $filterClass->filterMonth();
                 <!-- รายการทั้งหมด -->
                 
                 <div id="pay-1" class="table-pay tabContent">
-                <table id="table-pay-1" class="table">
+                <table id="table-pay-1" class="table table-striped">
                     <thead>
                         <tr>
+                        <th scope="col" class="text-center">#</th>
                         <th scope="col" class="text-center">ชื่อ</th>
                         <th scope="col" class="text-center">บ้านเลขที่</th>
                         <th scope="col" class="text-center">วันที่ส่งใบแจ้งชำระ</th>
@@ -66,9 +73,10 @@ $viewFilterMonth = $filterClass->filterMonth();
                         </tr>
                     </thead>
                     <tbody>
-                    <?php foreach($dataInvoice_1 as $invoice_1){ ?>
+                    <?php foreach($dataInvoice_1 as $index => $invoice_1){ ?>
                         <tr>
-                        <th class="text-nowrap"><?php echo $invoice_1['villager_fname'].' '.$invoice_1['villager_lname'] ?></th>
+                        <td class="text-center"><?php echo $index+1 ?></td>
+                        <td class="text-nowrap"><?php echo $invoice_1['villager_fname'].' '.$invoice_1['villager_lname'] ?></td>
                         <td class="text-center"><?php echo $invoice_1['villager_housenum'] ?></td>
                         <td class="text-center"><?php echo $invoice_1['date_start'] ?></td>
                         <td class="text-center"><?php echo $controller->checkMonth($invoice_1['month']) ?></td>
@@ -130,9 +138,10 @@ $viewFilterMonth = $filterClass->filterMonth();
                 </div>
                 <!-- รอดำเนินการ -->
                 <div id="pay-2" class="table-pay tabContent">
-                <table id="table-pay-2" class="table">
+                <table id="table-pay-2" class="table  table-striped">
                     <thead>
                         <tr>
+                        <th scope="col" class="text-center">#</th>
                         <th scope="col" class="text-center">ชื่อ</th>
                         <th scope="col" class="text-center">บ้านเลขที่</th>
                         <th scope="col" class="text-center">วันที่แจ้งชำระ</th>
@@ -142,10 +151,11 @@ $viewFilterMonth = $filterClass->filterMonth();
                         </tr>
                     </thead>
                     <tbody>
-                    <?php foreach($dataInvoice_2 as $invoice_2){ ?>
+                    <?php foreach($dataInvoice_2 as $index => $invoice_2){ ?>
                         <tr>
                         <tr>
-                        <th class="text-nowrap"><?php echo $invoice_2['villager_fname'].' '.$invoice_2['villager_lname'] ?></th>
+                        <td class="text-center"><?php echo $index+1 ?></td>
+                        <td class="text-nowrap"><?php echo $invoice_2['villager_fname'].' '.$invoice_2['villager_lname'] ?></td>
                         <td class="text-center"><?php echo $invoice_2['villager_housenum'] ?></td>
                         <td class="text-center"><?php echo $invoice_2['date_pay'] ?></td>
                         <td class="text-center"><?php echo $controller->checkMonth($invoice_2['month']) ?></td>
@@ -215,17 +225,33 @@ $viewFilterMonth = $filterClass->filterMonth();
                 </div>
                 <!-- ชำระแล้ว -->
                 <div id="pay-3" class="table-pay tabContent">
-                    <div class="filter">
-                        <select id="filterYear" class="form-select mt-2" aria-label="Filter Year">
-                            <?php foreach ($viewFilterMonth as $yearFil) { ?>
-                                <option value="<?php echo $yearFil['date_filter'] ?>"><?php echo $controller->checkMonth($yearFil['date_filter']) ?></option>
-                            <?php }?>
-                        </select>
-                        
+                    <div class="box-filter">
+                        <div class="filter">
+                            <select id="filterMonth" class="form-select mt-1" aria-label="Filter Year" onchange="filterPaySuccess()">
+                                <?php foreach ($viewFilterMonth as $monthFil) { ?>
+                                    <?php if($monthFil['date_filter'] == $monthNow){ ?>
+                                        <option selected value="<?php echo $monthFil['date_filter'] ?>"><?php echo $controller->checkMonth($monthFil['date_filter']) ?></option>
+                                    <?php } else { ?>
+                                        <option value="<?php echo $monthFil['date_filter'] ?>"><?php echo $controller->checkMonth($monthFil['date_filter']) ?></option>
+                                    <?php } ?>;
+                                <?php }?>
+                            </select>
+                            <select id="filterYear" class="form-select mt-1" aria-label="Filter Year" onchange="filterPaySuccess()">
+                                <?php foreach ($viewFilterYear as $yearFil) { ?>
+                                    <?php if($yearFil['date_filter'] == $yearNow){ ?>
+                                        <option selected value="<?php echo $yearFil['date_filter'] ?>"><?php echo $yearFil['date_filter'] ?></option>
+                                    <?php } else { ?>
+                                        <option value="<?php echo $yearFil['date_filter'] ?>"><?php echo $yearFil['date_filter'] ?></option>
+                                    <?php } ?>;
+                                <?php }?>
+                            </select>
+                            
+                        </div>
                     </div>
-                <table id="table-pay-3" class="table">
+                <table id="table-pay-3" class="table table-striped mt-2">
                     <thead>
                         <tr>
+                        <th scope="col" class="text-center">#</th>
                         <th scope="col" class="text-center">ชื่อ</th>
                         <th scope="col" class="text-center">บ้านเลขที่</th>
                         <th scope="col" class="text-center">วันที่แจ้ง</th>
@@ -235,68 +261,18 @@ $viewFilterMonth = $filterClass->filterMonth();
                         </tr>
                     </thead>
                     <tbody>
-                    <?php foreach($dataInvoice_3 as $invoice_3){ ?>
+                    <?php foreach($dataInvoice_3 as $index => $invoice_3){ ?>
                         <tr>
-                        <th class="text-nowrap"><?php echo $invoice_3['villager_fname'].' '.$invoice_3['villager_lname'] ?></th>
+                        <td class="text-center"><?php echo $index+1 ?></td>
+                        <td class="text-nowrap"><?php echo $invoice_3['villager_fname'].' '.$invoice_3['villager_lname'] ?></td>
                         <td class="text-center"><?php echo $invoice_3['villager_housenum'] ?></td>
                         <td class="text-center"><?php echo $invoice_3['date_start'] ?></td>
                         <td class="text-center"><?php echo $controller->checkMonth($invoice_3['month']) ?></td>
                         <td class="text-center"><?php echo $controller->checkStatusPay($invoice_3['status_pay']) ?></td>
-                        <!-- <td class="text-center"><button class="btn btn-info"  data-bs-toggle="modal" data-bs-target="#getPaymentModal<?php echo $invoice_3['invoice_id'] ?>">รายละเอียดเพิ่มเติม<i class="bi bi-zoom-in mx-2"></i></button></td> -->
+                        
                         </tr>
 
-                        <!-- Modal ใบเสร็จรับเงิน
-    
-                        <div class="modal fade" id="getPaymentModal<?php echo $invoice_3['invoice_id'] ?>" tabindex="-1" aria-labelledby="villagerModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-lg">
-                                <div class="modal-content">
-                                    <div class="main-detail-payment">
-                                        <div class="container">
-                                            <div class="header">
-                                                <h4 class="text-center">รายละเอียดการแจ้งชำระ</h4>
-                                            </div>
-                                            <hr>
-                                            <div class="content-detail-payment">
-                                                <div class="detail-left">
-                                                    <div class="pre-img-slip">
-                                                        <img id="img-slip" src="../upload/Slip/<?php echo $invoice_3['img_slip'] ?>" >
-                                                    </div>
-                                                </div>
-                                                <div class="detail-right">
-                                                    <div class="detail-right-content">
-                                                        <div class="form-detail">
-                                                            <label class="form-label">บ้านเลขที่ : <?php echo $invoice_3['villager_housenum'] ?></label>
-                                                        </div>
-                                                        <div class="form-detail">
-                                                            <label class="form-label">ชื่อ : <?php echo $invoice_3['villager_fname'].' '.$invoice_3['villager_lname'] ?></label>
-                                                        </div>
-                                                        <div class="form-detail">
-                                                            <label class="form-label">ค่าส่วนกลาง : <?php echo $invoice_3['invoice_cmf'] ?> บาท</label>
-                                                        </div>
-                                                        <div class="form-detail">
-                                                            <label class="form-label">ค้างชำระ : <?php echo $invoice_3['invoice_overdue'] ?> บาท</label>
-                                                        </div>
-                                                        <div class="form-detail">
-                                                            <label class="form-label">ชำระล่วงหน้า : <?php echo (($invoice_3['pay_amount'])-($invoice_3['total_amount']))/100 ?> เดือน </label>
-                                                        </div>
-                                                        <div class="form-detail">
-                                                            <label class="form-label">รวม : <?php echo $invoice_3['pay_amount'] ?> บาท</label>
-                                                        </div>
-                                                        <div class="form-detail">
-                                                            <label class="form-label">วันที่แจ้งชำระ : <?php echo $invoice_3['date_pay'] ?></label>
-                                                        </div>
-                                                        <div class="btn-detail-payment">
-                                                            <button class="btn btn-vlg-close"data-bs-dismiss="modal" >ปิด</button>
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> -->
+                       
                     <?php }?>
                         
                     </tbody>
@@ -304,9 +280,10 @@ $viewFilterMonth = $filterClass->filterMonth();
                 </div>
                 <!-- ค้างชำระ -->
                 <div id="pay-4" class="table-pay tabContent">
-                <table id="table-pay-4" class="table">
+                <table id="table-pay-4" class="table table-striped">
                     <thead>
                         <tr>
+                        <th scope="col" class="text-center">#</th>
                         <th scope="col" class="text-center">ชื่อ</th>
                         <th scope="col" class="text-center">บ้านเลขที่</th>
                         <th scope="col" class="text-center">วันที่ค้างชำระ</th>
@@ -315,9 +292,10 @@ $viewFilterMonth = $filterClass->filterMonth();
                         </tr>
                     </thead>
                     <tbody>
-                    <?php foreach($dataInvoice_4 as $invoice_4){ ?>
+                    <?php foreach($dataInvoice_4 as $index => $invoice_4){ ?>
                         <tr>
-                        <th class="text-nowrap"><?php echo $invoice_4['villager_fname'].' '.$invoice_4['villager_lname'] ?></th>
+                        <td class="text-center"><?php echo $index+1 ?></td>
+                        <td class="text-nowrap"><?php echo $invoice_4['villager_fname'].' '.$invoice_4['villager_lname'] ?></td>
                         <td class="text-center"><?php echo $invoice_4['villager_housenum'] ?></td>
                         <td class="text-center"><?php echo $invoice_4['date_start'] ?></td>
                         <td class="text-center"><?php echo $controller->checkMonth($invoice_4['month']) ?></td>
@@ -329,9 +307,33 @@ $viewFilterMonth = $filterClass->filterMonth();
                 </div>
                 <!-- ชำระล่วงหน้า -->
                 <div id="pay-5" class="table-pay tabContent">
-                <table id="table-pay-5" class="table">
+                <div class="box-filter">
+                        <div class="filter">
+                            <select id="filterMonth5" class="form-select mt-1" aria-label="Filter Year" onchange="filterPayOver()">
+                                <?php foreach ($viewFilterMonth as $monthFil) { ?>
+                                    <?php if($monthFil['date_filter'] == $monthNow){ ?>
+                                        <option selected value="<?php echo $monthFil['date_filter'] ?>"><?php echo $controller->checkMonth($monthFil['date_filter']) ?></option>
+                                    <?php } else { ?>
+                                        <option value="<?php echo $monthFil['date_filter'] ?>"><?php echo $controller->checkMonth($monthFil['date_filter']) ?></option>
+                                    <?php } ?>;
+                                <?php }?>
+                            </select>
+                            <select id="filterYear5" class="form-select mt-1" aria-label="Filter Year" onchange="filterPayOver()">
+                                <?php foreach ($viewFilterYear as $yearFil) { ?>
+                                    <?php if($yearFil['date_filter'] == $yearNow){ ?>
+                                        <option selected value="<?php echo $yearFil['date_filter'] ?>"><?php echo $yearFil['date_filter'] ?></option>
+                                    <?php } else { ?>
+                                        <option value="<?php echo $yearFil['date_filter'] ?>"><?php echo $yearFil['date_filter'] ?></option>
+                                    <?php } ?>;
+                                <?php }?>
+                            </select>
+                            
+                        </div>
+                    </div>
+                <table id="table-pay-5" class="table  table-striped">
                     <thead>
                         <tr>
+                        <th scope="col" class="text-center">#</th>
                         <th scope="col" class="text-center">ชื่อ</th>
                         <th scope="col" class="text-center">บ้านเลขที่</th>
                         <th scope="col" class="text-center">วันที่แจ้ง</th>
@@ -341,9 +343,10 @@ $viewFilterMonth = $filterClass->filterMonth();
                         </tr>
                     </thead>
                     <tbody>
-                    <?php foreach($dataInvoice_5 as $invoice_5){ ?>
+                    <?php foreach($dataInvoice_5 as $index => $invoice_5){ ?>
                         <tr>
-                        <th class="text-nowrap"><?php echo $invoice_5['villager_fname'].' '.$invoice_5['villager_lname'] ?></th>
+                        <td class="text-center"><?php echo $index+1 ?></td>
+                        <td class="text-nowrap"><?php echo $invoice_5['villager_fname'].' '.$invoice_5['villager_lname'] ?></td>
                         <td class="text-center"><?php echo $invoice_5['villager_housenum'] ?></td>
                         <td class="text-center"><?php echo $invoice_5['date_start'] ?></td>
                         <td class="text-center"><?php echo $controller->checkMonth($invoice_5['month']) ?></td>
@@ -496,8 +499,82 @@ $viewFilterMonth = $filterClass->filterMonth();
 
 <script>
 
+
+
     // Filter Year
+      $(document).ready(function() {
+            $('#table-pay-3').DataTable( {
+                responsive: true,
+                "pageLength": 10,
+                language: {
+                    search: "_INPUT_",
+                    searchPlaceholder: " ค้นหา"
+                },
+            } );
+        } );
     
+    function filterPaySuccess(){
+        let month = document.getElementById('filterMonth').value;
+        let year = document.getElementById('filterYear').value;
+        $.ajax({
+            type: "POST",
+            url: "../components/filterPayMonth.php",
+            data: {month:month, year:year},
+            success:function(data){
+                $("#table-pay-3").html(data);
+                $(document).ready(function() {
+                    $('#table-pay-3').DataTable( {
+                        destroy:true,  // ทำลาย data อันเก่าก่อน
+                        responsive: true,
+                        "pageLength": 10,
+                        language: {
+                            search: "_INPUT_",
+                            searchPlaceholder: " ค้นหา"
+                        },
+                    } );
+                } );
+            }
+        })
+    }
+
+
+    $(document).ready(function() {
+        $('#table-pay-5').DataTable( {
+            responsive: true,
+            "pageLength": 10,
+                language: {
+                    search: "_INPUT_",
+                    searchPlaceholder: " ค้นหา"
+                },
+        } );
+    } );
+
+
+    function filterPayOver(){
+        let month = document.getElementById('filterMonth5').value;
+        let year = document.getElementById('filterYear5').value;
+        let modal = document.getElementsByClassName('modal');
+        $.ajax({
+            type: "POST",
+            url: "../components/filterPayOver.php",
+            data: {month:month, year:year},
+            success:function(data){
+                $("#table-pay-5").html(data);
+                $(document).ready(function() {
+                    $('#table-pay-5').DataTable( {
+                        destroy:true,  // ทำลาย data อันเก่าก่อน
+                        responsive: true,
+                        "pageLength": 10,
+                        language: {
+                            search: "_INPUT_",
+                            searchPlaceholder: " ค้นหา"
+                        },
+                    } );
+                } );
+            }
+        })
+    }
+   
 
 
     //select month
@@ -514,35 +591,40 @@ $viewFilterMonth = $filterClass->filterMonth();
 
     // table
         $(document).ready(function() {
-            $('#table-pay-1').DataTable( {
+            $('#table-pay-1').DataTable({
                 responsive: true,
-                "pageLength": 10
-            } );
-        } );
+                pageLength: 10,
+                searching: true,
+                dom: "<'row'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6'f>>" +
+                    "<'row'<'col-sm-12'tr>>" +
+                    "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+                language: {
+                    search: "_INPUT_",
+                    searchPlaceholder: " ค้นหา"
+                },
+            });
+        });
         $(document).ready(function() {
             $('#table-pay-2').DataTable( {
                 responsive: true,
-                "pageLength": 10
-            } );
-        } );
-        $(document).ready(function() {
-            $('#table-pay-3').DataTable( {
-                responsive: true,
-                "pageLength": 10
+                "pageLength": 10,
+                language: {
+                    search: "_INPUT_",
+                    searchPlaceholder: " ค้นหา"
+                },
             } );
         } );
         $(document).ready(function() {
             $('#table-pay-4').DataTable( {
                 responsive: true,
-                "pageLength": 10
+                "pageLength": 10,
+                language: {
+                    search: "_INPUT_",
+                    searchPlaceholder: " ค้นหา"
+                },
             } );
         } );
-        $(document).ready(function() {
-            $('#table-pay-5').DataTable( {
-                responsive: true,
-                "pageLength": 10
-            } );
-        } );
+        
     // tab
     function openVillagerPay(villagerDetail, elmnt, color) {
         // Hide all elements with class="tabcontent" by default */

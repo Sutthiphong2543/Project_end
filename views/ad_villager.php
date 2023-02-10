@@ -24,7 +24,7 @@ $roleVillager=$controller->getRole_users();
     <!-- Bootstrap -->
 
     <!-- table -->
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
 
@@ -62,7 +62,7 @@ $roleVillager=$controller->getRole_users();
             <!-- Show all -->
             <div class="table-villager ">
                 <div id="all-content"  class="tabContent">
-                    <table id="villager_detail" class="table ">
+                    <table id="villager_detail" class="table table-striped  ">
                     <thead>
                         <tr>
                         <th scope="col" class="text-center" >ชื่อ</th>
@@ -77,8 +77,8 @@ $roleVillager=$controller->getRole_users();
                     <tbody>
                         <?php while($row=$result->fetch(PDO::FETCH_ASSOC)){ ?>
                             <tr>
-                                <td class="text-start px-4 ht-1"><?php echo $row["villager_fname"]."  ".$row["villager_lname"] ?></td>
-                                <td class="text-center "><?php echo $row["villager_housenum"] ?></td>
+                                <td class="text-start px-4 " ><?php echo $row["villager_fname"]."  ".$row["villager_lname"] ?></td>
+                                <td class="text-center"><?php echo $row["villager_housenum"] ?></td>
                                 <td class="text-center "><?php echo $row["villager_tel"] ?></td>
                                 <td class="text-center "><?php echo $row["username"] ?></td>
                                 <td class="text-center "><img width="50" src="../upload/<?php echo $row["img_profile"] ?>" alt=""></td>
@@ -103,7 +103,7 @@ $roleVillager=$controller->getRole_users();
                 </div>
                 <!-- Show stay people -->
                 <div id="stay-content" class="tabContent">
-                    <table id="villager_detail_stay" class="table ">
+                    <table id="villager_detail_stay" class="table table-striped ">
                         <thead>
                             <tr>
                             <th scope="col" class="text-center">ชื่อ</th>
@@ -144,7 +144,7 @@ $roleVillager=$controller->getRole_users();
                 </div>
                 <!-- show Not stay people -->
                 <div id="notStay-content" class="tabContent">
-                    <table id="villager_detail_notStay" class="table ">
+                    <table id="villager_detail_notStay" class="table table-striped ">
                             <thead>
                                 <tr>
                                 <th scope="col" class="text-center">ชื่อ</th>
@@ -299,20 +299,32 @@ $roleVillager=$controller->getRole_users();
         $(document).ready(function() {
             $('#villager_detail').DataTable( {
                 responsive: true,
-                "pageLength": 10
+                "pageLength": 10,
+                language: {
+                    search: "_INPUT_",
+                    searchPlaceholder: " ค้นหา"
+                },
             } );
         } );
 
         $(document).ready(function() {
             $('#villager_detail_stay').DataTable( {
                 responsive: true,
-                "pageLength": 10
+                "pageLength": 10,
+                language: {
+                    search: "_INPUT_",
+                    searchPlaceholder: " ค้นหา"
+                },
             } );
         } );
         $(document).ready(function() {
             $('#villager_detail_notStay').DataTable( {
                 responsive: true,
-                "pageLength": 10
+                "pageLength": 10,
+                language: {
+                    search: "_INPUT_",
+                    searchPlaceholder: " ค้นหา"
+                },
             } );
         } );
         

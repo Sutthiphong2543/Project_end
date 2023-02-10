@@ -233,12 +233,13 @@ class Controller {
             return false;
         }
     }
-    function getInvoice_3(){
+    function getInvoice_3($month,$year){
         try {
-            $sql = "SELECT * FROM invoice ice
-            INNER JOIN villagers vlg ON ice.villager_id = vlg.villager_id
-            WHERE ice.status_pay = 3  ORDER BY ice.month DESC";
+            $sql = "SELECT * FROM invoice ice INNER JOIN villagers vlg ON ice.villager_id = vlg.villager_id 
+            WHERE ice.status_pay = 3 AND MONTH(ice.date_start) = :month AND YEAR(ice.date_start) = :year ORDER BY ice.month DESC";
             $stmt= $this->db->prepare($sql);
+            $stmt->bindParam(':month',$month);
+            $stmt->bindParam(':year',$year);
             $stmt->execute();
             $result=$stmt->fetchAll(PDO::FETCH_ASSOC);
             return $result;
@@ -261,12 +262,14 @@ class Controller {
             return false;
         }
     }
-    function getInvoice_5(){
+    function getInvoice_5($month,$year){
         try {
             $sql = "SELECT * FROM invoice ice
             INNER JOIN villagers vlg ON ice.villager_id = vlg.villager_id
-            WHERE ice.pay_amount > ice.total_amount";
+            WHERE ice.pay_amount > ice.total_amount AND MONTH(ice.date_start) = :month AND YEAR(ice.date_start) = :year";
             $stmt= $this->db->prepare($sql);
+            $stmt->bindParam(':month',$month);
+            $stmt->bindParam(':year',$year);
             $stmt->execute();
             $result=$stmt->fetchAll(PDO::FETCH_ASSOC);
             return $result;
@@ -308,7 +311,7 @@ class Controller {
         try {
             $sql = "SELECT * FROM invoice ice
             INNER JOIN villagers vlg ON ice.villager_id = vlg.villager_id
-            WHERE ice.villager_id =:id AND ice.status_pay = '2' ";
+            WHERE ice.villager_id =:id AND ice.status_pay = '2' ORDER BY ice.month DESC ";
             $stmt= $this->db->prepare($sql);
             $stmt->bindParam(':id',$id);
             $stmt->execute();
