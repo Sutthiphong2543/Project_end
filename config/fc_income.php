@@ -126,6 +126,22 @@ class Income{
         }
     }
 
+    // ........ Expenses .............
+    
+    function createExpenses(){
+        try {
+            $sql = "INSERT INTO expenses ( waste_collection_fee, central_caretaker_fee, garbage_maintenance_fee, mechanic_wages,  another, expenses_total_cost, expenses_status )
+            VALUES()
+            ";
+            $stmt= $this->db->prepare($sql);
+            $stmt->execute();
+            $result=$stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $result;
+        }catch(PDOException $e){
+            echo $e->getMessage();
+            return false;
+        }
+    }
 
 
 

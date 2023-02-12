@@ -34,12 +34,12 @@ $year = date("Y");;
         <div class="main-income">
             <div class="head-income d-flex">
                 <button class="btn tablink" onclick="tabIOcome('table-income', this, '#00ECBC')" id="defaultOpen">รายรับ</button>
-                <button class="btn tablink" onclick="tabIOcome('table-outcome', this, '#FFCAA6')">รานจ่าย</button>
+                <button class="btn tablink" onclick="tabIOcome('table-outcome', this, '#FFCAA6')">รายจ่าย</button>
                 <button class="btn tablink" onclick="tabIOcome('table-report', this, '#F86594')">สรุป</button>
                 <div class="filter">
                     <!-- <button class="btn btn-filer"><i class="bi bi-sliders mx-2" ></i>2022</button> -->
                     
-                    <select id="filterYear" class="form-select mt-2" aria-label="Filter Year" onchange="filterYear(this.value)">
+                    <select id="filterYear" class="form-select mx-1" aria-label="Filter Year" onchange="filterYear(this.value)">
                         <?php foreach ($viewFilter as $yearFil) { ?>
                             <?php if ($yearFil['date_filter'] == $year){ ?>
                                 <option selected value="<?php echo $yearFil['date_filter']; ?>"><?php echo $yearFil['date_filter'] ?></option>
@@ -114,7 +114,7 @@ $year = date("Y");;
                                 }
                             }
                         ?>
-                        <td><?php echo $ct*100  ?></td>
+                        <td><?php echo number_format(($ct*100),0,'.',',')  ?></td>
                         <?php } ?>
                         </tr>
                     <?php } ?>
@@ -132,7 +132,7 @@ $year = date("Y");;
                             <td ><label id="Oct"></label></td>
                             <td ><label id="Nov"></label></td>
                             <td ><label id="Dec"></label></td>
-                            <td ><?php echo ($sumCol*100) ?></td>
+                            <td ><?php echo number_format(($sumCol*100),0,'.',',') ?></td>
                         </tr>
                     </tbody>
                     </table>
@@ -228,99 +228,97 @@ $year = date("Y");;
     }
   }
 
-  Jan.innerHTML = sumJan*100;
-  Feb.innerHTML = sumFeb*100;
-  Mar.innerHTML = sumMar*100;
-  Apr.innerHTML = sumApr*100;
-  May.innerHTML = sumMay*100;
-  Jun.innerHTML = sumJun*100;
-  Jul.innerHTML = sumJul*100;
-  Aug.innerHTML = sumAug*100;
-  Sep.innerHTML = sumSep*100;
-  Oct.innerHTML = sumOct*100;
-  Nov.innerHTML = sumNov*100;
-  Dec.innerHTML = sumDec*100;
+  Jan.innerHTML = (sumJan*100).toLocaleString();
+  Feb.innerHTML = (sumFeb*100).toLocaleString();
+  Mar.innerHTML = (sumMar*100).toLocaleString();
+  Apr.innerHTML = (sumApr*100).toLocaleString();
+  May.innerHTML = (sumMay*100).toLocaleString();
+  Jun.innerHTML = (sumJun*100).toLocaleString();
+  Jul.innerHTML = (sumJul*100).toLocaleString();
+  Aug.innerHTML = (sumAug*100).toLocaleString();
+  Sep.innerHTML = (sumSep*100).toLocaleString();
+  Oct.innerHTML = (sumOct*100).toLocaleString();
+  Nov.innerHTML = (sumNov*100).toLocaleString();
+  Dec.innerHTML = (sumDec*100).toLocaleString();
 </script>
 
             <!-- table tab outcome -->
             <div id="table-outcome" class="tabContent table-income">
-            <table class="table">
+                <div class="second-tab">
+                    <button class="btn btn-click"  id="createExpenses"><i class="bi bi-file-earmark-plus mx-1"></i> บันทึกรายจ่าย</a></button>
+                </div>
+                
+            <table class="table" style="width:100%;">
                 <thead>
                     <tr class="text-center">
-                    <th scope="col" >บ้านเลขที่</th>
-                    <th scope="col">ชื่อ</th>
-                    <th scope="col">Jan.</th>
-                    <th scope="col">Feb.</th>
-                    <th scope="col">Mar.</th>
-                    <th scope="col">Apr.</th>
-                    <th scope="col">May.</th>
-                    <th scope="col">Jun.</th>
-                    <th scope="col">Jul.</th>
-                    <th scope="col">Aug.</th>
-                    <th scope="col">Sep.</th>
-                    <th scope="col">Oct.</th>
-                    <th scope="col">Nov.</th>
-                    <th scope="col">Dec.</th>
-                    <th scope="col">รวม</th>
-                    
+                        <th scope="col" >#</th>
+                        <th scope="col">เดือน</th>
+                        <th scope="col">จำนวน (บาท)</th>
+                        <th scope="col"></th>
                     </tr>
                 </thead>
                 <tbody class="text-center">
-                    <tr >
-                    <th>241/2</th>
-                    <td>นางสาวฐา วันดี</td>
-                    <td><i class="bi bi-check-circle-fill"></i></td>
-                    <td><i class="bi bi-check-circle-fill"></i></td>
-                    <td><i class="bi bi-check-circle-fill"></i></td>
-                    <td><i class="bi bi-check-circle-fill"></i></td>
-                    <td><i class="bi bi-check-circle-fill"></i></td>
-                    <td><i class="bi bi-check-circle-fill"></i></td>
-                    <td><i class="bi bi-check-circle-fill"></i></td>
-                    <td><i class="bi bi-check-circle-fill"></i></td>
-                    <td><i class="bi bi-check-circle-fill"></i></td>
-                    <td><i class="bi bi-check-circle-fill"></i></td>
-                    <td><i class="bi bi-check-circle-fill"></i></td>
-                    <td><i class="bi bi-check-circle-fill"></i></td>
-                    <td>600</td>
-                    </tr>
                     <tr>
-                    <th>241/2</th>
-                    <td>นางสาวฐา วันดี</td>
-                    <td><i class="bi bi-check-circle-fill"></i></td>
-                    <td><i class="bi bi-check-circle-fill"></i></td>
-                    <td><i class="bi bi-check-circle-fill"></i></td>
-                    <td><i class="bi bi-check-circle-fill"></i></td>
-                    <td><i class="bi bi-check-circle-fill"></i></td>
-                    <td><i class="bi bi-check-circle-fill"></i></td>
-                    <td><i class="bi bi-check-circle-fill"></i></td>
-                    <td><i class="bi bi-check-circle-fill"></i></td>
-                    <td><i class="bi bi-x-circle"></i></td>
-                    <td><i class="bi bi-x-circle"></i></td>
-                    <td><i class="bi bi-x-circle"></i></td>
-                    <td><i class="bi bi-x-circle"></i></td>
-                    <td>600</td>
-                    </tr>
-                    <tr>
-                    <th>241/2</th>
-                    <td>นางสาวฐา วันดี</td>
-                    <td><i class="bi bi-check-circle-fill"></i></td>
-                    <td><i class="bi bi-check-circle-fill"></i></td>
-                    <td><i class="bi bi-check-circle-fill"></i></td>
-                    <td><i class="bi bi-check-circle-fill"></i></td>
-                    <td><i class="bi bi-check-circle-fill"></i></td>
-                    <td><i class="bi bi-check-circle-fill"></i></td>
-                    <td><i class="bi bi-check-circle-fill"></i></td>
-                    <td><i class="bi bi-check-circle-fill"></i></td>
-                    <td><i class="bi bi-x-circle"></i></td>
-                    <td><i class="bi bi-x-circle"></i></td>
-                    <td><i class="bi bi-x-circle"></i></td>
-                    <td><i class="bi bi-x-circle"></i></td>
-                    <td>600</td>
+                        <td scope="row" ><label class="label">1</label></td>
+                        <td class="text-center"><label class="label">มกราคม</label></td>
+                        <td><label class="label">12000</label></i></td>
+                        <td class="text-center" style="width:20%"> <a  class="btn btn-detail" ><i class="bi bi-zoom-in mx-2"></i> ดูรายละเอียดข้อมูล</a> </td>
                     </tr>
                     
                 </tbody>
                 </table>
             </div>
+            <!-- Modal Expenses -->
+
+            <!-- Modal -->
+            <div class="modal fade" id="expensesModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4>บันทึกรายจ่าย</h4>
+                        <label data-bs-dismiss="modal" class="btn-close" aria-label="Close"></label>
+                    </div>
+                    <div class="grid-form-createExpenses">
+                        <div class="form-createExpenses mt-3">
+                            <div class="expensesLeft pd-l">
+                                    <div class="mb-3"><h5>รายการ</h5></div>
+                                    <div class="mb-3"><label class="form-label mt-2" >ค่าเก็บขยะ</label></div>
+                                    <div class="mb-3"><label class="form-label mt-2" >ค่าไฟ</label></div>
+                                    <div class="mb-3"><label class="form-label mt-2" >ค่าคนดูแลค่าส่วนกลาง</label></div>
+                                    <div class="mb-3"><label class="form-label mt-2" >ค่าคนดูแลโรงขยะ</label></div>
+                                    <div class="mb-3"><label class="form-label mt-2" >ค่าจ้างช่าง</label></div>
+                                    <div class="mb-3"><label class="form-label mt-2" >อื่นๆ</label></div>
+                                    <div class="mb-3"><h5>รวม</h5></div>
+                            </div>
+                            <div class="expensesRight pd-r">
+                                <div class="mb-3"><h5>จำนวน (บาท)</h5></div>
+                                <div class="mb-3"><input type="number" class="form-control" id="input1"  value="0"></div>
+                                <div class="mb-3"><input type="number" class="form-control" id="input2"  value="0"></div>
+                                <div class="mb-3"><input type="number" class="form-control" id="input3"  value="0"></div>
+                                <div class="mb-3"><input type="number" class="form-control" id="input4"  value="0"></div>
+                                <div class="mb-3"><input type="number" class="form-control" id="input5"  value="0"></div>
+                                <div class="mb-3"><input type="number" class="form-control" id="input6"  value="0"></div>
+                                <div class="mb-3"><p class="total-sumInput" id="result" ></p></div>
+
+                            </div>
+                        
+                        </div>
+                        <div class="footer-form text-center">
+                            <hr>
+                            <button type="submit" class="btn btn-success">บันทึก</button>
+                            <button type="submit" class="btn btn-light">ปิด</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+
+
+
+
+
+
+
             <!-- table  สรุป -->
             <div id="table-report" class="tabContent table-income">
             <table class="table">
@@ -388,6 +386,59 @@ $year = date("Y");;
 
     <!-- ........................................JavaScript................................................. -->
 <script>
+    // CreateExpenses
+    $(document).ready(function() {
+        // Open modal when button is clicked
+        $("#createExpenses").click(function() {
+            $("#expensesModal").modal("show");
+        });
+
+        // // Submit form data to PHP script when save button is clicked
+        // $("#submitBtn").click(function() {
+        //     var name = $("#name").val();
+        //     var email = $("#email").val();
+
+        //     // Use AJAX to submit form data to PHP script
+        //     $.ajax({
+        //     type: "POST",
+        //     url: "submit.php",
+        //     data: { name: name, email: email },
+        //     success: function(response) {
+        //         // Show success message
+        //         alert("Data submitted successfully!");
+
+        //         // Close modal
+        //         $("#myModal").modal("hide");
+        //     }
+        //     });
+        // });
+    });
+
+    //Calculate 
+    document.getElementById("input1").addEventListener("input", calculate);
+    document.getElementById("input2").addEventListener("input", calculate);
+    document.getElementById("input3").addEventListener("input", calculate);
+    document.getElementById("input4").addEventListener("input", calculate);
+    document.getElementById("input5").addEventListener("input", calculate);
+    document.getElementById("input6").addEventListener("input", calculate); // Add event listener for result element 
+        
+    function calculate() {
+        var input1 = parseInt(document.getElementById("input1").value);
+        var input2 = parseInt(document.getElementById("input2").value);
+        var input3 = parseInt(document.getElementById("input3").value);
+        var input4 = parseInt(document.getElementById("input4").value);
+        var input5 = parseInt(document.getElementById("input5").value);
+        var input6 = parseInt(document.getElementById("input6").value);
+        var result = (input1 + input2 + input3 + input4 + input5 + input6).toLocaleString();  // Added missing "+" operator 
+        
+
+        document.getElementById('result').innerHTML = result + " " + "บาท"; // Changed "result" to 'result' to match the id of the element  
+
+    }
+    //input format
+
+
+
     // Filter Year
     
     function filterYear(year) {
