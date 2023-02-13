@@ -13,7 +13,16 @@ $viewFilter = $filterClass->filterYear();
 //Get Max Year
 date_default_timezone_set("Asia/Bangkok");
 $year = date("Y");;
-    
+//Get Expenses
+$expenses = $fucIncome->getExpenses($year);  
+//Get Reports
+$report = $fucIncome->getReport($year);
+
+
+//select options Tri
+$Tri =[0,1,2,3,4];
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -32,14 +41,23 @@ $year = date("Y");;
 <!-- .......................... -->
     <div class="main-container ">
         <div class="main-income">
-            <div class="head-income d-flex">
-                <button class="btn tablink" onclick="tabIOcome('table-income', this, '#00ECBC')" id="defaultOpen">รายรับ</button>
-                <button class="btn tablink" onclick="tabIOcome('table-outcome', this, '#FFCAA6')">รายจ่าย</button>
-                <button class="btn tablink" onclick="tabIOcome('table-report', this, '#F86594')">สรุป</button>
-                <div class="filter">
-                    <!-- <button class="btn btn-filer"><i class="bi bi-sliders mx-2" ></i>2022</button> -->
-                    
-                    <select id="filterYear" class="form-select mx-1" aria-label="Filter Year" onchange="filterYear(this.value)">
+            <div class="head-income">
+                <div class="head-income-left">
+                    <button class="btn tablink btn-head" onclick="tabIOcome('table-income', this, '#00ECBC')" id="defaultOpen">รายรับ</button>
+                    <button class="btn tablink btn-head" onclick="tabIOcome('table-outcome', this, '#FFCAA6')">รายจ่าย</button>
+                    <button class="btn tablink btn-head" onclick="tabIOcome('table-report', this, '#F86594')">สรุป</button>
+                </div>
+                <div class="head-income-right text-end">
+                    <select id="filterTri" class="form-select " aria-label="Filter Year" onchange="filterYear(this.value)">
+                        <?php foreach ($Tri as $viewTri) { ?>
+                            <?php if($viewTri == 0){ ?>
+                                <option selected value="<?php echo $viewTri; ?>"><?php echo $filterClass->filterTri( $viewTri); ?></option>
+                            <?php }else{ ?>
+                                <option  value="<?php echo $viewTri; ?>"><?php echo $filterClass->filterTri( $viewTri); ?></option>
+                            <?php }?>
+                        <?php }?>
+                    </select>
+                    <select id="filterYear" class="form-select mx-2" aria-label="Filter Year" onchange="filterYear(this.value)">
                         <?php foreach ($viewFilter as $yearFil) { ?>
                             <?php if ($yearFil['date_filter'] == $year){ ?>
                                 <option selected value="<?php echo $yearFil['date_filter']; ?>"><?php echo $yearFil['date_filter'] ?></option>
@@ -48,10 +66,9 @@ $year = date("Y");;
                             <?php } ?>
                         <?php }?>
                     </select>
-                    
-                </div>
-                <div class="printer">
-                    <button class="btn btn-printer"><i class="bi bi-printer mx-2" ></i>พิมพ์</button>
+                    <div class="printer">
+                        <button class="btn btn-printer"><i class="bi bi-printer mx-2" ></i>พิมพ์</button>
+                    </div>
                 </div>
             </div>
                 <div id="table-income" class="tabContent table-income">
@@ -228,27 +245,45 @@ $year = date("Y");;
     }
   }
 
-  Jan.innerHTML = (sumJan*100).toLocaleString();
-  Feb.innerHTML = (sumFeb*100).toLocaleString();
-  Mar.innerHTML = (sumMar*100).toLocaleString();
-  Apr.innerHTML = (sumApr*100).toLocaleString();
-  May.innerHTML = (sumMay*100).toLocaleString();
-  Jun.innerHTML = (sumJun*100).toLocaleString();
-  Jul.innerHTML = (sumJul*100).toLocaleString();
-  Aug.innerHTML = (sumAug*100).toLocaleString();
-  Sep.innerHTML = (sumSep*100).toLocaleString();
-  Oct.innerHTML = (sumOct*100).toLocaleString();
-  Nov.innerHTML = (sumNov*100).toLocaleString();
-  Dec.innerHTML = (sumDec*100).toLocaleString();
+
+
+  let totalJan = (sumJan*100).toLocaleString();
+  let totalFeb = (sumFeb*100).toLocaleString();
+  let totalMar = (sumMar*100).toLocaleString();
+  let totalApr = (sumApr*100).toLocaleString();
+  let totalMay = (sumMay*100).toLocaleString();
+  let totalJun = (sumJun*100).toLocaleString();
+  let totalJul = (sumJul*100).toLocaleString();
+  let totalAug = (sumAug*100).toLocaleString();
+  let totalSep = (sumSep*100).toLocaleString();
+  let totalOct = (sumOct*100).toLocaleString();
+  let totalNov = (sumNov*100).toLocaleString();
+  let totalDec = (sumDec*100).toLocaleString();
+
+ 
+  Jan.innerHTML = totalJan;
+  Feb.innerHTML = totalFeb;
+  Mar.innerHTML = totalMar;
+  Apr.innerHTML = totalApr;
+  May.innerHTML = totalMay;
+  Jun.innerHTML = totalJun;
+  Jul.innerHTML = totalJul;
+  Aug.innerHTML = totalAug;
+  Sep.innerHTML = totalSep;
+  Oct.innerHTML = totalOct;
+  Nov.innerHTML = totalNov;
+  Dec.innerHTML = totalDec;
+
+
 </script>
 
             <!-- table tab outcome -->
-            <div id="table-outcome" class="tabContent table-income">
-                <div class="second-tab">
+            <div id="table-outcome" class="tabContent table-income ">
+                <div class="second-tab mt-2">
                     <button class="btn btn-click"  id="createExpenses"><i class="bi bi-file-earmark-plus mx-1"></i> บันทึกรายจ่าย</a></button>
                 </div>
                 
-            <table class="table" style="width:100%;">
+            <table id="expenses" class="table table-striped " style="width:100%;">
                 <thead>
                     <tr class="text-center">
                         <th scope="col" >#</th>
@@ -258,19 +293,69 @@ $year = date("Y");;
                     </tr>
                 </thead>
                 <tbody class="text-center">
+                    <?php foreach($expenses as $index => $viewExpenses){ 
+                        $date = new DateTime($viewExpenses['expenses_date']); 
+                        $month = $date->format('m');
+                        ?>
                     <tr>
-                        <td scope="row" ><label class="label">1</label></td>
-                        <td class="text-center"><label class="label">มกราคม</label></td>
-                        <td><label class="label">12000</label></i></td>
-                        <td class="text-center" style="width:20%"> <a  class="btn btn-detail" ><i class="bi bi-zoom-in mx-2"></i> ดูรายละเอียดข้อมูล</a> </td>
+                        <td scope="row" ><label class="label"><?php echo $index+1 ?></label></td>
+                        <td class="text-center"><label class="label"><?php echo $controller->checkMonth($month)  ?></label></td>
+                        <td class="text-end" style="width:20%"><label class="label"><?php echo $expensesTotal = number_format($viewExpenses['expenses_total']) ?></label></i></td>
+                        <td class="text-center" style="width:30%"> <a type="button" class="btn btn-detail" data-bs-toggle="modal" data-bs-target="#ExpensesModal<?php echo $viewExpenses['expenses_id'] ?>">
+                            <i class="bi bi-zoom-in mx-2"></i> ดูรายละเอียดข้อมูล
+                        </a> </td>
                     </tr>
-                    
+
+                    <!-- Modal Expenses-->
+                    <div class="modal fade" id="ExpensesModal<?php echo $viewExpenses['expenses_id'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <label data-bs-dismiss="modal" class="btn-close" aria-label="Close"></label>
+                            </div>
+                            <div class="grid-form-createExpenses">
+                                <div class="select-month text-center ">
+                                    <h3>รายละเอียดบันทึกรายจ่ายเดือน <?php echo $controller->checkMonth($month)  ?></h3>
+                                </div>
+                                <div class="form-createExpenses mt-1">
+                                    <div class="expensesLeft pd-l">
+                                            <div class="mb-3"><h5>รายการ</h5></div>
+                                            <div class="mb-3"><label class="form-label mt-2" >ค่าเก็บขยะ</label></div>
+                                            <div class="mb-3"><label class="form-label mt-2" >ค่าไฟ</label></div>
+                                            <div class="mb-3"><label class="form-label mt-2" >ค่าคนดูแลค่าส่วนกลาง</label></div>
+                                            <div class="mb-3"><label class="form-label mt-2" >ค่าคนดูแลโรงขยะ</label></div>
+                                            <div class="mb-3"><label class="form-label mt-2" >ค่าจ้างช่าง</label></div>
+                                            <div class="mb-3"><label class="form-label mt-2" >อื่นๆ</label></div>
+                                            <div class="mb-3"><h5>รวม</h5></div>
+                                    </div>
+                                    <div class="expensesRight pd-r">
+                                        <div class="mb-3 pl-2 text-end"><h5>จำนวน (บาท)</h5></div>
+                                        <div class="mb-3 pl-2 text-end"><label class="form-label mt-2"><?php echo number_format($viewExpenses['waste_collection_fee'])  ?></label></div>
+                                        <div class="mb-3 pl-2 text-end"><label class="form-label mt-2"><?php echo number_format($viewExpenses['electric_fee'])  ?></label></div>
+                                        <div class="mb-3 pl-2 text-end"><label class="form-label mt-2"><?php echo number_format($viewExpenses['central_caretaker_fee'])  ?></label></div>
+                                        <div class="mb-3 pl-2 text-end"><label class="form-label mt-2"><?php echo number_format($viewExpenses['garbage_maintenance_fee'])  ?></label></div>
+                                        <div class="mb-3 pl-2 text-end"><label class="form-label mt-2"><?php echo number_format($viewExpenses['mechanic_wages'])  ?></label></div>
+                                        <div class="mb-3 pl-2 text-end"><label class="form-label mt-2"><?php echo number_format($viewExpenses['another'])  ?></label></div>
+                                        <div class="mb-3 pl-2 text-end"><label class="form-label mt-2"><?php echo number_format($viewExpenses['expenses_total']).' '.'บาท'  ?></label></div>
+                                        
+
+                                    </div>
+                                
+                                </div>
+                                <div class="footer-form text-center">
+                                    <hr>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                    <?php } ?>
                 </tbody>
                 </table>
             </div>
-            <!-- Modal Expenses -->
 
-            <!-- Modal -->
+            <!-- Modal Create-->
             <div class="modal fade" id="expensesModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
@@ -278,8 +363,13 @@ $year = date("Y");;
                         <h4>บันทึกรายจ่าย</h4>
                         <label data-bs-dismiss="modal" class="btn-close" aria-label="Close"></label>
                     </div>
+                    <form id="form-expenses">
                     <div class="grid-form-createExpenses">
-                        <div class="form-createExpenses mt-3">
+                        <div class="select-month  ">
+                            <label class="form-label">เลือก วัน / เดือน /ปี</label>
+                            <input type="date" class="form-control form-date " id="fname"  name="date" required>
+                        </div>
+                        <div class="form-createExpenses mt-1">
                             <div class="expensesLeft pd-l">
                                     <div class="mb-3"><h5>รายการ</h5></div>
                                     <div class="mb-3"><label class="form-label mt-2" >ค่าเก็บขยะ</label></div>
@@ -292,12 +382,12 @@ $year = date("Y");;
                             </div>
                             <div class="expensesRight pd-r">
                                 <div class="mb-3"><h5>จำนวน (บาท)</h5></div>
-                                <div class="mb-3"><input type="number" class="form-control" id="input1"  value="0"></div>
-                                <div class="mb-3"><input type="number" class="form-control" id="input2"  value="0"></div>
-                                <div class="mb-3"><input type="number" class="form-control" id="input3"  value="0"></div>
-                                <div class="mb-3"><input type="number" class="form-control" id="input4"  value="0"></div>
-                                <div class="mb-3"><input type="number" class="form-control" id="input5"  value="0"></div>
-                                <div class="mb-3"><input type="number" class="form-control" id="input6"  value="0"></div>
+                                <div class="mb-3"><input type="number" class="form-control" id="input1" name="input1"  value="0"></div>
+                                <div class="mb-3"><input type="number" class="form-control" id="input2" name="input2" value="0"></div>
+                                <div class="mb-3"><input type="number" class="form-control" id="input3" name="input3" value="0"></div>
+                                <div class="mb-3"><input type="number" class="form-control" id="input4" name="input4" value="0"></div>
+                                <div class="mb-3"><input type="number" class="form-control" id="input5" name="input5" value="0"></div>
+                                <div class="mb-3"><input type="number" class="form-control" id="input6" name="input6"  value="0"></div>
                                 <div class="mb-3"><p class="total-sumInput" id="result" ></p></div>
 
                             </div>
@@ -305,13 +395,15 @@ $year = date("Y");;
                         </div>
                         <div class="footer-form text-center">
                             <hr>
-                            <button type="submit" class="btn btn-success">บันทึก</button>
-                            <button type="submit" class="btn btn-light">ปิด</button>
+                            <button type="submit" class="btn btn-head">บันทึก</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                         </div>
                     </div>
+                    </form>
                 </div>
             </div>
             </div>
+            
 
 
 
@@ -324,60 +416,38 @@ $year = date("Y");;
             <table class="table">
                 <thead>
                     <tr class="text-center">
-                    <th scope="col" >บ้านเลขที่</th>
-                    <th scope="col">ชื่อ</th>
-                    <th scope="col">Jan.</th>
-                    <th scope="col">Feb.</th>
-                    <th scope="col">Mar.</th>
-                    <th scope="col">Apr.</th>
-                    <th scope="col">May.</th>
-                    <th scope="col">Jun.</th>
-                    <th scope="col">Jul.</th>
-                    <th scope="col">Aug.</th>
-                    <th scope="col">Sep.</th>
-                    <th scope="col">Oct.</th>
-                    <th scope="col">Nov.</th>
-                    <th scope="col">Dec.</th>
-                    <th scope="col">รวม</th>
+                    <th scope="col" >#</th>
+                    <th scope="col">เดือน</th>
+                    <th scope="col" class="text-end">รายรับ (บาท)</th>
+                    <th scope="col" class="text-end">รายจ่าย (บาท)</th>
+                    <th scope="col" class="text-end">คงเหลือ (บาท)</th>
                     
                     </tr>
                 </thead>
                 <tbody class="text-center">
-                    <tr >
-                    <th>241/2</th>
-                    <td>นางสาวฐา วันดี</td>
-                    <td><i class="bi bi-check-circle-fill"></i></td>
-                    <td><i class="bi bi-check-circle-fill"></i></td>
-                    <td><i class="bi bi-check-circle-fill"></i></td>
-                    <td><i class="bi bi-check-circle-fill"></i></td>
-                    <td><i class="bi bi-check-circle-fill"></i></td>
-                    <td><i class="bi bi-check-circle-fill"></i></td>
-                    <td><i class="bi bi-check-circle-fill"></i></td>
-                    <td><i class="bi bi-check-circle-fill"></i></td>
-                    <td><i class="bi bi-check-circle-fill"></i></td>
-                    <td><i class="bi bi-check-circle-fill"></i></td>
-                    <td><i class="bi bi-check-circle-fill"></i></td>
-                    <td><i class="bi bi-check-circle-fill"></i></td>
-                    <td>600</td>
+                <?php foreach($report as $index => $viewReport){ 
+                    $date = new DateTime($viewReport['expenses_date']); 
+                    $month = $date->format('m');
+
+                    //Get Sum total all months
+                    $sumTotalMonth = $fucIncome->getSumTotalMonth($month,$year);
+                    $getSumAllMonth = $fucIncome->getSumAllMonth($year);
+                    $getSumAllExpenses = $fucIncome->getSumAllExpenses($year);
+                    ?>
+                    <tr  style="height: 55px;">
+                        <th ><?php echo $index+1 ?></th>
+                        <td class="text-start"><?php echo $controller->checkMonth($month)  ?></td>
+                        <td class="text-end"><?php echo number_format($sumTotalMonth['sumMonth']); ?></i></td>
+                        <td class="text-end"><?php echo number_format($viewReport['expenses_total']); ?></td>
+                        <td class="text-end"><?php echo number_format($sumTotalMonth['sumMonth']-$viewReport['expenses_total']) ?></td>
                     </tr>
-                    <tr>
-                    <th>241/2</th>
-                    <td>นางสาวฐา วันดี</td>
-                    <td><i class="bi bi-check-circle-fill"></i></td>
-                    <td><i class="bi bi-check-circle-fill"></i></td>
-                    <td><i class="bi bi-check-circle-fill"></i></td>
-                    <td><i class="bi bi-check-circle-fill"></i></td>
-                    <td><i class="bi bi-check-circle-fill"></i></td>
-                    <td><i class="bi bi-check-circle-fill"></i></td>
-                    <td><i class="bi bi-check-circle-fill"></i></td>
-                    <td><i class="bi bi-check-circle-fill"></i></td>
-                    <td><i class="bi bi-x-circle"></i></td>
-                    <td><i class="bi bi-x-circle"></i></td>
-                    <td><i class="bi bi-x-circle"></i></td>
-                    <td><i class="bi bi-x-circle"></i></td>
-                    <td>600</td>
+                <?php } ?>
+                    <tr id="totalReportRow">
+                        <td colspan="2">รวม</td>
+                        <td class="text-end"><label id="totalIncome"><?php echo number_format($getSumAllMonth['sumAllMonth']); ?></label></td>
+                        <td class="text-end"><label id="totalExpenses"><?php echo number_format($getSumAllExpenses['sumAllExpenses']); ?></label></td>
+                        <td class="text-end"><label id="totalRemaining"><?php echo number_format($getSumAllMonth['sumAllMonth']-$getSumAllExpenses['sumAllExpenses']); ?></label></td>
                     </tr>
-                    
                 </tbody>
                 </table>
             </div>
@@ -385,7 +455,10 @@ $year = date("Y");;
     </div>
 
     <!-- ........................................JavaScript................................................. -->
+<!-- <script src="https://code.jquery.com/jquery-3.6.3.js" ></script> -->
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
+ 
     // CreateExpenses
     $(document).ready(function() {
         // Open modal when button is clicked
@@ -393,25 +466,31 @@ $year = date("Y");;
             $("#expensesModal").modal("show");
         });
 
-        // // Submit form data to PHP script when save button is clicked
-        // $("#submitBtn").click(function() {
-        //     var name = $("#name").val();
-        //     var email = $("#email").val();
-
-        //     // Use AJAX to submit form data to PHP script
-        //     $.ajax({
-        //     type: "POST",
-        //     url: "submit.php",
-        //     data: { name: name, email: email },
-        //     success: function(response) {
-        //         // Show success message
-        //         alert("Data submitted successfully!");
-
-        //         // Close modal
-        //         $("#myModal").modal("hide");
-        //     }
-        //     });
-        // });
+        $("#form-expenses").submit(function(e) {
+            e.preventDefault();
+            var formExpenses = $(this).serialize();
+            $.ajax({
+                type: "POST",
+                url: "../components/createExpenses.php",
+                data: formExpenses,
+                success: function(data) {
+                    $("#expensesModal").modal("hide");
+                    $(document).ready(function() {
+                        Swal.fire({
+                            title: 'Save Success ',
+                            text: ' บันทึกเรียบร้อยแล้ว',
+                            icon: 'success',
+                            timer: 2000,
+                            showConfirmButton: false
+                        });
+                        setTimeout(function() {
+                            location.reload();
+                        }, 2000);
+                    });
+                    
+                }
+            });
+        });
     });
 
     //Calculate 
@@ -439,7 +518,7 @@ $year = date("Y");;
 
 
 
-    // Filter Year
+    // Filter incomes
     
     function filterYear(year) {
         $.ajax({
@@ -449,12 +528,22 @@ $year = date("Y");;
             success: function(data) {
                 $("#table-income").html(data);
             }
-        })
-        
+        });
+        // Filter incomes
+        $.ajax({
+            type: "POST",
+            url: "../components/filterExpenses.php",
+            data:{year:year},
+            success: function(data) {
+                $("#expenses").html(data);
+            }
+        });
     }
+ 
 
 
      // header tab
+     
 
      function tabIOcome(villagerDetail, elmnt, color) {
         // Hide all elements with class="tabcontent" by default */
@@ -470,8 +559,15 @@ $year = date("Y");;
                 tablinks[i].style.backgroundColor = "";
             }
 
+            // show button trimas
+            if(villagerDetail =='table-report'){
+                $('#filterTri').show().css("grid-template-columns", "auto auto auto");
+            }else{
+                $('#filterTri').hide().css("grid-template-columns", "auto auto ");
+            }
             // Show the specific tab content
             document.getElementById(villagerDetail).style.display = "block";
+            
 
             // Add the specific color to the button used to open the tab content
             elmnt.style.backgroundColor = color;

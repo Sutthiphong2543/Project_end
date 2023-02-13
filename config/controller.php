@@ -349,6 +349,8 @@ class Controller {
             echo "ธันวาคม";
         }
     }
+
+    
     
     function checkStatusPay($status){
         if($status =="1"){

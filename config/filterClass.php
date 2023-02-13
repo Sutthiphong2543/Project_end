@@ -81,6 +81,21 @@ class FilterClass{
         }
     }
 
+    function filterTri($tri){
+        if($tri == '0'){
+            echo " ไตรมาส ";
+        }else if($tri == '1'){
+            echo " ไตรมาส 1";
+        }else if($tri == '2'){
+            echo " ไตรมาส 2";
+        }else if($tri == '3'){
+            echo " ไตรมาส 3";
+        }else if($tri == '4'){
+            echo " ไตรมาส 4";
+        }
+
+    }
+
 
 
 

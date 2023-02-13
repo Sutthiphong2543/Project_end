@@ -128,12 +128,32 @@ class Income{
 
     // ........ Expenses .............
     
-    function createExpenses(){
+    function createExpenses($input1,$input2,$input3,$input4,$input5,$input6,$date,$total){
         try {
-            $sql = "INSERT INTO expenses ( waste_collection_fee, central_caretaker_fee, garbage_maintenance_fee, mechanic_wages,  another, expenses_total_cost, expenses_status )
-            VALUES()
-            ";
+            $sql = "INSERT INTO expenses (waste_collection_fee,electric_fee,central_caretaker_fee,garbage_maintenance_fee,mechanic_wages,another,expenses_total,expenses_date )
+            VALUES(:input1,:input2,:input3,:input4,:input5,:input6, :expenses_total ,:dateExpenses)";
             $stmt= $this->db->prepare($sql);
+            $stmt->bindParam(':input1',$input1);
+            $stmt->bindParam(':input2',$input2);
+            $stmt->bindParam(':input3',$input3);
+            $stmt->bindParam(':input4',$input4);
+            $stmt->bindParam(':input5',$input5);
+            $stmt->bindParam(':input6',$input6);
+            $stmt->bindParam(':expenses_total',$total);
+            $stmt->bindParam(':dateExpenses',$date);
+            $stmt->execute();
+            return true;
+        }catch(PDOException $e){
+            echo $e->getMessage();
+            return false;
+        }
+    }
+
+    function getExpenses($year){
+        try {
+            $sql = "SELECT * FROM `expenses` WHERE YEAR(expenses_date) = :year";
+            $stmt= $this->db->prepare($sql);
+            $stmt->bindParam(':year',$year);
             $stmt->execute();
             $result=$stmt->fetchAll(PDO::FETCH_ASSOC);
             return $result;
@@ -142,6 +162,61 @@ class Income{
             return false;
         }
     }
+    function getReport($year){
+        try {
+            $sql = "SELECT expenses_total, expenses_date FROM `expenses` WHERE YEAR(expenses_date) = :year";
+            $stmt= $this->db->prepare($sql);
+            $stmt->bindParam(':year',$year);
+            $stmt->execute();
+            $result=$stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $result;
+        }catch(PDOException $e){
+            echo $e->getMessage();
+            return false;
+        }
+    }
+    function getSumTotalMonth($month,$year){ //Get total all month
+        try {
+            $sql = "SELECT SUM(invoice_cmf) as sumMonth FROM `invoice` WHERE Month = :month AND YEAR(date_start) = :year";
+            $stmt= $this->db->prepare($sql);
+            $stmt->bindParam(':month',$month);
+            $stmt->bindParam(':year',$year);
+            $stmt->execute();
+            $result=$stmt->fetch();
+            return $result;
+        }catch(PDOException $e){
+            echo $e->getMessage();
+            return false;
+        }
+    }
+
+    function getSumAllMonth($year){ //Get Sum all month
+        try {
+            $sql = "SELECT SUM(pay_amount) as sumAllMonth FROM `invoice` WHERE YEAR(date_start) = :year";
+            $stmt= $this->db->prepare($sql);
+            $stmt->bindParam(':year',$year);
+            $stmt->execute();
+            $result=$stmt->fetch();
+            return $result;
+        }catch(PDOException $e){
+            echo $e->getMessage();
+            return false;
+        }
+    }
+    function getSumAllExpenses($year){ //Get Sum all month
+        try {
+            $sql = "SELECT SUM(expenses_total) as sumAllExpenses FROM `expenses` WHERE YEAR(expenses_date) = :year";
+            $stmt= $this->db->prepare($sql);
+            $stmt->bindParam(':year',$year);
+            $stmt->execute();
+            $result=$stmt->fetch();
+            return $result;
+        }catch(PDOException $e){
+            echo $e->getMessage();
+            return false;
+        }
+    }
+
 
 
 

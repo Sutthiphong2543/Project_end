@@ -130,10 +130,10 @@ $roleVillager=$controller->getRole_users();
                                     <?php }?>
                                     <td class="text-center">
                                         <a 
-                                            href="../components/ad_editVillagers.php?id=<?php echo $row["villager_id"] ?>" class="btn btn-warning">แก้ไข<i class="bi bi-pencil-square mx-2"></i>
+                                            href="../components/ad_editVillagers.php?id=<?php echo $row["villager_id"] ?>&title=editProfile" class="btn btn-warning">แก้ไข<i class="bi bi-pencil-square mx-2"></i>
                                         </a>
                                         <a data-id="<?php echo $row["villager_id"]?>" 
-                                            href="../components/delete.php?id=<?php echo $row["villager_id"] ?>" class="btn btn-danger delete-btn" >
+                                            href="../components/delete.php?id=<?php echo $row["villager_id"] ?>&title=editProfile" class="btn btn-danger delete-btn" >
                                             Delete
                                         </a>
                                     </td>
@@ -171,10 +171,10 @@ $roleVillager=$controller->getRole_users();
                                         <?php }?>
                                         <td class="text-center">
                                             <a 
-                                                href="../components/editVillager.php?id=<?php echo $row["villager_id"] ?>" class="btn btn-warning">แก้ไข<i class="bi bi-pencil-square mx-2"></i>
+                                                href="../components/ad_editVillagers.php?id=<?php echo $row["villager_id"] ?>&title=editProfile" class="btn btn-warning">แก้ไข<i class="bi bi-pencil-square mx-2"></i>
                                             </a>
                                             <a data-id="<?php echo $row["villager_id"]?>" 
-                                                href="../components/delete.php?id=<?php echo $row["villager_id"] ?>" class="btn btn-danger delete-btn" >
+                                                href="../components/delete.php?id=<?php echo $row["villager_id"] ?>&title=editProfile" class="btn btn-danger delete-btn" >
                                                 Delete
                                             </a>
                                         </td>

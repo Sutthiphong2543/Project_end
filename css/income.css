@@ -12,11 +12,11 @@
     position: absolute;
     min-width: 991.98px;
     width:1600px;
-    height: 901px;
+    height: 900px;
     margin-left: 315px;
     background: #F4FBFE;
     justify-content: center;
-    align-items: center;
+    /* align-items: center; */
     overflow: auto;
     /* z-index: -2; */
 
@@ -35,41 +35,34 @@
     position: relative;
     margin-top: 10px;
     width: 1530px;
-    height: 860px;
+    /* height: 860px; */
+    min-height: 860px;
     border-radius: 5px;
     border: 1px solid #C2DEDE;
     padding: 10px;
     background: #FFFFFF;
 }
-.main-income button{
+/* .main-income button{
     margin: 10px 5px;
     width: 7rem;
     background: #0f6c81;
     border-radius: 7px;
     color: #FFFFFF;
-}
-.main-income .filter{
-    margin-left: 890px;
-}
-
+} */
 .table-income{
     margin: 5px 10px;
-    padding: 10px;
+    padding: 5px;
     border: 1px solid #C2DEDE;
     border-radius: 7px;
 }
+
 .bi-check-circle-fill{
     color: #2AADCA;
 }
 .bi-x-circle{
     color: red;
 }
-.table-income{
-    border: 1px solid #C2DEDE;
-    border-radius: 7px;
-    margin: 7px;
-    padding: 15px;
-}
+
 .btn.btn-printer{
     border: 1px solid #C2DEDE;
     background-color: #FFFFFF;
@@ -104,6 +97,14 @@
     border: 1px solid #C2DEDE;
     color: #000000;
 }
+.btn.btn-head{
+    border: 1px solid #C2DEDE;
+    width: 125px;
+    margin: 10px 2px;
+    background: #0f6c81;
+    border-radius: 7px;
+    color: #FFFFFF;
+}
 .label{
     margin: 7px;
 }
@@ -114,6 +115,12 @@
 }
 #filterYear{
     margin: 15px;
+    gap: 5px;
+
+}
+#filterTri{
+    margin: 15px;
+    margin-left: 5px;
 }
 .header-modal{
     border: 1px solid #C2DEDE;
@@ -123,7 +130,7 @@
 .grid-form-createExpenses{
     border: 1px solid #C2DEDE;
     display: grid;
-    grid-template-rows: auto 100px;
+    grid-template-rows: 100px auto 100px;
 }
 .form-createExpenses{
     display: grid;
@@ -145,4 +152,29 @@
     padding-top: 7px;
     background: #e6e6e6;
     padding-left:10px;
+}
+.form-control.form-date{
+    width: 217px;
+}
+.select-month{
+    margin: 15px 20px;
+}
+.main-income #table-outcome {
+    height: fit-content;
+    max-height: 900px;
+    border-top: 1px solid #C2DEDE;
+}
+.pl-2{
+    padding-right: 15px;
+}
+.head-income{
+    margin: 10px;
+    display: grid;
+    grid-template-columns: auto 400px;
+
+}
+.head-income-right{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    justify-content: flex-end;
 }
