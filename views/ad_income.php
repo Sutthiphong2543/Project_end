@@ -22,6 +22,8 @@ $report = $fucIncome->getReport($year);
 //select options Tri
 $Tri =[0,1,2,3,4];
 
+//test
+
 
 ?>
 <!DOCTYPE html>
@@ -48,7 +50,7 @@ $Tri =[0,1,2,3,4];
                     <button class="btn tablink btn-head" onclick="tabIOcome('table-report', this, '#F86594')">สรุป</button>
                 </div>
                 <div class="head-income-right text-end">
-                    <select id="filterTri" class="form-select " aria-label="Filter Year" onchange="filterYear(this.value)">
+                    <select id="filterTri" class="form-select " aria-label="Filter Year" onchange="filterTri(this.value)">
                         <?php foreach ($Tri as $viewTri) { ?>
                             <?php if($viewTri == 0){ ?>
                                 <option selected value="<?php echo $viewTri; ?>"><?php echo $filterClass->filterTri( $viewTri); ?></option>
@@ -274,7 +276,17 @@ $Tri =[0,1,2,3,4];
   Nov.innerHTML = totalNov;
   Dec.innerHTML = totalDec;
 
-
+  // Filter incomes
+  $.ajax({
+            type: "POST",
+            url: "../components/session_totalMonth.php",
+            data:{t1:totalJan,t2:totalFeb,t3:totalMar,t4:totalApr,t5:totalMay,
+                    t6:totalJun,t7:totalJul,t8:totalAug,t9:totalSep,t10:totalOct,t11:totalNov,t12:totalDec
+                },
+            success: function(data) {
+                console.log("Success"+data);
+            }
+  });
 </script>
 
             <!-- table tab outcome -->
@@ -413,7 +425,7 @@ $Tri =[0,1,2,3,4];
 
             <!-- table  สรุป -->
             <div id="table-report" class="tabContent table-income">
-            <table class="table">
+            <table id="report-table" class="table">
                 <thead>
                     <tr class="text-center">
                     <th scope="col" >#</th>
@@ -538,7 +550,31 @@ $Tri =[0,1,2,3,4];
                 $("#expenses").html(data);
             }
         });
+        // Filter reports
+        $.ajax({
+            type: "POST",
+            url: "../components/filterReport.php",
+            data:{year:year},
+            success: function(data) {
+                $("#report-table").html(data);
+            }
+        });
+
+        
     }
+
+    function filterTri(tri){
+            console.log(tri);
+            // Filter Tri mas
+            $.ajax({
+                type: "POST",
+                url: "../components/filterTri.php",
+                data:{tri:tri},
+                success: function(data) {
+                    $("#expenses").html(data);
+                }
+            });
+        }
  
 
 

@@ -192,7 +192,7 @@ class Income{
 
     function getSumAllMonth($year){ //Get Sum all month
         try {
-            $sql = "SELECT SUM(pay_amount) as sumAllMonth FROM `invoice` WHERE YEAR(date_start) = :year";
+            $sql = "SELECT SUM(invoice_cmf) as sumAllMonth FROM `invoice` WHERE YEAR(date_start) = :year";
             $stmt= $this->db->prepare($sql);
             $stmt->bindParam(':year',$year);
             $stmt->execute();
