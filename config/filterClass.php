@@ -97,6 +97,134 @@ class FilterClass{
     }
 
 
+    // report tri mas  1
+    function getFilterReport1($year){
+        try {
+            $sql = "SELECT expenses_total, expenses_date FROM `expenses` WHERE YEAR(expenses_date) = :year AND MONTH(expenses_date) BETWEEN 1 AND 4";
+            $stmt= $this->db->prepare($sql);
+            $stmt->bindParam(':year',$year);
+            $stmt->execute();
+            $result=$stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $result;
+        }catch(PDOException $e){
+            echo $e->getMessage();
+            return false;
+        }
+    }
+
+    function getSumTri1($year){ //Get Sum all month
+        try {
+            $sql = "SELECT SUM(invoice_cmf) as sumAllMonth FROM `invoice` WHERE YEAR(date_start) = :year AND MONTH(date_start) BETWEEN 1 AND 4";
+            $stmt= $this->db->prepare($sql);
+            $stmt->bindParam(':year',$year);
+            $stmt->execute();
+            $result=$stmt->fetch();
+            return $result;
+        }catch(PDOException $e){
+            echo $e->getMessage();
+            return false;
+        }
+    }
+    function getSumExpensesTri1($year){ //Get Sum all month
+        try {
+            $sql = "SELECT SUM(expenses_total) as sumAllExpenses FROM `expenses` WHERE YEAR(expenses_date) = :year AND MONTH(expenses_date) BETWEEN 1 AND 4";
+            $stmt= $this->db->prepare($sql);
+            $stmt->bindParam(':year',$year);
+            $stmt->execute();
+            $result=$stmt->fetch();
+            return $result;
+        }catch(PDOException $e){
+            echo $e->getMessage();
+            return false;
+        }
+    }
+
+
+    // report tri mas  2
+    function getFilterReport2($year){
+        try {
+            $sql = "SELECT expenses_total, expenses_date FROM `expenses` WHERE YEAR(expenses_date) = :year AND MONTH(expenses_date) BETWEEN 5 AND 8";
+            $stmt= $this->db->prepare($sql);
+            $stmt->bindParam(':year',$year);
+            $stmt->execute();
+            $result=$stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $result;
+        }catch(PDOException $e){
+            echo $e->getMessage();
+            return false;
+        }
+    }
+
+    function getSumTri2($year){ //Get Sum all month
+        try {
+            $sql = "SELECT SUM(invoice_cmf) as sumAllMonth FROM `invoice` WHERE YEAR(date_start) = :year AND MONTH(date_start) BETWEEN 5 AND 8";
+            $stmt= $this->db->prepare($sql);
+            $stmt->bindParam(':year',$year);
+            $stmt->execute();
+            $result=$stmt->fetch();
+            return $result;
+        }catch(PDOException $e){
+            echo $e->getMessage();
+            return false;
+        }
+    }
+    function getSumExpensesTri2($year){ //Get Sum all month
+        try {
+            $sql = "SELECT SUM(expenses_total) as sumAllExpenses FROM `expenses` WHERE YEAR(expenses_date) = :year AND MONTH(expenses_date) BETWEEN 5 AND 8";
+            $stmt= $this->db->prepare($sql);
+            $stmt->bindParam(':year',$year);
+            $stmt->execute();
+            $result=$stmt->fetch();
+            return $result;
+        }catch(PDOException $e){
+            echo $e->getMessage();
+            return false;
+        }
+    }
+
+    // report tri mas  3
+    function getFilterReport3($year){
+        try {
+            $sql = "SELECT expenses_total, expenses_date FROM `expenses` WHERE YEAR(expenses_date) = :year AND MONTH(expenses_date) BETWEEN 9 AND 12";
+            $stmt= $this->db->prepare($sql);
+            $stmt->bindParam(':year',$year);
+            $stmt->execute();
+            $result=$stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $result;
+        }catch(PDOException $e){
+            echo $e->getMessage();
+            return false;
+        }
+    }
+
+    function getSumTri3($year){ //Get Sum all month
+        try {
+            $sql = "SELECT SUM(invoice_cmf) as sumAllMonth FROM `invoice` WHERE YEAR(date_start) = :year AND MONTH(date_start) BETWEEN 9 AND 12";
+            $stmt= $this->db->prepare($sql);
+            $stmt->bindParam(':year',$year);
+            $stmt->execute();
+            $result=$stmt->fetch();
+            return $result;
+        }catch(PDOException $e){
+            echo $e->getMessage();
+            return false;
+        }
+    }
+    function getSumExpensesTri3($year){ //Get Sum all month
+        try {
+            $sql = "SELECT SUM(expenses_total) as sumAllExpenses FROM `expenses` WHERE YEAR(expenses_date) = :year AND MONTH(expenses_date) BETWEEN 9 AND 12";
+            $stmt= $this->db->prepare($sql);
+            $stmt->bindParam(':year',$year);
+            $stmt->execute();
+            $result=$stmt->fetch();
+            return $result;
+        }catch(PDOException $e){
+            echo $e->getMessage();
+            return false;
+        }
+    }
+
+
 
 
 

@@ -20,7 +20,7 @@ $report = $fucIncome->getReport($year);
 
 
 //select options Tri
-$Tri =[0,1,2,3,4];
+$Tri =[0,1,2,3];
 
 //test
 
@@ -69,7 +69,7 @@ $Tri =[0,1,2,3,4];
                         <?php }?>
                     </select>
                     <div class="printer">
-                        <button class="btn btn-printer"><i class="bi bi-printer mx-2" ></i>พิมพ์</button>
+                        <button class="btn btn-printer" onclick="window.print();" ><i class="bi bi-printer mx-2" ></i>พิมพ์</button>
                     </div>
                 </div>
             </div>
@@ -129,7 +129,8 @@ $Tri =[0,1,2,3,4];
                                         echo '<td><i class="bi bi-x-circle"></i></td>';
                                     }
                                 }else if($i < $resultMinPay){
-                                    echo '<td><i class="bi bi-x-circle"></i></td>';
+                                    // echo '<td><i class="bi bi-x-circle"></i></td>';
+                                    echo '<td></td>';
                                 }
                             }
                         ?>
@@ -276,17 +277,7 @@ $Tri =[0,1,2,3,4];
   Nov.innerHTML = totalNov;
   Dec.innerHTML = totalDec;
 
-  // Filter incomes
-  $.ajax({
-            type: "POST",
-            url: "../components/session_totalMonth.php",
-            data:{t1:totalJan,t2:totalFeb,t3:totalMar,t4:totalApr,t5:totalMay,
-                    t6:totalJun,t7:totalJul,t8:totalAug,t9:totalSep,t10:totalOct,t11:totalNov,t12:totalDec
-                },
-            success: function(data) {
-                console.log("Success"+data);
-            }
-  });
+
 </script>
 
             <!-- table tab outcome -->
@@ -425,7 +416,7 @@ $Tri =[0,1,2,3,4];
 
             <!-- table  สรุป -->
             <div id="table-report" class="tabContent table-income">
-            <table id="report-table" class="table">
+            <table id="report-table" class="table table-striped">
                 <thead>
                     <tr class="text-center">
                     <th scope="col" >#</th>
@@ -531,8 +522,10 @@ $Tri =[0,1,2,3,4];
 
 
     // Filter incomes
-    
     function filterYear(year) {
+        $('#filterTri')[0].selectedIndex = 0; //reset tri mas  when click select year
+
+        //
         $.ajax({
             type: "POST",
             url: "../components/filterIncome.php",
@@ -564,16 +557,16 @@ $Tri =[0,1,2,3,4];
     }
 
     function filterTri(tri){
-            console.log(tri);
             // Filter Tri mas
+            let yearTri = document.getElementById("filterYear").value;
             $.ajax({
                 type: "POST",
                 url: "../components/filterTri.php",
-                data:{tri:tri},
+                data:{tri:tri,year:yearTri},
                 success: function(data) {
-                    $("#expenses").html(data);
+                    $("#report-table").html(data);
                 }
-            });
+            }); 
         }
  
 

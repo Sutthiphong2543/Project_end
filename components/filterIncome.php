@@ -63,7 +63,8 @@ require_once"../config/connect.php";
                                         echo '<td><i class="bi bi-x-circle"></i></td>';
                                     }
                                 }else if($i < $resultMinPay){
-                                    echo '<td><i class="bi bi-x-circle"></i></td>';
+                                    // echo '<td><i class="bi bi-x-circle"></i></td>';
+                                    echo '<td></td>';
                                 }
                             }
                         ?>
