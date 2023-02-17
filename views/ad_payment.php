@@ -500,7 +500,6 @@
 <script>
 
 
-
     // Filter Year
       $(document).ready(function() {
             $('#table-pay-3').DataTable( {

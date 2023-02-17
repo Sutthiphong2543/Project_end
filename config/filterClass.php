@@ -95,6 +95,20 @@ class FilterClass{
         }
 
     }
+    function filterTriChart($tri){
+        if($tri == '0'){
+            $viewTri = " ไตรมาส ";
+        }else if($tri == '1'){
+            $viewTri =" ไตรมาส 1";
+        }else if($tri == '2'){
+            $viewTri= " ไตรมาส 2";
+        }else if($tri == '3'){
+            $viewTri =" ไตรมาส 3";
+        }else if($tri =='4'){
+            $viewTri =" ไตรมาส 4";
+        }
+        return $viewTri;
+    }
 
 
     // report tri mas  1

@@ -12,7 +12,7 @@ $viewFilter = $filterClass->filterYear();
 
 //Get Max Year
 date_default_timezone_set("Asia/Bangkok");
-$year = date("Y");;
+$year = date("Y");
 //Get Expenses
 $expenses = $fucIncome->getExpenses($year);  
 //Get Reports

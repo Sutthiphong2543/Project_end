@@ -347,7 +347,40 @@ class Controller {
             echo "พฤศจิกายน";
         }else if($month == '12'){
             echo "ธันวาคม";
+        }else if($month == '0'){
+            echo "เดือน";
         }
+    }
+
+    function checkMonthThai($month){
+        if($month == '1'){
+            $viewMonth = "มกราคม";
+        }else if($month == '2'){
+            $viewMonth = "กุมภาพันธ์";
+        }else if($month == '3'){
+            $viewMonth = "มีนาคม";
+        }else if($month == '4'){
+            $viewMonth = "เมษายน";
+        }else if($month == '5'){
+            $viewMonth = "พฤษภาคม";
+        }else if($month == '6'){
+            $viewMonth = "มิถุนายน";
+        }else if($month == '7'){
+            $viewMonth = "กรกฎาคม";
+        }else if($month == '8'){
+            $viewMonth = "สิงหาคม";
+        }else if($month == '9'){
+            $viewMonth = "กันยายน";
+        }else if($month == '10'){
+            $viewMonth = "ตุลาคม";
+        }else if($month == '11'){
+            $viewMonth = "พฤศจิกายน";
+        }else if($month == '12'){
+            $viewMonth = "ธันวาคม";
+        }else if($month == '0'){
+            $viewMonth = "เดือน";
+        }
+        return $viewMonth;
     }
 
     
