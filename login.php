@@ -64,7 +64,7 @@ use LDAP\Result;
     <title>Login</title>
 </head>
 <body>
-    <img class="bg-main" src="assets/Main-background.png" >
+    <img class="bg-main" src="assets/bg-login-last.png" >
     <div class="wrapper">
         <img class="logo-home" src="assets/LogoHome.png" >
 

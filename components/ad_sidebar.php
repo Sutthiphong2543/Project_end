@@ -24,11 +24,11 @@
                 <div class="temp-list-group mt-3">
                     <div class="temp-side-group">
                         <img src="../assets/Logo_Sidebar/lg-dasboard2.svg" alt="lg-dashboard" width="30">
-                        <a class="temp-text-a" href="../views/ad_dashboard.php?title=dashboard" >Dashboard</a>
+                        <a class="temp-text-a " href="../views/ad_dashboard.php?title=dashboard" >Dashboard</a>
                     </div>
                     <div class="temp-side-group">
                         <img src="../assets/Logo_Sidebar/lg-pay2.svg" alt="lg-dashboard" width="30" >
-                        <a class="temp-text-a"  href="../views/ad_payment.php?title=payment">การแจ้งชำระ</a>
+                        <a class="temp-text-a"  href="../views/ad_payment.php?title=payment" >การแจ้งชำระ</a>
                     </div>
                     <div class="temp-side-group">
                         <img src="../assets/Logo_Sidebar/lg-income2.svg" alt="lg-dashboard" width="30">
@@ -55,6 +55,8 @@
         </div>
         
     </div>
-
+<script>
+    
+</script>
 </body>
 </html>

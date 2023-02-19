@@ -47,9 +47,12 @@
     margin-bottom: 7rem;
     border-radius: 5px;
     border: 1px solid #C2DEDE;
-    padding: 5px;
     background: #FFFFFF;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+
 }
 .content3{
     position: absolute;
@@ -62,6 +65,8 @@
     padding: 5px;
     background: #FFFFFF;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    display: grid;
+    grid-template-rows: 140px 30px;
 }
 .content4{
     position: absolute;
@@ -74,6 +79,7 @@
     padding: 5px;
     background: #FFFFFF;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    
 
 }
 .income{
@@ -103,16 +109,22 @@
     display: flex;
     justify-content: space-between;
 }
-.chart-container{
-    position: relative;
-    margin-left: 50px;
+.chart-footer{
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    grid-template-columns: 145px 145px ;
+    gap: 0 100px;
 }
+
 .title-footer{
-    position: relative;
+    display: grid;
+    grid-template-columns: auto auto ;
+    align-items: center;
+    justify-content: center;
+    gap: 0 165px;
 }
-.title-dash {
-    margin:0 58px ;
-}
+
 .ct4-header  .btnH{
     margin: 10px -2px;
     background: #12768d;
@@ -143,8 +155,9 @@
 }
 
 .content2 .chart-container{
-    width: 35vw;
-    margin-left: 25px;
+    width: 700px;
+    margin: 15px;
+    padding: 5px;
 }
 
 /* Select trimas */
@@ -161,9 +174,7 @@
     grid-template-rows: 55px 1fr;
 
 }
-.chart-container{
-    padding: 2px;
-}
+
 .vlg-head-dash{
     display: flex;
     justify-content: space-between;

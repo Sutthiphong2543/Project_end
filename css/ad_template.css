@@ -45,6 +45,10 @@
 .temp-side-group:hover{
     background: #d5e6e6;
 }
+.temp-list .temp-side-group:focus ,.temp-list .temp-side-group:active {
+    background: #14768C;
+    color: #FFFFFF;
+}
 .temp-text-a{
     text-decoration: none;
     margin-left: 10px;

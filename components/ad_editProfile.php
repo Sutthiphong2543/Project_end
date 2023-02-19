@@ -73,7 +73,7 @@ if(!isset($_GET["id"])){
                             </div>
                             <div class="form-footer">
                                 <button type="submit" name= "addUpdate" class="btn btn-primary mt-3">ยืนยันการแก้ไขข้อมูล</button>
-                                <a class="btn btn-secondary mt-3" href="../views/dashboard.php?title=dashboard">ย้อนกลับ</a>
+                                <a class="btn btn-secondary mt-3" href="../views/ad_dashboard.php?title=dashboard">ย้อนกลับ</a>
                             </div>
                             
                             
