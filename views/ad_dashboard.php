@@ -124,12 +124,12 @@
         <div class="content3 ">
             <div id="chart-footer" class="chart-footer">
                     <canvas id="ch-success" class="chart-donut" ></canvas>
-                    <!-- <canvas id="ch_waiting" class="chart-donut"></canvas> -->
+                    <canvas id="ch_overPay" class="chart-donut"></canvas>
                     <canvas id="ch_danger" class="chart-donut"></canvas>
             </div>
             <div class="title-footer">
                 <h4 class="title-dash">ชำระแล้ว</h4>
-                <!-- <h4 class="title-dash">รอดำเนินการ</h4> -->
+                <h4 class="title-dash">ชำระล่วงหน้า</h4>
                 <h4 class="title-dash">ค้างชำระ</h4>
             </div>
             
@@ -270,6 +270,12 @@
     //push in arr
     $dataSuccess =[$resultCount, $successPercent ];
 
+    //get count overPay
+    $countOverPay = $chartClass->ch_donut_overPay($yearNow);
+    $resultOverPay = $countOverPay['countInvoice'];
+    $overPayPercent = $resultCountAll-$resultOverPay; //หาเปอร์เซ็น
+    //push in arr
+    $dataOverPay =[$resultOverPay, $overPayPercent ];
 
     //get count invoice status pay overdue
     $countOverdue = $chartClass->ch_donut_overdue($yearNow);
@@ -348,7 +354,27 @@
     type: 'doughnut',
     data: data_success,
   });
-
+//..................................................over 
+const ch_overPay = document.getElementById('ch_overPay').getContext('2d');
+  const data_overPay = {
+    labels: [
+        'จ่ายล่วงหน้า',
+        'ไม่จ่ายล่วงหน้า',
+    ],
+    datasets: [{
+      label: ' ',
+      data:  <?php echo json_encode($dataOverPay); ?>,
+      backgroundColor: [
+        'rgba(255, 203, 68, 1)',
+        'rgba(244, 244, 244, 1)',
+      ],
+      hoverOffset: 4
+    }]
+  };
+  new Chart(ch_overPay, {
+    type: 'doughnut',
+    data: data_overPay,
+  });
 
 //..................................................chart danger
   const ch_danger = document.getElementById('ch_danger').getContext('2d');

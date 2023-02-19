@@ -125,6 +125,22 @@ class ChartClass{
             return false;
         }
     }
+
+    function ch_donut_overPay($year){ 
+        try {
+            $sql = "SELECT COUNT(invoice_id) as countInvoice FROM `invoice` WHERE pay_amount > total_amount AND YEAR(date_start) = :year";
+            $stmt= $this->db->prepare($sql);
+            $stmt->bindParam(':year',$year);
+            $stmt->execute();
+            $result=$stmt->fetch(PDO::FETCH_ASSOC);
+            return $result;
+        }catch(PDOException $e){
+            echo $e->getMessage();
+            return false;
+        }
+    }
+
+
 // filter chart doughnut tri mas
     function ch_donut_Tri1_maxData($year){ 
         try {
@@ -165,6 +181,22 @@ class ChartClass{
             return false;
         }
     }
+    function ch_donut_tri1_overPay($year){ 
+        try {
+            $sql = "SELECT COUNT(invoice_id) as countInvoice FROM `invoice` WHERE pay_amount > total_amount AND YEAR(date_start) = :year AND MONTH(date_start) BETWEEN 1 AND 4";
+            $stmt= $this->db->prepare($sql);
+            $stmt->bindParam(':year',$year);
+            $stmt->execute();
+            $result=$stmt->fetch(PDO::FETCH_ASSOC);
+            return $result;
+        }catch(PDOException $e){
+            echo $e->getMessage();
+            return false;
+        }
+    }
+
+
+
     // tri 2
     function ch_donut_Tri2_maxData($year){ 
         try {
@@ -195,6 +227,19 @@ class ChartClass{
     function ch_donut_tri2_overdue($year){ 
         try {
             $sql = "SELECT COUNT(invoice_id) as countInvoice FROM `invoice` WHERE status_pay = 4 AND YEAR(date_start) = :year AND MONTH(date_start) BETWEEN 5 AND 8";
+            $stmt= $this->db->prepare($sql);
+            $stmt->bindParam(':year',$year);
+            $stmt->execute();
+            $result=$stmt->fetch(PDO::FETCH_ASSOC);
+            return $result;
+        }catch(PDOException $e){
+            echo $e->getMessage();
+            return false;
+        }
+    }
+    function ch_donut_tri2_overPay($year){ 
+        try {
+            $sql = "SELECT COUNT(invoice_id) as countInvoice FROM `invoice` WHERE pay_amount > total_amount AND YEAR(date_start) = :year AND MONTH(date_start) BETWEEN 5 AND 8";
             $stmt= $this->db->prepare($sql);
             $stmt->bindParam(':year',$year);
             $stmt->execute();
@@ -245,6 +290,19 @@ class ChartClass{
             return false;
         }
     }
+    function ch_donut_tri3_overPay($year){ 
+        try {
+            $sql = "SELECT COUNT(invoice_id) as countInvoice FROM `invoice` WHERE pay_amount > total_amount AND YEAR(date_start) = :year AND MONTH(date_start) BETWEEN 9 AND 12";
+            $stmt= $this->db->prepare($sql);
+            $stmt->bindParam(':year',$year);
+            $stmt->execute();
+            $result=$stmt->fetch(PDO::FETCH_ASSOC);
+            return $result;
+        }catch(PDOException $e){
+            echo $e->getMessage();
+            return false;
+        }
+    }
 // filter chart doughnut month
     function ch_donut_month_maxData($month, $year){
         try {
@@ -277,6 +335,20 @@ class ChartClass{
     function ch_donut_month_overdue($month, $year){ 
         try {
             $sql = "SELECT COUNT(invoice_id) as countInvoice FROM `invoice` WHERE MONTH(date_start) = :month AND status_pay = 4 AND YEAR(date_start) = :year " ;
+            $stmt= $this->db->prepare($sql);
+            $stmt->bindParam(':month',$month);
+            $stmt->bindParam(':year',$year);
+            $stmt->execute();
+            $result=$stmt->fetch(PDO::FETCH_ASSOC);
+            return $result;
+        }catch(PDOException $e){
+            echo $e->getMessage();
+            return false;
+        }
+    }
+    function ch_donut_month_overPay($month, $year){ 
+        try {
+            $sql = "SELECT COUNT(invoice_id) as countInvoice FROM `invoice` WHERE MONTH(date_start) = :month AND pay_amount > total_amount AND YEAR(date_start) = :year " ;
             $stmt= $this->db->prepare($sql);
             $stmt->bindParam(':month',$month);
             $stmt->bindParam(':year',$year);

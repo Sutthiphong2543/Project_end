@@ -113,16 +113,16 @@
     display: grid;
     align-items: center;
     justify-content: center;
-    grid-template-columns: 145px 145px ;
+    grid-template-columns: 145px 145px 145px;
     gap: 0 100px;
 }
 
 .title-footer{
     display: grid;
-    grid-template-columns: auto auto ;
+    grid-template-columns: auto auto auto;
     align-items: center;
     justify-content: center;
-    gap: 0 165px;
+    gap: 0 140px;
 }
 
 .ct4-header  .btnH{

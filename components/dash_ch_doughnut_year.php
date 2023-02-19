@@ -16,6 +16,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     //push in arr
     $dataSuccess =[$resultCount, $successPercent ];
 
+//OverPay
+    //get count overPay
+    $countOverPay = $chartClass->ch_donut_overPay($year);
+    $resultOverPay = $countOverPay['countInvoice'];
+    $overPayPercent = $resultCountAll-$resultOverPay; //หาเปอร์เซ็น
+    //push in arr
+    $dataOverPay =[$resultOverPay, $overPayPercent ];
+
+
 //Overdue
     //get count invoice status pay overdue
     $countOverdue = $chartClass->ch_donut_overdue($year);
@@ -28,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 ?>
 
         <canvas id="ch-success" class="chart-donut" ></canvas>
-        <!-- <canvas id="ch_waiting" class="chart-donut"></canvas> -->
+        <canvas id="ch_overPay" class="chart-donut"></canvas>
         <canvas id="ch_danger" class="chart-donut"></canvas>
 
 <script>
@@ -54,6 +63,30 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
             type: 'doughnut',
             data: data_success,
         });
+
+        //..................................................over 
+        const ch_overPay = document.getElementById('ch_overPay').getContext('2d');
+        const data_overPay = {
+            labels: [
+                'จ่ายล่วงหน้า',
+                'ไม่จ่ายล่วงหน้า',
+            ],
+            datasets: [{
+            label: ' ',
+            data:  <?php echo json_encode($dataOverPay); ?>,
+            backgroundColor: [
+                'rgba(255, 203, 68, 1)',
+                'rgba(244, 244, 244, 1)',
+            ],
+            hoverOffset: 4
+            }]
+        };
+        new Chart(ch_overPay, {
+            type: 'doughnut',
+            data: data_overPay,
+        });
+
+
 
 
         //..................................................chart danger
