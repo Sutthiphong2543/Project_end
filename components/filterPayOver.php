@@ -31,7 +31,7 @@ if (isset($_POST['month'])) {
         <td class="text-center"><?php echo $invoice_5['date_start'] ?></td>
         <td class="text-center"><?php echo $controller->checkMonth($invoice_5['month']) ?></td>
         <td class="text-center"><?php echo $controller->checkStatusPay($invoice_5['status_pay']) ?></td>
-        <td class="text-center"> <button class="btn btn-info"  data-bs-toggle="modal" data-bs-target="#getPaymentModal<?php echo $invoice_5['invoice_id'] ?>">ดูละเอียดเพิ่มเติม</i> <i class="bi bi-zoom-in mx-2"></i></button> </td>
+        <td class="text-center"> <button class="btn btn-info" style="width:250px"  data-bs-toggle="modal" data-bs-target="#getPaymentModal<?php echo $invoice_5['invoice_id'] ?>">ดูละเอียดเพิ่มเติม</i> <i class="bi bi-zoom-in mx-2"></i></button> </td>
         </tr>
 
         <!-- Modal ใบเสร็จรับเงิน -->

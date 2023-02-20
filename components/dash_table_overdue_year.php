@@ -8,7 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     $dataOverdue= $dashboardClass->getOverdue_dash($year);
 
 ?>
-<table class="table table-ct4 ">
+<table  class="table table-ct4 ">
     <thead>
         <tr>
         <th scope="col" class="text-center">#</th>

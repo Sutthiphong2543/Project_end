@@ -36,6 +36,7 @@
     /* margin-top: 10px; */
     margin-top: 150px;
     width: 1530px;
+    min-height: 800px;
     /* height: 860px; */
     border-radius: 5px;
     border: 1px solid #C2DEDE;

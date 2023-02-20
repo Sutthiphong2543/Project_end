@@ -34,6 +34,9 @@
     <link href="https://www.chartjs.org/samples/2.9.4/utils.js">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>  
 
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.2/css/jquery.dataTables.css">
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.js"></script>
+
     <link rel="stylesheet" href="../css/dashboard.css ?<?php echo time(); ?>" >
     <title>Dashboard</title>
 </head>
@@ -143,7 +146,7 @@
             <div class="table-dash">
                 <!-- ค้างชำระ -->
                 <div id="vlg-1" class="ct4-table tabContent">
-                    <table class="table table-ct4 ">
+                    <table id="table-vlg-1" class="table table-ct4 ">
                         <thead>
                             <tr>
                             <th scope="col" class="text-center">#</th>
@@ -174,7 +177,7 @@
                 </div>
                 <!--ชำระล่วงหน้า -->
                 <div id="vlg-2" class="ct4-table tabContent">
-                    <table class="table table-ct4 ">
+                    <table id="table-vlg-2" class="table table-ct4 ">
                     <thead>
                             <tr>
                             <th scope="col" class="text-center">#</th>
@@ -230,7 +233,7 @@
     
     
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> -->
     <!-- <script src="../javaScript/dashboard.js"></script> -->
@@ -429,6 +432,7 @@ const ch_overPay = document.getElementById('ch_overPay').getContext('2d');
             data:{year:year},
             success: function(data) {
                 $("#container-header-dash").html(data);
+
             }
         });
 
@@ -439,6 +443,19 @@ const ch_overPay = document.getElementById('ch_overPay').getContext('2d');
             data:{year:year},
             success: function(data) {
                 $("#vlg-2").html(data);
+
+                $(document).ready(function() {
+                    $('#table-vlg-2').DataTable( {
+                        destroy:true,  // ทำลาย data อันเก่าก่อน
+                        responsive: true,
+                        searching: false,
+                        "pageLength": 10,
+                        language: {
+                            search: "_INPUT_",
+                            searchPlaceholder: " ค้นหา"
+                        },
+                    } );
+                } );
             }
         });
 
@@ -567,6 +584,21 @@ const ch_overPay = document.getElementById('ch_overPay').getContext('2d');
             });
 
         }
+
+
+// data table.net
+$(document).ready(function() {
+            $('#table-vlg-2').DataTable( {
+                responsive: true,
+                searching: false,
+                "pageLength": 10,
+                language: {
+                    search: "_INPUT_",
+                    searchPlaceholder: " ค้นหา"
+                },
+            } );
+        } );
+
 </script>
     
 </body>

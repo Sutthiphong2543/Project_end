@@ -45,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 <?php }else if ($tri ==2) {         
         $dataOverpay = $dashboardClass->getOverPay_dash_tri2($year);
         ?>
-        <table class="table table-ct4 ">
+        <table id="table-vlg-22" class="table table-ct4 ">
             <thead>
                 <tr>
                 <th scope="col" class="text-center">#</th>
