@@ -22,10 +22,11 @@
                         <button class="btn tablink" onclick="openRepair('table-repair', this, 'orange')" id="defaultOpen">แจ้งซ่อม</button>
                         <button class="btn tablink" onclick="openRepair('table-appeal', this, '#4B749F')" >ร้องเรียน</button>
                     </div>
-                    <div id="table-repair" class="tabContent">
+                    <div id="table-repair" class="tabContent table-repair">
                         <table class="table">
                             <thead>
                                 <tr>
+                                <th scope="col" class="text-center">#</th>
                                 <th scope="col" class="text-center">ชื่อ</th>
                                 <th scope="col" class="text-center">บริเวณ</th>
                                 <th scope="col" class="text-center">เรื่อง</th>
@@ -34,18 +35,21 @@
                             </thead>
                             <tbody>
                                 <tr>
+                                <th class="text-center">1</th>
                                 <th class="text-nowrap">นางสาวฐา วันดี</th>
                                 <td class="text-center">241/1</td>
                                 <td class="text-center">ไฟหน้าบ้านเสีย</td>
                                 <td class="text-center">รอดำเนินการ</td>
                                 </tr>
                                 <tr>
+                                <th class="text-center">2</th>
                                 <th class="text-nowrap">นางสาวฐา วันดี</th>
                                 <td class="text-center">241/1</td>
                                 <td class="text-center">ไฟหน้าบ้านเสีย</td>
                                 <td class="text-center">รอดำเนินการ</td>
                                 </tr>
                                 <tr>
+                                <th class="text-center">3</th>
                                 <th class="text-nowrap">นางสาวฐา วันดี</th>
                                 <td class="text-center">241/1</td>
                                 <td class="text-center">ไฟหน้าบ้านเสีย</td>
@@ -57,7 +61,7 @@
                             </table>
                     </div>
                     <!-- ร้องเรียน -->
-                    <div id="table-appeal" class="tabContent">
+                    <div id="table-appeal" class="tabContent table-appeals">
                         <table class="table">
                             <thead>
                                 <tr>

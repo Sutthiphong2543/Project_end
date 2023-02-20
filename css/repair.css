@@ -17,7 +17,7 @@
     justify-content: center;
     align-items: center;
     overflow: auto;
-    z-index: -2;
+    z-index: -1;
 
 }
 
@@ -53,3 +53,17 @@
     padding: 15px;
     border-radius: 7px;
 }
+
+.table-repair{
+    margin: 10px 10px;
+    padding: 10px;
+    border: 1px solid #C2DEDE;
+    border-radius: 7px;
+}
+.table-appeals{
+    margin: 10px 10px;
+    padding: 10px;
+    border: 1px solid #C2DEDE;
+    border-radius: 7px;
+}
+

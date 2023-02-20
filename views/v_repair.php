@@ -1,6 +1,9 @@
 <?php 
     require_once"../components/session.php";
     require_once"../components/check_villager.php";
+
+    // list topic
+    $topic = ['ไฟถนนหน้าบ้าน','ถนนชำรุด','ท่อน้ำชำรุด'];
     
 ?>
 
@@ -31,7 +34,7 @@
                         <button class="btn tablink" onclick="openRepair_v('ap_table', this, 'orange')">รายการร้องเรียน</button>
                     </div>
                     <div class="re_right">
-                        <button class="btn "><i class="bi bi-file-earmark-plus mx-1" ></i>แจ้งซ่อม</button>
+                        <button class="btn "  data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-file-earmark-plus mx-1" ></i>แจ้งซ่อม</button>
                     </div>
                 
                 </div>
@@ -42,11 +45,13 @@
                 <!-- Table -->
                 <div id="re_table" class="tabContent">
                     <table class="table">
+                        <col style="width: 10%;"/>
                         <col style="width: 40%;"/>
-                        <col style="width: 40%;"/>
+                        <col style="width: 30%;"/>
                         <col style="width: 20%"/>
                         <thead>
                             <tr>
+                            <th scope="col" class="text-center">#</th>
                             <th scope="col" class="text-center">เรื่อง</th>
                             <th scope="col" class="text-center">บริเวณบ้านเลขที่</th>
                             <th scope="col" class="th-sm-2 text-center">สถานะ</th>
@@ -54,11 +59,13 @@
                         </thead>
                         <tbody>
                             <tr>
+                            <td>1</td>
                             <td>ซ่อมไฟหน้าบ้าน</td>
                             <td class="text-center">241/1 - 241/5</td>
                             <td ><p id="re_btn_status" class=" bg-warning text-white text-center">รอดำเนินการ</p></td>
                             </tr>
                             <tr>
+                            <td>1</td>
                             <td>ซ่อมไฟหน้าบ้าน</td>
                             <td class="text-center">241/1 - 241/5</td>
                             <td ><p id="re_btn_status" class=" bg-warning text-white text-center">รอดำเนินการ</p></td>
@@ -104,8 +111,49 @@
             </div>
         </div>
         
-    </div>
 
+    </div>
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog ">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">แจ้งซ่อม</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">ชื่อผู้แจ้ง:</label>
+                        <input type="text" class="form-control" id="recipient-name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">เรื่อง:</label>
+                        <select class="form-select" aria-label="select topic" required>
+                            <option selected>เลือกหัวข้อที่แจ้ง</option>
+                        <?php foreach($topic as $index => $viewsTopic){ ?>
+                            <option value="<?php echo $index+1 ?>"><?php echo $viewsTopic ?></option>
+                        <?php } ?>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">บริเวณ:</label>
+                        <input type="text" class="form-control" id="recipient-name" required>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ปิด</button>
+                <button type="button" class="btn btn-primary">บันทึกแจ้งซ่อม</button>
+            </div>
+            </div>
+        </div>
+        </div>
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 <script>
   function openRepair_v(villagerDetail, elmnt, color) {
         // Hide all elements with class="tabcontent" by default */
@@ -130,6 +178,13 @@
 
         // Get the element with id="defaultOpen" and click on it
         document.getElementById("defaultOpen").click();  
+
+
+// function
+    $(document).ready(function ()  {
+
+    });
+
 </script>
 </body>
 </html>
