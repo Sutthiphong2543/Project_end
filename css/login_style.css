@@ -80,6 +80,9 @@ img{
     left: 135px;
     width: 110px;
 }
+.front{
+    z-index: 999;
+}
 @media screen and (max-width: 412px){
     *{
         margin: 0;

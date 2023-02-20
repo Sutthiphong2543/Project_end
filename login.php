@@ -28,7 +28,9 @@ use LDAP\Result;
             $_SESSION["villagers_id"] = $resultVlg["villager_id"];
             header("Location:views/v_dashboard.php?title=Dashboard");
         }else{
-            echo '<div class= "alert alert-danger">ชื่อผู้ใช้และรหัสผ่านไม่ถูกต้อง</div>';
+            echo '
+            <div class= "alert alert-danger front">ชื่อผู้ใช้และรหัสผ่านไม่ถูกต้อง</div>
+            ';
         }
 
 
