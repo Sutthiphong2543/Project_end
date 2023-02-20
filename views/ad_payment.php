@@ -46,8 +46,8 @@
     <div class="main-container ">
         <div class="main-dash">
             <div class="header-dash d-flex mt-2">
-                <button class="btn tablink" onclick="openVillagerPay('pay-1', this, 'orange')" id="defaultOpen">รายการใบแจ้งชำระ</button>
-                <button class="btn tablink" onclick="openVillagerPay('pay-2', this, '#F1C40F')">รอดำเนินการ</button>
+                <button class="btn tablink" onclick="openVillagerPay('pay-1', this, 'orange')" >รายการใบแจ้งชำระ</button>
+                <button class="btn tablink" onclick="openVillagerPay('pay-2', this, '#F1C40F')" id="defaultOpen">รอดำเนินการ</button>
                 <button class="btn tablink" onclick="openVillagerPay('pay-3', this, '#48C9B0')">ชำระแล้ว</button>
                 <button class="btn tablink" onclick="openVillagerPay('pay-4', this, '#E74C3C')">ค้างชำระ</button>
                 <button class="btn tablink" onclick="openVillagerPay('pay-5', this, '#3498DB')">ชำระล่วงหน้า</button>

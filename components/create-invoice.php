@@ -45,12 +45,16 @@ if(isset($_POST['create-invoice'])){
                             title: 'Sent Invoice Success ',
                             text: ' ส่งใบแจ้งชำระเรียบร้อยแล้ว',
                             icon: 'success',
-                            timer: 2500,
-                            showConfirmButton: false
+                            timer: 2000,
+                            showConfirmButton: false,
+                            didClose: () => {
+                                window.location.href = '../views/ad_payment.php?title=payment';
+                              }
                         });
                     });
                 </script>";
-                header('refresh:2;/project_end/views/ad_payment.php?title=payment');
+                // header('refresh:2;/project_end/views/ad_payment.php?title=payment');
+                // header('refresh:2; url=../views/ad_payment.php?title=payment');
             }else {
                 $_SESSION['error'] = " Data has been inserted fails.";
                 echo "<script>
@@ -59,12 +63,15 @@ if(isset($_POST['create-invoice'])){
                             title: 'Failed to Send',
                             text: ' ส่งใบแจ้งชำระไม่สำเร็จ',
                             icon: 'error',
-                            timer: 5000,
-                            showConfirmButton: false
+                            timer: 2000,
+                            showConfirmButton: false,
+                            didClose: () => {
+                                window.location.href = '../views/ad_payment.php?title=payment';
+                              }
                         });
                     });
                 </script>";
-                header('refresh:1;/project_end/views/ad_payment.php?title=payment');
+                // header('refresh:1;/project_end/views/ad_payment.php?title=payment');
             }
         }else if ($countInvoice  == $maxMonthPay){  // เช็คว่าชำระปกติหรือไม่
             $notInvoice_ovd = 0;
@@ -79,12 +86,16 @@ if(isset($_POST['create-invoice'])){
                             title: 'Sent Invoice Success ',
                             text: ' ส่งใบแจ้งชำระเรียบร้อยแล้ว',
                             icon: 'success',
-                            timer: 2500,
-                            showConfirmButton: false
+                            timer: 2000,
+                            showConfirmButton: false,
+                            didClose: () => {
+                                window.location.href = '../views/ad_payment.php?title=payment';
+                              }
                         });
                     });
                 </script>";
-                header('refresh:2;/project_end/views/ad_payment.php?title=payment');
+                // header('refresh:2;/project_end/views/ad_payment.php?title=payment');
+                // header('refresh:2; url=../views/ad_payment.php?title=payment');
             }else {
                 $_SESSION['error'] = " Data has been inserted fails.";
                 echo "<script>
@@ -93,12 +104,15 @@ if(isset($_POST['create-invoice'])){
                             title: 'Failed to Payment',
                             text: ' แจ้งชำระไม่สำเร็จ',
                             icon: 'error',
-                            timer: 5000,
-                            showConfirmButton: false
+                            timer: 2000,
+                            showConfirmButton: false,
+                            didClose: () => {
+                                window.location.href = '../views/ad_payment.php?title=payment';
+                              }
                         });
                     });
                 </script>";
-                header('refresh:1;/project_end/views/ad_payment.php?title=payment');
+                // header('refresh:1;/project_end/views/ad_payment.php?title=payment');
             }
         }else if ($countInvoice < $maxMonthPay){ // เช็คว่าชำระล่วงหน้าหรือไม่
             $notInvoice_ovd = 0;
@@ -113,12 +127,15 @@ if(isset($_POST['create-invoice'])){
                             title: 'Sent Invoice Success ',
                             text: ' ส่งใบแจ้งชำระเรียบร้อยแล้ว',
                             icon: 'success',
-                            timer: 2500,
-                            showConfirmButton: false
+                            timer: 2000,
+                            showConfirmButton: false,
+                            didClose: () => {
+                                window.location.href = '../views/ad_payment.php?title=payment';
+                              }
                         });
                     });
                 </script>";
-                header('refresh:2;/project_end/views/ad_payment.php?title=payment');
+                // header('refresh:2;/project_end/views/ad_payment.php?title=payment');
             }else {
                 $_SESSION['error'] = " Data has been inserted fails.";
                 echo "<script>
@@ -127,12 +144,15 @@ if(isset($_POST['create-invoice'])){
                             title: 'Failed to Payment',
                             text: ' แจ้งชำระไม่สำเร็จ',
                             icon: 'error',
-                            timer: 5000,
-                            showConfirmButton: false
+                            timer: 2000,
+                            showConfirmButton: false,
+                            didClose: () => {
+                                window.location.href = '../views/ad_payment.php?title=payment';
+                              }
                         });
                     });
                 </script>";
-                header('refresh:1;/project_end/views/ad_payment.php?title=payment');
+                // header('refresh:1;/project_end/views/ad_payment.php?title=payment');
             }
         }
     }

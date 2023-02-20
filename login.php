@@ -16,6 +16,8 @@ use LDAP\Result;
         $passwordVlg = $_POST["password"];
         $new_passwordVlg = md5($passwordVlg.$usernameVlg);
         $resultVlg = $controller->getLoginVLG($usernameVlg, $new_passwordVlg);
+
+        
         
         if($result){
             $_SESSION["username"] = $username;
@@ -28,6 +30,8 @@ use LDAP\Result;
         }else{
             echo '<div class= "alert alert-danger">ชื่อผู้ใช้และรหัสผ่านไม่ถูกต้อง</div>';
         }
+
+
 
 
         // if(!$result){

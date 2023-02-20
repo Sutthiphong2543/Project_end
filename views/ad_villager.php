@@ -242,7 +242,7 @@ $roleVillager=$controller->getRole_users();
                                         </div>
                                         <div class="form-group singIn mb-3">
                                             <label for="username" class="form-label lb-ad">username</label>
-                                            <input type="text" class="form-control i-form-ad" name="username" aria-describedby="username" id="user" required>
+                                            <input type="text" class="form-control i-form-ad" name="username" aria-describedby="username" id="user" placeholder="amornsap000000" maxlength="14" required>
                                             <div id="user" class="invalid-feedback">
                                             กรุณากรอกชื่อผู้ใช้
                                             </div>
