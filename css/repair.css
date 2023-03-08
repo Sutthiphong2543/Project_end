@@ -16,8 +16,8 @@
     background: #F4FBFE;
     justify-content: center;
     align-items: center;
-    overflow: auto;
-    z-index: -1;
+    /* overflow: auto;
+    z-index: -1; */
 
 }
 
@@ -40,19 +40,19 @@
     padding: 10px;
     background: #FFFFFF;
 }
-.main-repair button{
+.main-repair .tablink{
     margin-left:10px;
     width: auto;
     background: #0f6c81;
     border-radius: 5px;
     color: #FFFFFF;
 }
-.table-repair{
+/* .table-repair{
     border: 1px solid #C2DEDE;
     margin: 10px;
     padding: 15px;
     border-radius: 7px;
-}
+} */
 
 .table-repair{
     margin: 10px 10px;
@@ -67,3 +67,16 @@
     border-radius: 7px;
 }
 
+.pl-pr{
+    width: 250px;
+}
+.btn.head-border{
+    border: 1px solid #C2DEDE;
+    background: #0f6c81;
+    color: #FFFFFF;
+    margin-left: 3px;
+}
+.btn.second-border{
+    border: 1px solid #C2DEDE;
+    margin-left: 2px;
+}

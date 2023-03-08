@@ -130,7 +130,7 @@
 .grid-form-createExpenses{
     border: 1px solid #C2DEDE;
     display: grid;
-    grid-template-rows: 100px auto 100px;
+    grid-template-rows: 100px auto 100px 100px;
 }
 .form-createExpenses{
     display: grid;
@@ -177,4 +177,8 @@
     display: grid;
     grid-template-columns: auto auto auto;
     justify-content: flex-end;
+}
+.upload-file{
+    margin: 15px;
+    width: 50%;
 }

@@ -42,19 +42,31 @@ if($_GET["title"]=="villagers"){
             <div class="content_left">
                 <h4><?php echo $title ?></h4>
             </div>
-            <div class="content_right d-flex">
+            <div class="content_right">
                 <div class="box_lg">
                     <div class="dropdown dd1" >
-                        <img id="dropdownMenu2" class="vlg_lg_bell" data-bs-toggle="dropdown" aria-expanded="false" src="../assets/bell.png" alt="" >
-                    
-                        <ul class="dropdown-menu mt-2" aria-labelledby="dropdownMenu2">
-                            <div class="bell-btn d-flex mt-2">
-                                <h5 class="title-bell">การแจ้งเตือน</h5>
-                            </div>
-                            <?php foreach($vlgNotiInvoice as $notiInvoice){?>
-                            <li><a class="text-decoration-none" href="../views/v_payment.php?title=payment"><button class="dropdown-item" type="button">Amornsap village ได้ส่งใบแจ้งชำระประจำเดือน<?php echo $controller->checkMonth($notiInvoice['month']) ?> มาให้คุณ  </button></a></li>
-                            <?php } ?>
-                        </ul>
+                        <?php if($vlgNotiInvoice){ ?>
+                            <img id="dropdownMenu2" class="vlg_lg_bell1 mt-2" data-bs-toggle="dropdown" aria-expanded="false" src="../assets/bell.png">
+
+                            <ul class="dropdown-menu mt-2" aria-labelledby="dropdownMenu2">
+                                <div class="bell-btn d-flex mt-2">
+                                    <h5 class="title-bell">การแจ้งเตือน</h5>
+                                </div>
+                                <?php foreach($vlgNotiInvoice as $notiInvoice){?>
+                                    <li><a class="text-decoration-none" href="../views/v_payment.php?title=payment"><button class="dropdown-item" type="button">Amornsap village ได้ส่งใบแจ้งชำระประจำเดือน<?php echo $controller->checkMonth($notiInvoice['month']) ?> มาให้คุณ  </button></a></li>
+                                <?php } ?>
+                            </ul>
+                        <?php } else {?>
+                            <img id="dropdownMenu2" class="vlg_lg_bell2 mt-2" data-bs-toggle="dropdown" aria-expanded="false" src="../assets/bell.svg">
+
+                            <ul class="dropdown-menu mt-2" aria-labelledby="dropdownMenu2">
+                                <div class="bell-btn d-flex mt-2">
+                                    <h5 class="title-bell">การแจ้งเตือน</h5>
+                                </div>
+                                    <li><a class="text-decoration-none" ><button class="dropdown-item" type="button">ไม่มีข้อมูลแจ้งเตือน</button></a></li>
+                            </ul>
+                        <?php } ?>
+                        
                     </div>
                 </div>
                 <!-- Profile nav -->

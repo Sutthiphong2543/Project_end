@@ -18,11 +18,19 @@ body{
 }
 
 .content_right{
-    gap: 28px;
+    gap: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
-.vlg_lg_bell{
-    width: 50px;
+.vlg_lg_bell1{
+    width: 40px;
     cursor: pointer;
+}
+.vlg_lg_bell2{
+    width: 38px;
+    cursor: pointer;
+    color: aliceblue;
 }
 
 .dropdown .dropdown-menu{
@@ -52,6 +60,9 @@ body{
 }
 .dd1 .dropdown-menu{
     margin-left: -275px;
+    /* width: 350px; */
+    min-width: 350px;
+    border: 1px solid #C2DEDE;
 }
 .dd1 .dropdown-menu li{
     font-size: 14px;
@@ -77,5 +88,4 @@ body{
     height: 100%;
     border-radius: 50%;
     cursor: pointer;
-    border: 1px solid #C2DEDE;
 }

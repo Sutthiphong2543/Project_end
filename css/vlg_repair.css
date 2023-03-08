@@ -56,19 +56,35 @@
 .re_right .btn{
     border: 1px solid #C2DEDE;
 }
-#re_table{
+/* #re_table{
     border: 1px solid #C2DEDE;
     padding: 15px;
     margin: 0 15px;
     border-radius: 7px;
-}
-#ap_table{
+} */
+/* #ap_table{
     border: 1px solid #C2DEDE;
     padding: 15px;
     margin: 0 15px;
     border-radius: 7px;
-}
+} */
 #re_btn_status{
     margin: 2px;
     border-radius: 5px;
+}
+.table-repair{
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #C2DEDE;
+    border-radius: 7px;
+}
+.btn.head-border{
+    border: 1px solid #C2DEDE;
+    background: #0f6c81;
+    color: #FFFFFF;
+    margin-left: 3px;
+}
+.btn.second-border{
+    border: 1px solid #C2DEDE;
+    margin-left: 2px;
 }

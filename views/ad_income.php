@@ -366,7 +366,7 @@ $Tri =[0,1,2,3];
                         <h4>บันทึกรายจ่าย</h4>
                         <label data-bs-dismiss="modal" class="btn-close" aria-label="Close"></label>
                     </div>
-                    <form id="form-expenses">
+                    <form id="form-expenses" enctype="multipart/form-data">
                     <div class="grid-form-createExpenses">
                         <div class="select-month  ">
                             <label class="form-label">เลือก วัน / เดือน /ปี</label>
@@ -395,6 +395,12 @@ $Tri =[0,1,2,3];
 
                             </div>
                         
+                        </div>
+                        <div class="upload-file">
+                            <div class="form-group">
+                                <label class="form-label">แนบไฟล์</label>
+                                <input type="file" name="uploadFile" class="form-control">
+                            </div>
                         </div>
                         <div class="footer-form text-center">
                             <hr>

@@ -10,7 +10,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
   $input5 = $_POST['input5'];
   $input6 = $_POST['input6'];
 
+
   $total = $input1+$input2+$input3+$input4+$input5+$input6;
+
+
+  
   $result = $fucIncome->createExpenses($input1,$input2,$input3,$input4,$input5,$input6,$date,$total);
   
   exit;
