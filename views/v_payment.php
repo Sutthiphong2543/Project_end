@@ -329,7 +329,7 @@ $monthOver = ['1 เดือน','2 เดือน','3 เดือน','4 เ
     <!-- Modal payment vlg -->
 
 <!-- Modal -->
-<div class="modal fade" id="vlg_pay_step1_modal" tabindex="-1" aria-labelledby="modalStep1" aria-hidden="true">
+<div class="modal fade" id="vlg_pay_step1_modal" tabindex="-1" aria-labelledby="modalStep1" data-bs-backdrop="static" aria-hidden="true">
   <div class="modal-dialog ">
     <div class="modal-content">
         <!-- Content -->
@@ -346,18 +346,6 @@ $monthOver = ['1 เดือน','2 เดือน','3 เดือน','4 เ
                             <?php for ($m = 0; $m <= $monthNow; $m++) {
                                echo '<option value="' . $m+1 . '">' . $monthOver[$m] . '</option>';
                             }?>
-                            <!-- <option value="1">1 เดือน</option>
-                            <option value="2">2 เดือน</option>
-                            <option value="3">3 เดือน</option>
-                            <option value="4">4 เดือน</option>
-                            <option value="5">5 เดือน</option>
-                            <option value="6">6 เดือน</option>
-                            <option value="7">7 เดือน</option>
-                            <option value="8">8 เดือน</option>
-                            <option value="9">9 เดือน</option>
-                            <option value="10">10 เดือน</option>
-                            <option value="11">11 เดือน</option>
-                            <option value="12">12 เดือน</option> -->
                         </select>
                     </div>
                     <div class="form-group">
@@ -378,13 +366,13 @@ $monthOver = ['1 เดือน','2 เดือน','3 เดือน','4 เ
   </div>
 </div>
         
-<div class="modal fade" id="vlg_pay_step2_modal" tabindex="-1" aria-labelledby="modalStep1" aria-hidden="true">
+<div class="modal fade" id="vlg_pay_step2_modal" tabindex="-1" aria-labelledby="modalStep1" data-bs-backdrop="static" aria-hidden="true">
   <div class="modal-dialog ">
     <div class="modal-content">
         <!-- Content -->
         <div class="modal-header">
             <button class="btn back" onclick="backSelectMonth()">&lsaquo; Go Back</button>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <button type="button" class="btn-close" onclick="closeModalAll()"></button>
         </div>
         <div class="modal-body">
             <div class="container text-center">
@@ -427,7 +415,7 @@ $monthOver = ['1 เดือน','2 เดือน','3 เดือน','4 เ
                 },
                 success: function(response) {
                     console.log('good', response)
-                    $("#imgqr").attr('src', response.Result)
+                    $("#imgqr").attr('src', response.Result);
                 }, error: function(err) {
                     console.log('bad', err)
                 }
@@ -443,6 +431,9 @@ $monthOver = ['1 เดือน','2 เดือน','3 เดือน','4 เ
     function backSelectMonth(){
         $("#vlg_pay_step1_modal").modal("show");
         $("#vlg_pay_step2_modal").modal("hide");
+    };
+    function closeModalAll(){
+        window.location.reload();
     };
 
 //   calculate Month
@@ -504,6 +495,8 @@ $monthOver = ['1 เดือน','2 เดือน','3 เดือน','4 เ
             outputPayMonth.innerHTML=value;
         })
         
+
+
     </script>
 </body>
 </html>

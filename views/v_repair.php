@@ -74,7 +74,7 @@
                                         <td class="text-center p-3" ><?php echo $index+1 ?></td>
                                         <td class="p-3" ><?php echo $data['noti_repair_subject'] ?></td>
                                         <td class="text-center p-3"><?php echo $data['noti_repair_detail'] ?></td>
-                                        <td class="p-3"><p id="re_btn_status" class=" bg-warning text-white text-center"><?php echo $repairClass->statusRepair($data['status_repair']) ?></p></td>
+                                        <td class="p-3"><p id="re_btn_status" class=" bg-secondary text-white text-center"><?php echo $repairClass->statusRepair($data['status_repair']) ?></p></td>
                                     </tr>
                                 <?php } ?>
                                 </tbody>
@@ -139,7 +139,7 @@
                                         <td class="text-center p-3" ><?php echo $index+1 ?></td>
                                         <td class="p-3" ><?php echo $data['noti_repair_subject'] ?></td>
                                         <td class="text-center p-3"><?php echo $data['noti_repair_detail'] ?></td>
-                                        <td class="p-3"><p id="re_btn_status" class=" bg-warning text-white text-center"><?php echo $repairClass->statusRepair($data['status_repair']) ?></p></td>
+                                        <td class="p-3"><p id="re_btn_status" class=" bg-success text-white text-center"><?php echo $repairClass->statusRepair($data['status_repair']) ?></p></td>
                                     </tr>
                                 <?php } ?>
                                 </tbody>
@@ -182,7 +182,7 @@
                                     <td class="text-center p-3" ><?php echo $index+1 ?></td>
                                     <td class="p-3" ><?php echo $data['appeal_detail'] ?></td>
                                     <td class="text-center p-3"><?php echo $viewHouseNum['house_num'] ?></td>
-                                    <td class="p-3"><p id="re_btn_status" class=" bg-warning text-white text-center"><?php echo $repairClass->statusAppeal($data['appeal_status']) ?></p></td>
+                                    <td class="p-3"><p id="re_btn_status" class=" bg-secondary text-white text-center"><?php echo $repairClass->statusAppeal($data['appeal_status']) ?></p></td>
                                 </tr>
                             <?php } ?>
                             </tbody>
@@ -250,7 +250,7 @@
                                     <td class="text-center p-3" ><?php echo $index+1 ?></td>
                                     <td class="p-3" ><?php echo $data['appeal_detail'] ?></td>
                                     <td class="text-center p-3"><?php echo $viewHouseNum['house_num'] ?></td>
-                                    <td class="p-3"><p id="re_btn_status" class=" bg-warning text-white text-center"><?php echo $repairClass->statusAppeal($data['appeal_status']) ?></p></td>
+                                    <td class="p-3"><p id="re_btn_status" class=" bg-success text-white text-center"><?php echo $repairClass->statusAppeal($data['appeal_status']) ?></p></td>
                                 </tr>
                             <?php } ?>
                             </tbody>

@@ -55,14 +55,14 @@
                                 <td class="text-center p-3" ><?php echo $index+1 ?></td>
                                 <td class="p-3" ><?php echo $data['noti_repair_subject'] ?></td>
                                 <td class="text-center p-3"><?php echo $data['noti_repair_detail'] ?></td>
-                                <td class="p-3"><p id="re_btn_status" class=" bg-warning text-white text-center"><?php echo $repairClass->statusRepair($data['status_repair']) ?></p></td>
-                                <td class="text-center p-2"><a class="btn btn-primary pl-pr" data-bs-toggle="modal" data-bs-target="#repairModal<?php echo $data['noti_repair_id'] ?>"><i class="bi bi-search px-2"></i>รับเรื่องและดูรายละเอียด</a></td>
+                                <td class="p-3"><p id="re_btn_status" class=" bg-secondary text-white text-center"><?php echo $repairClass->statusRepair($data['status_repair']) ?></p></td>
+                                <td class="text-center p-2"><a class="btn btn-primary pl-pr"data-bs-backdrop="static" data-bs-toggle="modal" data-bs-target="#repairModal<?php echo $data['noti_repair_id'] ?>"><i class="bi bi-search px-2"></i>รับเรื่องและดูรายละเอียด</a></td>
                             </tr>
 
                                 <!-- start modal -->
 
                                 <!-- Modal repair-->
-                                <div class="modal fade" id="repairModal<?php echo $data['noti_repair_id'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal fade" id="repairModal<?php echo $data['noti_repair_id'] ?>" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog modal-lg">
                                         <!-- formRepair -->
                                         <form id="check_repair_st2_<?php echo $data['noti_repair_id'] ?>" method="POST" enctype="multipart/form-data">
@@ -136,7 +136,7 @@
                                 <!-- start modal -->
 
                                 <!-- Modal repair-->
-                                <div class="modal fade" id="repairModal2<?php echo $data['noti_repair_id'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal fade" id="repairModal2<?php echo $data['noti_repair_id'] ?>"data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog modal-lg">
                                         <!-- formRepair -->
                                         <!-- <form id="check_repair_st2_<?php echo $data['noti_repair_id'] ?>" method="POST" enctype="multipart/form-data"> -->
@@ -203,14 +203,14 @@
                                 <td class="text-center p-3" ><?php echo $index+1 ?></td>
                                 <td class="p-3" ><?php echo $data['noti_repair_subject'] ?></td>
                                 <td class="text-center p-3"><?php echo $data['noti_repair_detail'] ?></td>
-                                <td class="p-3"><p id="re_btn_status" class=" bg-warning text-white text-center"><?php echo $repairClass->statusRepair($data['status_repair']) ?></p></td>
+                                <td class="p-3"><p id="re_btn_status" class=" bg-success text-white text-center"><?php echo $repairClass->statusRepair($data['status_repair']) ?></p></td>
                                 <td class="text-center p-2"><a class="btn btn-primary pl-pr" data-bs-toggle="modal" data-bs-target="#repairModal<?php echo $data['noti_repair_id'] ?>"><i class="bi bi-search px-2"></i>ดูรายละเอียด</a></td>
                             </tr>
 
                                 <!-- start modal -->
 
                                 <!-- Modal repair-->
-                                <div class="modal fade" id="repairModal<?php echo $data['noti_repair_id'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal fade" id="repairModal<?php echo $data['noti_repair_id'] ?>" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog modal-lg">
                                         <!-- formRepair -->
                                         <form id="check_repair_st2_<?php echo $data['noti_repair_id'] ?>" method="POST" enctype="multipart/form-data">
@@ -286,13 +286,13 @@
                                 <td class="text-center p-3" ><?php echo $index+1 ?></td>
                                 <td class="p-3 " ><?php echo $data['appeal_detail'] ?></td>
                                 <td class="text-center p-3"><?php echo $viewHouseNum['house_num'] ?></td>
-                                <td class="p-3"><p id="re_btn_status" class=" bg-warning text-white text-center"><?php echo $repairClass->statusAppeal($data['appeal_status']) ?></p></td>
+                                <td class="p-3"><p id="re_btn_status" class=" bg-secondary text-white text-center"><?php echo $repairClass->statusAppeal($data['appeal_status']) ?></p></td>
                                 <td class="text-center p-2"><a class="btn btn-primary pl-pr" data-bs-toggle="modal" data-bs-target="#appealModal<?php echo $data['appeal_id'] ?>"><i class="bi bi-search px-2"></i>รับเรื่องและดูรายละเอียด</a></td>
                             </tr>
                              <!-- start modal -->
 
                                 <!-- Modal repair-->
-                                <div class="modal fade" id="appealModal<?php echo $data['appeal_id'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal fade" id="appealModal<?php echo $data['appeal_id'] ?>" tabindex="-1" data-bs-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog modal-lg">
                                         <!-- formRepair -->
                                             <div class="modal-content">
@@ -362,7 +362,7 @@
                             <!-- start modal -->
 
                                 <!-- Modal repair-->
-                                <div class="modal fade" id="appealModal<?php echo $data['appeal_id'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal fade" id="appealModal<?php echo $data['appeal_id'] ?>" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog modal-lg">
                                         <!-- formRepair -->
                                             <div class="modal-content">
@@ -425,13 +425,13 @@
                                 <td class="text-center p-3" ><?php echo $index+1 ?></td>
                                 <td class="p-3 " ><?php echo $data['appeal_detail'] ?></td>
                                 <td class="text-center p-3"><?php echo $viewHouseNum['house_num'] ?></td>
-                                <td class="p-3"><p id="re_btn_status" class=" bg-warning text-white text-center"><?php echo $repairClass->statusAppeal($data['appeal_status']) ?></p></td>
+                                <td class="p-3"><p id="re_btn_status" class=" bg-success text-white text-center"><?php echo $repairClass->statusAppeal($data['appeal_status']) ?></p></td>
                                 <td class="text-center p-2"><a class="btn btn-primary pl-pr" data-bs-toggle="modal" data-bs-target="#appealModal<?php echo $data['appeal_id'] ?>"><i class="bi bi-search px-2"></i>ดูรายละเอียด</a></td>
                             </tr>
                             <!-- start modal -->
 
                                 <!-- Modal repair-->
-                                <div class="modal fade" id="appealModal<?php echo $data['appeal_id'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal fade" id="appealModal<?php echo $data['appeal_id'] ?>" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog modal-lg">
                                         <!-- formRepair -->
                                             <div class="modal-content">

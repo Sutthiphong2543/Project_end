@@ -21,7 +21,7 @@ $vlg_id = $controller->getEditVillager($id);
     <script src="https://code.jquery.com/jquery-3.6.3.js" ></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    <title>Document</title>
+    <title>แก้ไขมูลส่วนตัว</title>
 </head>
 <body>
 <?php 
@@ -94,7 +94,7 @@ $vlg_id = $controller->getEditVillager($id);
                                 </select>
                             </div>
                             <div class="form-footer">
-                                <button type="submit" name= "vlgUpdate" class="btn btn-primary mt-3">ยืนยันการแก้ไขข้อมูล</button>
+                                <button type="submit" name= "vlgUpdate" class="btn btn-success mt-3">ยืนยันการแก้ไขข้อมูล</button>
                                 <a class="btn btn-secondary mt-3" href="../views/v_dashboard.php?title=dashboard">ย้อนกลับ</a>
                             </div>
                             

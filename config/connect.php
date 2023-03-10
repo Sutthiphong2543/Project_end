@@ -20,6 +20,7 @@ require_once"filterClass.php";
 require_once"chartClass.php";
 require_once"dashboardClass.php";
 require_once"repairClass.php";
+require_once"newsClass.php";
 
 $controller = new Controller($pdo);
 $user = new User($pdo);
@@ -28,6 +29,7 @@ $filterClass = new FilterClass($pdo);
 $chartClass = new ChartClass($pdo);
 $dashboardClass = new DashboardClass($pdo);
 $repairClass = new RepairClass($pdo);
+$newsClass = new NewsClass($pdo);
 
 // $user->insertAdmin('admin','Amornsap','0954690775','admin','123456','?');
 ?>

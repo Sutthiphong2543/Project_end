@@ -72,7 +72,7 @@ if(!isset($_GET["id"])){
                                 <input type="file" class="form-control i-form-ad" name="img" id="imgInput"  >
                             </div>
                             <div class="form-footer">
-                                <button type="submit" name= "addUpdate" class="btn btn-primary mt-3">ยืนยันการแก้ไขข้อมูล</button>
+                                <button type="submit" name= "addUpdate" class="btn btn-success mt-3">ยืนยันการแก้ไขข้อมูล</button>
                                 <a class="btn btn-secondary mt-3" href="../views/ad_dashboard.php?title=dashboard">ย้อนกลับ</a>
                             </div>
                             
