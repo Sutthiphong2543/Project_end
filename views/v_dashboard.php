@@ -15,6 +15,10 @@
      //get income expenses 
      $getSumAllMonth = $fucIncome->getSumAllMonth($yearNow);
      $getSumAllExpenses = $fucIncome->getSumAllExpenses($yearNow);
+     $income = $getSumAllMonth['sumAllMonth'];
+     $expenses = $getSumAllExpenses['sumAllExpenses'];
+
+     $dataDoughnutCh = [$income, $expenses, ($income-$expenses)];
 
 ?>
 
@@ -116,11 +120,11 @@
                         <div id="container-header-dash"  class="footer-chart mt-3 ">
                             <div class="footer-margin text-center mb-1 border">
                                 <h4>รายรับ</h4>
-                                <h5><?php echo number_format($getSumAllMonth['sumAllMonth']); ?> บาท</h5>
+                                <h5><?php echo  number_format($getSumAllMonth['sumAllMonth']); ?> บาท</h5>
                             </div>
                             <div class="footer-margin text-center mb-1 border">
                                 <h4>รายจ่าย</h4>
-                                <h5><?php echo number_format($getSumAllExpenses['sumAllExpenses']); ?> บาท</h5>
+                                <h5><?php echo  number_format($getSumAllExpenses['sumAllExpenses']); ?> บาท</h5>
                             </div>
                             <div class="footer-margin text-center mb-1 border">
                                 <h4>คงเหลือ</h4>
@@ -128,36 +132,9 @@
                             </div>
                         </div>
                     </div>
-                    <div class="mt-3 mb-3 border">
-                        <div class="format-text">
-                            <h5  class="form-label" style="text-align: justify;">ข้อมูลส่วนตัว</h5>
-                            <hr>
-                        </div>
-                        <div class="dash-profile ">
-                            <div class="format-grid ">
-                                <div class="mb-3 format-text">
-                                  <label for="" class="form-label">ชื่อ : </label>
-                                  <label for="" class="form-control"><?php echo $vlg['villager_fname'].' '.$vlg['villager_lname'] ?></label>
-                                </div>
-                                <div class="mb-3 format-text">
-                                  <label for="" class="form-label">บ้านเลขที่ :</label>
-                                  <label for="" class="form-control"><?php echo $vlg['villager_housenum'] ?></label>
-
-                                </div>
-                                <div class="mb-3 format-text">
-                                  <label for="" class="form-label">เบอร์โทร :</label>
-                                  <label for="" class="form-control"><?php echo $vlg['villager_tel']?></label>
-                                </div>
-                                <div class="mb-3 format-text">
-                                    <a href="../components/vlg_editProfile.php?title=editProfile&id=<?php echo $id ?>" class="text-decoration-none">
-                                        <button class="btn btn-edit-profile text-center" type="button">แก้ไขโปรไฟล์</button>
-                                    </a>
-                                </div>
-                                
-                            </div>
-                            <div class="format-grid  text-center">
-                                <img id="img-profile" src="../upload/<?php echo $vlg['img_profile'] ?>" class="img-fluid img-border-radius" alt="image desc">
-                            </div>
+                    <div class="chart-donut mt-3 mb-3 border">
+                        <div id="doughnut-chart">
+                            <canvas id="doughnutChart" width="300" height="50"></canvas>
                         </div>
 
                     </div>
@@ -187,7 +164,6 @@
             $totalExpenses[] = 0;
         }
         
-
     }
 
 
@@ -235,7 +211,30 @@
                 }
             }
         });
-
+// chat doughnut
+        const chart_doughnut = document.getElementById('doughnutChart').getContext('2d');
+        const data_chart = {
+            labels: [
+                'รายรับ',
+                'รายจ่าย',
+                'คงเหลือ'
+            ],
+            datasets: [{
+            label: ' ',
+            data:  <?php echo json_encode($dataDoughnutCh); ?>,
+            backgroundColor: [
+                'rgba(84, 202, 202, 1)',
+                'rgba(195, 205, 233, 1)',
+                'rgba(244, 244, 244, 1)',
+                
+            ],
+            hoverOffset: 4
+            }]
+        };
+        new Chart(chart_doughnut, {
+            type: 'pie',
+            data: data_chart,
+        });
 
 
         // --------------------------------
@@ -260,6 +259,16 @@
             success: function(data) {
                 $("#container-header-dash").html(data);
 
+            }
+        });
+
+        //chart doughnut year
+        $.ajax({
+            type: "POST",
+            url: "../components/vlg_filter/doughnut_year.php",
+            data:{year:year},
+            success: function(data) {
+                $("#doughnut-chart").html(data);
             }
         });
     }
@@ -287,6 +296,16 @@
                     $("#container-header-dash").html(data);
                 }
             }); 
+
+            // chart doughnut tri mas filterTri
+            $.ajax({
+                type: "POST",
+                url: "../components/vlg_filter/doughnut_trimas.php",
+                data:{tri:tri,year:yearTri},
+                success: function(data) {
+                    $("#doughnut-chart").html(data);
+                }
+            });
         }
 
 //filter month........................................................
@@ -312,6 +331,16 @@
                 data:{month:month,year:yearTri},
                 success: function(data) {
                     $("#container-header-dash").html(data);
+                }
+            }); 
+
+            // chart doughnut month filter
+            $.ajax({
+                type: "POST",
+                url: "../components/vlg_filter/doughnut_month.php",
+                data:{month:month,year:yearTri},
+                success: function(data) {
+                    $("#doughnut-chart").html(data);
                 }
             }); 
         }
